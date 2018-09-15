@@ -32,6 +32,7 @@ access configs tru cli
 
 start a new entry
 optionally assign <name> as the task for entry
+warn if already in
 
 ## tt out
 
@@ -43,3 +44,18 @@ if not tracking print a warning
 make a folder ~/.tt
 make config file ~/.tt/ttrc.json
 make history file ~/.tt/history.json
+
+  tracking: false,
+  currentTask: "Personal task",
+  In: undefined,
+  Out: undefined
+
+  tracking: true,
+  currentTask: "Personal task",
+  In: 8888,
+  Out: undefined
+
+  tracking: false,
+  currentTask: "Personal task",
+  In: 8888,
+  Out: 1003

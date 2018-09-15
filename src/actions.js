@@ -30,10 +30,18 @@ const config = () => {
   };
 };
 
+const historyPush = obj => {
+  return {
+    type: "UPDATE_HISTORY_PUSH",
+    value: obj
+  };
+};
+
 export default {
   toggleTracking,
   startTracking,
   stopTracking,
   noArgsAction,
-  config
+  config,
+  historyPush
 };

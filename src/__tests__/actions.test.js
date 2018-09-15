@@ -1,43 +1,50 @@
-import action from "../actions";
+import actions from "../actions";
 
 test("toggle tracking", () => {
-  expect(action.toggleTracking()).toEqual({
+  expect(actions.toggleTracking()).toEqual({
     type: "TOGGLE_TRACKING"
   });
 });
 
 test("start tracking", () => {
-  expect(action.startTracking()).toEqual({
+  expect(actions.startTracking()).toEqual({
     type: "START_TRACKING",
-    value: "Personal task"
+    value: expect.any(String)
   });
 
-  expect(action.startTracking("foo")).toEqual({
+  expect(actions.startTracking("foo")).toEqual({
     type: "START_TRACKING",
     value: "foo"
   });
 });
 
 test("stop tracking", () => {
-  expect(action.stopTracking()).toEqual({
+  expect(actions.stopTracking()).toEqual({
     type: "STOP_TRACKING",
-    value: "Personal task"
+    value: expect.any(String)
   });
 
-  expect(action.stopTracking("foo")).toEqual({
+  expect(actions.stopTracking("foo")).toEqual({
     type: "STOP_TRACKING",
     value: "foo"
   });
 });
 
 test("no args action", () => {
-  expect(action.noArgsAction()).toEqual({
+  expect(actions.noArgsAction()).toEqual({
     type: "NO_ARGS_ACTION"
   });
 });
 
 test("config", () => {
-  expect(action.config()).toEqual({
+  expect(actions.config()).toEqual({
     type: "CONFIG"
+  });
+});
+
+test("History push", () => {
+  expect(actions.historyPush({ task: "foo" })).toEqual({
+    type: "UPDATE_HISTORY_PUSH",
+    value: { task: "foo" }
   });
 });
