@@ -39,23 +39,29 @@ warn if already in
 stop tracking the current entry
 if not tracking print a warning
 
+## tt task
+
+sets current task name
+if not tracking print a warning
+
+## tt log [<when>] ["last"]
+
+prints history info.
+defaults to "today", supports a <when> time window
+"last" shows last task only
+if not tracking print a warning
+
 ## Misc
 
 make a folder ~/.tt
 make config file ~/.tt/ttrc.json
 make history file ~/.tt/history.json
 
-  tracking: false,
-  currentTask: "Personal task",
-  In: undefined,
-  Out: undefined
-
-  tracking: true,
-  currentTask: "Personal task",
-  In: 8888,
-  Out: undefined
-
-  tracking: false,
-  currentTask: "Personal task",
-  In: 8888,
-  Out: 1003
+type `tt`
+no entries, so it starts logging an unnamed.
+type `tt task`, to set the task
+do some work
+type `tt`, to stop tracking
+tt prints the task summary, with duration.
+type `tt log` to see today's entries
+feel happy wrote `tt`.
