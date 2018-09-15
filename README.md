@@ -21,47 +21,67 @@ Time Tracking Tool
 
 ## tt
 
-if not tracking, start a new entry
-if tracking, stop
+if no config files, print help and exit
+else
+  if not tracking, start a new entry
+  if tracking, stop
+
+## tt "task"
+
+if no config files, create config files with defaults
+if not tracking, start a new entry and assign "task" as the task for entry
+if tracking, assign "task" as the task for entry
+
+## tt new ["task"]
+
+if not tracking, start a new entry.
+  if "task" assign new task name to "task"
+if tracking, stop current task, print summary, start new task.
+  if "task" assign new task name to "task"
+
+## tt rm [<what>]
+
+if tracking error.
+else remove last entry from state.
+if <what> remove <what> from state.
+
+## tt log [<when>]["last"]
+
+if not tracking, prints today's history info.
+  if no <when> default to "today"
+  if <when>, print <when> time window.
+  "last" shows last task only.
+else shows info on current task
 
 ## tt config
 
 access configs tru cli
 
-## tt in <name>
+## tt -h | --help | help
 
-start a new entry
-optionally assign <name> as the task for entry
-warn if already in
-
-## tt out
-
-stop tracking the current entry
-if not tracking print a warning
-
-## tt task
-
-sets current task name
-if not tracking print a warning
-
-## tt log [<when>] ["last"]
-
-prints history info.
-defaults to "today", supports a <when> time window
-"last" shows last task only
-if not tracking print a warning
+print CLI help message
 
 ## Misc
 
 make a folder ~/.tt
 make config file ~/.tt/ttrc.json
 make history file ~/.tt/history.json
+make state file ~/.tt/state.json
 
 type `tt`
 no entries, so it starts logging an unnamed.
-type `tt task`, to set the task
+type `tt foo`, to set the task to "foo"
 do some work
 type `tt`, to stop tracking
 tt prints the task summary, with duration.
-type `tt log` to see today's entries
-feel happy wrote `tt`.
+type `tt log` to see today's entries.
+
+type `tt`
+no entries, so it starts logging an unnamed.
+tt prints text indicating it started a new task.
+type `tt foo`, to set the task to "foo"
+do some work
+type `tt new bar`, to auto stop "foo" and start a new task "bar"
+tt prints "foo" summary, with duration.
+tt prints text indicating it started a new task.
+type `tt` to stop "bar"
