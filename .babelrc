@@ -9,7 +9,7 @@
       }
     ]
   ],
-  "ignore": ["src/dist/*"],
+  "ignore": ["dist/*"],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-export-namespace-from",
