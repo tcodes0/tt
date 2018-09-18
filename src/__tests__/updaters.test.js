@@ -1,17 +1,21 @@
 import updaters from "../updaters";
-import { home } from "../utils";
+import { home, ttDir } from "../utils";
+
+const mock = jest.fn(
+  async () =>
+    new Promise(resolve => {
+      setTimeout(() => {
+        resolve("mock data");
+      }, 200);
+    })
+);
 
 test("initTTFiles", async () => {
-  const mock = jest.fn(
-    async (path, opts = { fail: false }) =>
-      new Promise((resolve, reject) => {
-        setTimeout(() => {
-          opts.fail ? reject("mock error") : resolve(path);
-        }, 200);
-      })
+  await updaters.initTTFiles(
+    mock,
+    "tt folder doesn't exist",
+    jest.fn(() => ({ catch: () => {} }))
   );
-
-  await updaters.initTTFiles(mock, "tt folder doesn't exist");
   expect(mock).toHaveBeenCalledWith(
     "tt folder doesn't exist",
     expect.any(Function)
@@ -36,4 +40,21 @@ test("initTTFiles", async () => {
     `${home}/Desktop/history.json`,
     expect.any(String)
   );
+});
+
+test("persistState", async () => {
+  const { persistState } = updaters;
+
+  await persistState(mock);
+  expect(mock).toHaveBeenCalledWith(`${ttDir}/state.json`, "\n");
+});
+
+test("readState", async () => {
+  const { readState } = updaters;
+
+  await readState(mock);
+  expect(mock).toHaveBeenCalledWith(`${ttDir}/state.json`, expect.any(String));
+
+  let result = await readState(mock, "invalid path or non existent");
+  expect(result).toEqual({});
 });

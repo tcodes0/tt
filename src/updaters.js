@@ -1,4 +1,10 @@
-import { promiseStat, home, promiseWriteFile } from "./utils";
+import {
+  promiseStat,
+  home,
+  promiseWriteFile,
+  ttDir,
+  promiseReadFile
+} from "./utils";
 import fs from "fs";
 
 const historyPush = () => {
@@ -13,13 +19,34 @@ const historyPrint = () => {
   return "I Print the history to cli";
 };
 
-const persistState = () => {
-  return "I write the state object to JSON";
-};
+/**
+ * write arg to ~/.tt/state.json
+ */
+export const persistState = (
+  writeFile = promiseWriteFile,
+  path = `${ttDir}/state.json`,
+  data = "\n"
+) => writeFile(path, data).catch(err => throw err);
 
-const readState = () => {
-  return "I read the state object from a JSON file";
-};
+/**
+ * look for ~/.tt/state.json
+ * if found, read it, return result
+ * else return {}
+ */
+export const readState = (
+  readFile = promiseReadFile,
+  path = `${ttDir}/state.json`,
+  opts = "utf-8"
+) =>
+  new Promise((resolve, reject) => {
+    promiseStat(path).catch(err => {
+      if (err.code === "ENOENT") {
+        resolve({});
+      }
+      reject(err);
+    });
+    readFile(path, opts).then(data => resolve(data));
+  });
 
 /**
  * initTTFiles() - create default files with defaults
@@ -36,22 +63,16 @@ export const initTTFiles = async (
   try {
     await promiseStat(path);
   } catch (err) {
-    if (err && err.code === "ENOENT") {
+    if (err.code === "ENOENT") {
       mkdir(path, err => err && throw err);
       return;
     }
     throw err;
   }
 
-  try {
-    for (const file of files) {
-      await writeFile(`${path}/${file}`, "\n");
-    }
-  } catch (err) {
-    // console.log(err);
-    throw err;
-  }
-  return;
+  Promise.all(files.map(file => writeFile(`${path}/${file}`, "\n"))).catch(
+    err => throw err
+  );
 };
 
 export default {

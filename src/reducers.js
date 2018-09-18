@@ -10,8 +10,7 @@ const initialHistory = [];
 const taskObject = {
   task: undefined,
   in: undefined,
-  out: undefined,
-  duration: undefined
+  out: undefined
 };
 
 export default {

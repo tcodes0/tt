@@ -63,10 +63,10 @@ print CLI help message
 
 ## Misc
 
-make a folder ~/.tt
-make config file ~/.tt/ttrc.json
-make history file ~/.tt/history.json
-make state file ~/.tt/state.json
+✔ make a folder ~/.tt
+✔ make config file ~/.tt/ttrc.json
+✔ make history file ~/.tt/history.json
+✔ make state file ~/.tt/state.json
 
 type `tt`
 no entries, so it starts logging an unnamed.
