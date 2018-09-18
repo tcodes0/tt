@@ -1,5 +1,6 @@
 import os from "os";
 import fs from "fs";
+import { promisify } from "util";
 
 export const home = os.homedir();
 export const ttDir = `${os.homedir()}/.tt`;
@@ -23,3 +24,18 @@ export const promiseReadFile = (path, opts) =>
       err ? reject(err) : resolve(data);
     });
   });
+
+const makeProxy = (module = {}, fallback = {}, helper = a => a) =>
+  new Proxy(module, {
+    get: (module, prop) => {
+      if (/Sync/.test(prop)) {
+        return fallback[prop];
+      }
+      if (module[prop] == undefined) {
+        return helper(fallback[prop]);
+      }
+      return module[prop];
+    }
+  });
+
+export const promises = makeProxy(fs.promises, fs, promisify);
