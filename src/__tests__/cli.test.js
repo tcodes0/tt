@@ -1,10 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { parseArguments, operation } from "../cli";
 
-test("foo", () => {
-  expect(4).toBe(4);
-});
-
 // process.argv0 is node, or whatever interpreter is running
 // process.argv[0] is the actual node path on the machine
 // process.argv[1] is the actual program path on the machine
@@ -16,31 +12,33 @@ const mockArgv = (...args) => [
 ];
 
 test("operation", () => {
-  let result;
-
-  result = operation("mode new task", "studying");
-  expect(result).toMatchObject({ mode: expect.any(String) });
-
   {
-    let { mode, ...nonMode } = result;
+    const result = operation("mode new task", "studying");
+    expect(result).toMatchObject({ mode: expect.any(String) });
+    const { mode, ...nonMode } = result;
 
     Object.values(nonMode).forEach(value => {
       expect(value).toEqual(expect.any(Array));
     });
   }
 
-  result = operation("mode rm task", ["studying", "gaming"]);
-
   {
-    let { mode, ...nonMode2 } = result;
+    const result = operation("mode rm task", ["studying", "gaming"]);
+    const { mode, ...nonMode } = result;
 
-    Object.values(nonMode2).forEach(value => {
+    Object.values(nonMode).forEach(value => {
       expect(value).toEqual(expect.any(Array));
     });
   }
 
   // arg1 is necessary
   expect(() => operation()).toThrow();
+
+  {
+    const result = operation("mode foo", ["input bar"], { extraOpt: "baz" });
+    const { extraOpt } = result;
+    expect(extraOpt).toBe("baz");
+  }
 });
 
 test("parseArguments basic", () => {
@@ -74,7 +72,7 @@ test("parseArguments basic", () => {
   expect(result).toMatchObject({ mode: "help", input: [] });
 
   result = parseArguments(mockArgv("github", "work"));
-  expect(result).toMatchObject({ mode: "parseErr", input: ["github", "work"] });
+  expect(result).toMatchObject({ mode: "parseErr", input: expect.any(Array) });
 
   result = parseArguments(mockArgv("newtask"));
   expect(result).toMatchObject({ mode: "new", input: ["newtask"] });
@@ -84,10 +82,10 @@ test("parseArguments edge cases", () => {
   let result;
 
   result = parseArguments(mockArgv("new", "rm"));
-  expect(result).toMatchObject({ mode: "parseErr", input: ["new", "rm"] });
+  expect(result).toMatchObject({ mode: "parseErr", input: expect.any(Array) });
 
   result = parseArguments(mockArgv("-h", "foobar"));
-  expect(result).toMatchObject({ mode: "parseErr", input: ["-h", "foobar"] });
+  expect(result).toMatchObject({ mode: "parseErr", input: expect.any(Array) });
 
   // specify which opts log and other take
   // result = parseArguments(mockArgv("log", "newaf"));
