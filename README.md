@@ -1,4 +1,4 @@
-# TT
+# (WIP) TT
 
 <p>
   <a href="https://travis-ci.org/Thomazella/tt"><img src="https://img.shields.io/travis/Thomazella/tt/master.svg?style=flat-square" alt="Build Status" /></a>
@@ -18,6 +18,8 @@ Time Tracking Tool
 - [ ] foo
 
 # API
+
+operation modes: noArgs, new, rm, log, config, help, parseErr
 
 ## tt
 
@@ -41,11 +43,16 @@ if tracking, stop current task, print summary, start new task.
 
 ## tt rm [<what>]
 
+what: task name
+
 if tracking error.
 else remove last entry from state.
 if <what> remove <what> from state.
 
-## tt log [<when>]["last"]
+## tt log [<when>]
+
+when: today | week | month | all | last | last n
+n: number of days
 
 if not tracking, prints today's history info.
   if no <when> default to "today"

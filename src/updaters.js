@@ -12,7 +12,7 @@ const historyPush = () => {
 };
 
 const historyRead = () => {
-  return "I read the history";
+  return readState(undefined, `${ttDir}/history.json`);
 };
 
 const historyPrint = () => {
