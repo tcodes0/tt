@@ -1,15 +1,7 @@
-export const operation = (
-  mode = throw "mode cannot be undefined",
-  input = [],
-  extra = {}
-) => ({
-  mode: mode,
-  input: Array.isArray(input) ? input : [input],
-  ...extra
-});
+import { operation } from "./actions";
 
 // returns an operation object
-export const parseArguments = argv => {
+export default function parseArguments(argv) {
   // refac to receive reservedWords as input array
   const reservedWords = ["new", "rm", "log", "config", "help", "-h", "--help"];
   // argv[0] is node, argv[1] is program
@@ -77,4 +69,4 @@ export const parseArguments = argv => {
         message: "Invalid options 🤔. Try `tt help`"
       });
   }
-};
+}

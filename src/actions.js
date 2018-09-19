@@ -1,3 +1,13 @@
+export const operation = (
+  mode = throw "mode cannot be undefined",
+  input = [],
+  extra = {}
+) => ({
+  mode: mode,
+  input: Array.isArray(input) ? input : [input],
+  ...extra
+});
+
 const toggleTracking = () => {
   return {
     type: "TOGGLE_TRACKING"
