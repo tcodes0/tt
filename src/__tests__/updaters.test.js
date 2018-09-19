@@ -10,16 +10,24 @@ const mock = jest.fn(
     })
 );
 
+// eslint-disable-next-line no-unused-vars
+const mockFail = (mockData = "mockFail data") =>
+  jest.fn(
+    async () =>
+      new Promise((undefined, reject) => {
+        setTimeout(() => {
+          reject(mockData);
+        }, 200);
+      })
+  );
+
 test("initTTFiles", async () => {
   await updaters.initTTFiles(
     mock,
     "tt folder doesn't exist",
     jest.fn(() => ({ catch: () => {} }))
   );
-  expect(mock).toHaveBeenCalledWith(
-    "tt folder doesn't exist",
-    expect.any(Function)
-  );
+  expect(mock).toHaveBeenCalledWith("tt folder doesn't exist");
 
   // future add a test to when mkdir gets invalid input and does something other than throw.
 

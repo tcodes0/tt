@@ -1,11 +1,4 @@
-import {
-  promiseStat,
-  home,
-  promiseWriteFile,
-  ttDir,
-  promiseReadFile
-} from "./utils";
-import fs from "fs";
+import { home, ttDir, fsPromisesProxy as promises } from "./utils";
 
 const historyPush = () => {
   return "I push to history";
@@ -23,7 +16,7 @@ const historyPrint = () => {
  * write arg to ~/.tt/state.json
  */
 export const persistState = (
-  writeFile = promiseWriteFile,
+  writeFile = promises.writeFile,
   path = `${ttDir}/state.json`,
   data = "\n"
 ) => writeFile(path, data).catch(err => throw err);
@@ -34,12 +27,12 @@ export const persistState = (
  * else return {}
  */
 export const readState = (
-  readFile = promiseReadFile,
+  readFile = promises.readFile,
   path = `${ttDir}/state.json`,
   opts = "utf-8"
 ) =>
   new Promise((resolve, reject) => {
-    promiseStat(path).catch(err => {
+    promises.stat(path).catch(err => {
       if (err.code === "ENOENT") {
         resolve({});
       }
@@ -55,16 +48,16 @@ export const readState = (
  *  else globber them with default values
  */
 export const initTTFiles = async (
-  mkdir = fs.mkdir,
+  mkdir = promises.mkdir,
   path = `${home}/.tt`,
-  writeFile = promiseWriteFile,
+  writeFile = promises.writeFile,
   files = ["ttrc.json", "history.json", "state.json"]
 ) => {
   try {
-    await promiseStat(path);
+    await promises.stat(path);
   } catch (err) {
     if (err.code === "ENOENT") {
-      mkdir(path, err => err && throw err);
+      mkdir(path).catch(err => err && throw err);
       return;
     }
     throw err;
