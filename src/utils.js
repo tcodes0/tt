@@ -25,17 +25,15 @@ export const promiseReadFile = (path, opts) =>
     });
   });
 
-const makeProxy = (module = {}, fallback = {}, helper = a => a) =>
-  new Proxy(module, {
-    get: (module, prop) => {
-      if (/Sync/.test(prop)) {
-        return fallback[prop];
-      }
-      if (module[prop] == undefined) {
-        return helper(fallback[prop]);
-      }
-      return module[prop];
-    }
-  });
+// fs.promises API added on Node v10
+export const promises = new Proxy(fs.promises || {}, {
+  get: (FsPromises, prop) => {
+    const fallback = fs[prop];
 
-export const promises = makeProxy(fs.promises, fs, promisify);
+    if (/Sync/.test(prop)) return fallback;
+    if (FsPromises[prop] === undefined) {
+      return fallback instanceof Function ? promisify(fallback) : fallback;
+    }
+    return FsPromises[prop];
+  }
+});

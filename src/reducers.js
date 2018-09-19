@@ -5,9 +5,9 @@ const initialState = {
   tracking: false
 };
 
-const initialHistory = [];
+export const initialHistory = [];
 
-const taskObject = {
+export const taskObject = {
   task: undefined,
   in: undefined,
   out: undefined
