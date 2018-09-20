@@ -1,3 +1,4 @@
+/* eslint-disable no-process-exit */
 import os from "os";
 import fs from "fs";
 import { promisify } from "util";
@@ -17,3 +18,8 @@ export const fsPromisesProxy = new Proxy(fs.promises || {}, {
     return FsPromises[prop];
   }
 });
+
+export const bailout = (message = "Generic error. Sorry :(") => {
+  process.stderr.write(`tt error 💀 \n${message}\n`);
+  process.exit(1);
+};

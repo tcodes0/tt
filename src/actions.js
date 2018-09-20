@@ -8,6 +8,13 @@ export const operation = (
   ...extra
 });
 
+export const initState = () => ({
+  task: "Personal task",
+  in: undefined,
+  out: undefined,
+  tracking: false
+});
+
 const toggleTracking = () => {
   return {
     type: "TOGGLE_TRACKING"

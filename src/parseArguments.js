@@ -20,7 +20,7 @@ export default function parseArguments(argv) {
       return isValidName(argTwo)
         ? operation("new", argTwo)
         : operation("parseErr", argTwo, {
-            message: "Invalid argument to command"
+            message: "Argument is identical to a command 😕"
           });
 
     case "rm":
@@ -28,7 +28,7 @@ export default function parseArguments(argv) {
       return isValidName(argTwo)
         ? operation("rm", argTwo)
         : operation("parseErr", argTwo, {
-            message: "Invalid argument to command"
+            message: "Argument is identical to a command 😕"
           });
 
     case "log":
@@ -36,14 +36,14 @@ export default function parseArguments(argv) {
       return isValidName(argTwo)
         ? operation("log", argTwo)
         : operation("parseErr", argTwo, {
-            message: "Invalid argument to command"
+            message: "Argument is identical to a command 😕"
           });
 
     case "config":
       return userArgs.length === 1
         ? operation("config")
         : operation("parseErr", argTwo, {
-            message: "Invalid argument to command"
+            message: "Argument is identical to a command 😕"
           });
 
     case "-h":
@@ -57,7 +57,7 @@ export default function parseArguments(argv) {
 
     default:
       argTwoAndOthers.forEach(arg => {
-        if (reservedWords.includes(arg))
+        if (!isValidName(arg))
           return operation("parseErr", arg, {
             message: "Command names cannot be used as arguments"
           });

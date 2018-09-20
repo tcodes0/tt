@@ -1,14 +1,14 @@
 import { home, ttDir, fsPromisesProxy as promises } from "./utils";
 
-const historyPush = () => {
+const pushHistory = () => {
   return "I push to history";
 };
 
-const historyRead = () => {
+export const readHistory = () => {
   return readState(undefined, `${ttDir}/history.json`);
 };
 
-const historyPrint = () => {
+export const printHistory = () => {
   return "I Print the history to cli";
 };
 
@@ -69,9 +69,9 @@ export const initTTFiles = async (
 };
 
 export default {
-  historyPush,
-  historyRead,
-  historyPrint,
+  pushHistory,
+  readHistory,
+  printHistory,
   persistState,
   readState,
   initTTFiles

@@ -1,5 +1,5 @@
 import fs from "fs";
-import { promises } from "../utils";
+import { fsPromisesProxy as promises } from "../utils";
 
 // fs.promises API added on Node v10
 const funcNames = [
