@@ -9,10 +9,13 @@ export const operation = (
 });
 
 export const initState = () => ({
-  task: "Personal task",
-  in: undefined,
-  out: undefined,
   tracking: false
+});
+
+export const initTask = (name = "Personal task", inTime, outTime) => ({
+  task: name,
+  in: inTime,
+  out: outTime
 });
 
 const toggleTracking = () => {

@@ -1,7 +1,9 @@
 import { home, ttDir, fsPromisesProxy as promises } from "./utils";
 
-const pushHistory = () => {
-  return "I push to history";
+export const pushHistory = async task => {
+  const history = await readHistory();
+  history.pushHistory(task);
+  persistState(undefined, `${ttDir}/history.json`, history);
 };
 
 export const readHistory = () => {
@@ -19,7 +21,10 @@ export const persistState = (
   writeFile = promises.writeFile,
   path = `${ttDir}/state.json`,
   data = "\n"
-) => writeFile(path, data).catch(err => throw err);
+) => {
+  const dataAsString = typeof data === "string" ? data : JSON.stringify(data);
+  return writeFile(path, dataAsString).catch(err => throw err);
+};
 
 /**
  * look for ~/.tt/state.json
