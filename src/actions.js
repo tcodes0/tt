@@ -14,42 +14,29 @@ export const initState = () => ({
 });
 
 export const initTask = (name = "Personal task", inTime, outTime) => ({
+  type: "INIT_TASK",
   task: name,
   in: inTime,
   out: outTime
 });
 
-const toggleTracking = () => {
-  return {
-    type: "TOGGLE_TRACKING"
-  };
-};
+const toggleTracking = () => ({
+  type: "TOGGLE_TRACKING"
+});
 
-const startTracking = (task = "Personal task") => {
-  return {
-    type: "START_TRACKING",
-    value: task
-  };
-};
+const startTracking = (task = "Personal task") => ({
+  type: "START_TRACKING",
+  task: task
+});
 
-const stopTracking = (task = "Personal task") => {
-  return {
-    type: "STOP_TRACKING",
-    value: task
-  };
-};
+const stopTracking = (task = "Personal task") => ({
+  type: "STOP_TRACKING",
+  task: task
+});
 
-const noArgsAction = () => {
-  return {
-    type: "NO_ARGS_ACTION"
-  };
-};
-
-const config = () => {
-  return {
-    type: "CONFIG"
-  };
-};
+const noArgsAction = () => ({
+  type: "NO_ARGS_ACTION"
+});
 
 const historyPush = (task, history) => ({
   type: "HISTORY_PUSH",
@@ -57,11 +44,17 @@ const historyPush = (task, history) => ({
   history
 });
 
+const configSet = (setting, config) => ({
+  type: "CONFIG_SET",
+  setting,
+  config
+});
+
 export default {
   toggleTracking,
   startTracking,
   stopTracking,
   noArgsAction,
-  config,
-  historyPush
+  historyPush,
+  configSet
 };

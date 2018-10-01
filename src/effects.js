@@ -11,42 +11,49 @@ export const historyPrint = () => ({
   type: "HISTORY_PRINT"
 });
 
-/**
- * write arg to ~/.tt/state.json
- */
 export const stateWrite = (path, data) => ({
   type: "STATE_WRITE",
   path,
   data
 });
 
-/**
- * look for ~/.tt/state.json.
- * If found, read it and return result.
- * Else return {}
- */
 export const stateRead = path => ({
   type: "STATE_READ",
   path
 });
 
-/**
- * initTTFiles() - create default files with defaults
- *  if not tt folder, create it
- *  if not tt files, create them
- *  else globber them with default values
- */
 export const initTTFiles = (path, files) => ({
   type: "INIT_TT_FILES",
   path,
   files
 });
 
+const configRead = path => ({
+  type: "CONFIG_READ",
+  path
+});
+
+const configWrite = path => ({
+  type: "CONFIG_WRITE",
+  path
+});
+
+const configPrint = () => ({
+  type: "CONFIG_PRINT"
+});
+
 export default {
+  // history
   historyWrite,
   historyRead,
   historyPrint,
+  // state
   stateWrite,
   stateRead,
+  // config
+  configRead,
+  configWrite,
+  configPrint,
+  // others
   initTTFiles
 };
