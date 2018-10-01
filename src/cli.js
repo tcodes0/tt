@@ -6,9 +6,10 @@ import {
   bindActionCreators,
   compose
 } from "redux";
-import { initState, initTask } from "./actions";
+import { initState, initTask, stopTracking } from "./actions";
 import { bailout } from "./utils";
 import { pushHistory, readState, persistState } from "./updaters";
+import { dispatch } from "./store";
 
 const stderr = process.stderr;
 const stdout = process.stdout;
@@ -33,7 +34,7 @@ check if disk state.tracking is true
 
 */
 
-const opNew = async input => {
+const performNew = async input => {
   const state = await readState();
   if (state.tracking) {
     console.log("stop task and push to history");
@@ -44,6 +45,10 @@ const opNew = async input => {
   pushHistory(newTask);
 };
 
+/**
+ * Main tt function. Maps operations to actions.
+ * @param {process.argv-like} mockArgs or undefined to parse process.argv
+ */
 export default async function cli(mockArgs) {
   const operation = parseArguments(mockArgs || process.argv);
 
@@ -54,8 +59,13 @@ export default async function cli(mockArgs) {
       Failed with: ${operation.input}
       `);
       break;
+    case "noArgs":
+      bailout(`
+      Please specify a few args.
+      `);
+      break;
     case "new":
-      await opNew(operation.input);
+      await performNew(operation.input);
       break;
     // default:
     //   break;

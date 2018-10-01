@@ -1,10 +1,13 @@
 import { operation } from "./actions";
 
-// returns an operation object
+/**
+ * Parses argv-like input. Returns an operation object.
+ * @param {string[]} argv Node's process.argv
+ */
 export default function parseArguments(argv) {
   // refac to receive reservedWords as input array
   const reservedWords = ["new", "rm", "log", "config", "help", "-h", "--help"];
-  // argv[0] is node, argv[1] is program
+  // argv[0] is node, argv[1] is program path
   const [, , ...userArgs] = argv;
   const [argOne, ...argTwoAndOthers] = userArgs;
   const [argTwo, ...otherArgs] = argTwoAndOthers;

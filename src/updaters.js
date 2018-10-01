@@ -27,9 +27,9 @@ export const persistState = (
 };
 
 /**
- * look for ~/.tt/state.json
- * if found, read it, return result
- * else return {}
+ * look for ~/.tt/state.json.
+ * If found, read it and return result.
+ * Else return {}
  */
 export const readState = (
   readFile = promises.readFile,

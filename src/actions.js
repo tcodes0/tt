@@ -7,6 +7,7 @@ export const operation = (
   input: Array.isArray(input) ? input : [input],
   ...extra
 });
+// input.toString = () => Array.prototype.join.bind(input)(' ')
 
 export const initState = () => ({
   tracking: false
@@ -50,12 +51,11 @@ const config = () => {
   };
 };
 
-const historyPush = obj => {
-  return {
-    type: "UPDATE_HISTORY_PUSH",
-    value: obj
-  };
-};
+const historyPush = (task, history) => ({
+  type: "HISTORY_PUSH",
+  task,
+  history
+});
 
 export default {
   toggleTracking,

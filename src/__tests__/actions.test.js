@@ -44,7 +44,7 @@ test("config", () => {
 
 test("History push", () => {
   expect(actions.historyPush({ task: "foo" })).toEqual({
-    type: "UPDATE_HISTORY_PUSH",
-    value: { task: "foo" }
+    type: "HISTORY_PUSH",
+    task: { task: "foo" }
   });
 });
