@@ -50,11 +50,21 @@ const configSet = (setting, config) => ({
   config
 });
 
+const lockState = () => ({
+  type: "STATE_LOCK"
+});
+
+const lockHistory = () => ({
+  type: "HISTORY_LOCK"
+});
+
 export default {
   toggleTracking,
   startTracking,
   stopTracking,
   noArgsAction,
   historyPush,
-  configSet
+  configSet,
+  lockState,
+  lockHistory
 };

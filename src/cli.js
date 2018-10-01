@@ -6,10 +6,11 @@ import {
   bindActionCreators,
   compose
 } from "redux";
-import { initState, initTask, stopTracking } from "./actions";
+import { initState, initTask, stopTracking, lockState } from "./actions";
 import { bailout } from "./utils";
 import { pushHistory, readState, persistState } from "./updaters";
-import { dispatch } from "./store";
+import { dispatch, getState } from "./store";
+import { stateRead } from "./effects";
 
 const stderr = process.stderr;
 const stdout = process.stdout;
@@ -27,17 +28,16 @@ set state to tracking
 write the state
 push the task
 
-
 check if disk state.tracking is true
   if it is, load state from disk
   else create a new store
-
 */
 
 const performNew = async input => {
-  const state = await readState();
-  if (state.tracking) {
+  dispatch(stateRead());
+  if (getState().tracking) {
     console.log("stop task and push to history");
+    dispatch(stopTracking("task?"));
   }
   const newTask = initTask(input);
   state.tracking = true;
