@@ -30,11 +30,13 @@
     "tool",
     "cli"
   ],
+  "types": "dist/ts/src",
   "scripts": {
     "start": "yarn babel-node src/index.js",
-    "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext js,ts,tsx",
     "clean": "rimraf dist",
-    "build": "yarn clean && babel src --out-dir dist",
+    "build": "tsc --emitDeclarationOnly && babel src -d dist -x .js,.ts,.tsx",
     "test": "jest",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
@@ -42,6 +44,12 @@
     "prepublishOnly": "npm run lint",
     "prepublish": "npm test && npm run build",
     "postpublish": "git push origin master --follow-tags"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix --ext js,ts,tsx",
+      "git add"
+    ]
   },
   "dependencies": {
     "redux": "^4.0.0"
@@ -58,17 +66,23 @@
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-stage-2": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/jest": "^23.3.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-import-resolver-typescript": "^1.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-typescript": "^0.12.0",
     "jest": "^23.5.0",
     "prettier": "^1.13.4",
     "regenerator-runtime": "^0.12.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "typescript": "^3.1.2",
+    "typescript-eslint-parser": "^20.0.0"
   }
 }

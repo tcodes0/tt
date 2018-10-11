@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import parseArguments from "../parseArguments";
-import { operation } from "../actions";
+import parseArguments from "../src/parseArguments";
+import { operation } from "../src/actions";
 
 // process.argv0 is node, or whatever interpreter is running
 // process.argv[0] is the actual node path on the machine

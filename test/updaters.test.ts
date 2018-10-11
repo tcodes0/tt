@@ -1,5 +1,5 @@
-import updaters from "../updaters";
-import { home, ttDir } from "../utils";
+import updaters from "../src/updaters";
+import { home, ttDir } from "../src/utils";
 
 const mock = jest.fn(
   async () =>
