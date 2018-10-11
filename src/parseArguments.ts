@@ -4,14 +4,14 @@ import { operation } from "./actions";
  * Parses argv-like input. Returns an operation object.
  * @param {string[]} argv Node's process.argv
  */
-export default function parseArguments(argv) {
+export default function parseArguments(argv: string[]) {
   // refac to receive reservedWords as input array
   const reservedWords = ["new", "rm", "log", "config", "help", "-h", "--help"];
   // argv[0] is node, argv[1] is program path
   const [, , ...userArgs] = argv;
   const [argOne, ...argTwoAndOthers] = userArgs;
   const [argTwo, ...otherArgs] = argTwoAndOthers;
-  const isValidName = word => !reservedWords.includes(word);
+  const isValidName = (word: string) => !reservedWords.includes(word);
 
   if (!userArgs.length) return operation("noArgs");
   if (otherArgs.length)
@@ -64,6 +64,7 @@ export default function parseArguments(argv) {
           return operation("parseErr", arg, {
             message: "Command names cannot be used as arguments"
           });
+        return
       });
 
       if (isValidName(argOne) && !argTwo) return operation("new", argOne);

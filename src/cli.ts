@@ -1,20 +1,14 @@
 /* eslint-disable no-unused-vars */
+//@ts-ignore
 import parseArguments from "./parseArguments";
-import {
-  createStore,
-  combineReducers,
-  bindActionCreators,
-  compose
-} from "redux";
-import { initState, initTask, stopTracking, lockState } from "./actions";
+//@ts-ignore
 import { bailout } from "./utils";
-import { pushHistory, readState, persistState } from "./updaters";
+//@ts-ignore
 import { dispatch, getState } from "./store";
-import { stateRead } from "./effects";
 
-const stderr = process.stderr;
-const stdout = process.stdout;
-
+// const stderr = process.stderr;
+// const stdout = process.stdout;
+console.log("dispatch", dispatch)
 /*
 parseArguments, get an operations object
 
@@ -33,24 +27,25 @@ check if disk state.tracking is true
   else create a new store
 */
 
-const performNew = async input => {
-  dispatch(stateRead());
-  if (getState().tracking) {
-    console.log("stop task and push to history");
-    dispatch(stopTracking("task?"));
-  }
-  const newTask = initTask(input);
-  state.tracking = true;
-  persistState(undefined, undefined, state);
-  pushHistory(newTask);
-};
+// const performNew = async input => {
+//   dispatch(stateRead());
+//   if (getState().tracking) {
+//     console.log("stop task and push to history");
+//     dispatch(stopTracking("task?"));
+//   }
+//   const newTask = initTask(input);
+//   state.tracking = true;
+//   persistState(undefined, undefined, state);
+//   pushHistory(newTask);
+// };
 
 /**
  * Main tt function. Maps operations to actions.
+ * Will read process.argv or use a string[] provided as argument.
  * @param {process.argv-like} mockArgs or undefined to parse process.argv
  */
-export default async function cli(mockArgs) {
-  const operation = parseArguments(mockArgs || process.argv);
+export default function cli(argsOrMock: string[] = process.argv) {
+  const operation = parseArguments(argsOrMock);
 
   switch (operation.mode) {
     case "parseErr":
@@ -65,7 +60,7 @@ export default async function cli(mockArgs) {
       `);
       break;
     case "new":
-      await performNew(operation.input);
+      // await performNew(operation.input);
       break;
     // default:
     //   break;
