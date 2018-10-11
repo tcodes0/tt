@@ -28,9 +28,10 @@
         "typescript"
       ],
       "rules": {
-        "no-undef": "off",
-        "no-unused-vars": "off",
-        "no-restricted-globals": "off"
+        "no-undef": "warn",
+        "no-unused-vars": "warn",
+        "no-console": "warn",
+        "no-restricted-globals": "warn"
       }
     }
   ],

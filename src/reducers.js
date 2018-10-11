@@ -1,13 +1,10 @@
 import { combineReducers } from "redux";
-const mockPromise = {
-  then: throw `state.promise.then scheduled ahead of time.`
-};
+
 const initialState = {
   history: [],
   tracking: false,
   lockState: false,
-  lockHistory: false,
-  promise: mockPromise
+  lockHistory: false
 };
 
 const lockState = (state = initialState.lockState, action) => {

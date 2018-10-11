@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { parseArguments } from "./parseArguments";
+import parseArguments from "./parseArguments";
 import { readState } from "./updaters";
 import { promises } from "./utils";
 import cli from "./cli";
