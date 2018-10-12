@@ -5,7 +5,7 @@ export const operation = (
   input: any[] | any = [],
   extra: Extra = {}
 ) => ({
-  mode: mode,
+  mode,
   input: Array.isArray(input) ? input : [input],
   ...extra
 });

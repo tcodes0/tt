@@ -1,4 +1,5 @@
 import { operation } from "./actions";
+import { env } from ".";
 
 /**
  * Parses argv-like input. Returns an operation object.
@@ -12,6 +13,10 @@ export default function parseArguments(argv: string[]) {
   const [argOne, ...argTwoAndOthers] = userArgs;
   const [argTwo, ...otherArgs] = argTwoAndOthers;
   const isValidName = (word: string) => !reservedWords.includes(word);
+
+  if (env === "development" && argOne == "dev") {
+    return operation.apply(null, argTwoAndOthers);
+  }
 
   if (!userArgs.length) return operation("noArgs");
   if (otherArgs.length)

@@ -32,7 +32,7 @@
   ],
   "types": "dist/ts/src",
   "scripts": {
-    "start": "yarn ts-node src/index.ts",
+    "start": "yarn build >/dev/null && ts-node src/index.ts",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext js,ts,tsx",
     "clean": "rimraf dist",

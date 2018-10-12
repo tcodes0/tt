@@ -8,7 +8,7 @@ import { dispatch, getState } from "./store";
 
 // const stderr = process.stderr;
 // const stdout = process.stdout;
-console.log("dispatch", dispatch)
+
 /*
 parseArguments, get an operations object
 
@@ -42,12 +42,14 @@ check if disk state.tracking is true
 /**
  * Main tt function. Maps operations to actions.
  * Will read process.argv or use a string[] provided as argument.
- * @param {process.argv-like} mockArgs or undefined to parse process.argv
+ * @param Args or undefined to parse process.argv
  */
 export default function cli(argsOrMock: string[] = process.argv) {
   const operation = parseArguments(argsOrMock);
 
   switch (operation.mode) {
+    case "dev":
+      console.log("Hi dev\n")
     case "parseErr":
       bailout(`
       ${operation.message}
