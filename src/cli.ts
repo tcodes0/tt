@@ -5,7 +5,8 @@ import parseArguments from "./parseArguments";
 import bailout from "./utils/bailout";
 //@ts-ignore
 import { dispatch, getState } from "./store";
-import toggleTracking from "./actions/tracking/toggle";
+// import toggleTracking from "./actions/tracking/toggle";
+import stateWrite from "./effects/state/write";
 
 // const stderr = process.stderr;
 // const stdout = process.stdout;
@@ -51,7 +52,8 @@ export default function cli(argsOrMock: string[] = process.argv) {
   switch (operation.mode) {
     case "dev":
       // console.log("Hi dev\n")
-      dispatch(toggleTracking());
+      // dispatch(toggleTracking());
+      dispatch(stateWrite({ data: "foobar" }));
       break;
     case "parseErr":
       bailout(`

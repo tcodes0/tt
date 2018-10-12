@@ -2,8 +2,11 @@ import fs from "fs";
 import { promisify } from "util";
 import fsPromises from "./fsPromises";
 
+export type FsPromisesLike = typeof fsPromises & {};
+const availableInFs = fsPromises || {};
+
 // fs.promises API added on Node v10
-const fsPromisesProxy = new Proxy(fsPromises || {}, {
+const fsPromisesProxy = new Proxy(availableInFs as FsPromisesLike, {
   get: (FsPromises, prop) => {
     // @ts-ignore
     const fallback = fs[prop];

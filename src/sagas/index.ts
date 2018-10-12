@@ -1,7 +1,8 @@
 import { all, spawn } from "redux-saga/effects";
-import { inc, watch } from "./hello";
+import hello from "./hello";
+import stateWrite from "./state/write";
 
-const sagas = [inc, watch];
+const sagas = [hello, stateWrite];
 const spawnedSagas = sagas.map(saga => spawn(saga));
 
 export default function* rootSaga() {
