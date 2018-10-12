@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import tracking from "./tracking";
-import increment from "./increment";
+import tracking from "../tracking/reducer";
+import hello from "../hello/reducer";
 
 const rootReducer = combineReducers({
   tracking,
-  increment
+  hello
 });
 
 export default rootReducer;

@@ -1,18 +1,18 @@
 import { takeLatest, call } from "redux-saga/effects";
 import { Action } from "redux-actions";
-import persistState from "../../services/filesystem/persistState";
-import STATE_WRITE from "../../effects/state/write";
+import persistState from "../_services/fileSystem_persistState";
+import STATE_WRITE from "./action_write";
 
 type payload = {
-  data?: string,
+  data?: string;
   path?: string;
-}
+};
 
 function* stateWriteSaga(action: Action<payload>) {
-  const { payload = {} } = action
+  const { payload = {} } = action;
 
   try {
-    yield call(persistState, undefined, "./foo.json", payload.data)
+    yield call(persistState, undefined, "./foo.json", payload.data);
   } catch (e) {
     console.log("saga erro", e);
     // put(stateWriteError)

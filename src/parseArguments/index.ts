@@ -1,5 +1,5 @@
-import { operation } from "./actions";
-import env from "./utils/env";
+import { operation } from "../actions";
+import env from "../_utils/env";
 
 /**
  * @param argv string[], like Node's process.argv.

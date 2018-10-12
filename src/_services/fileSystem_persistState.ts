@@ -1,5 +1,5 @@
-import fsPromisesProxy from "../../utils/fsPromisesProxy";
-import { ttDir } from "../../utils/constants";
+import fsPromisesProxy from "../_utils/fsPromisesProxy";
+import { ttDir } from "../_utils/constants";
 
 /**
  * write arg to ~/.tt/state.json

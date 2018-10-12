@@ -34,7 +34,7 @@
   "scripts": {
     "start": "yarn build >/dev/null && ts-node src/index.ts",
     "type-check": "tsc --noEmit",
-    "lint": "eslint . --ext js,ts,tsx",
+    "lint": "eslint src --ext js,ts,tsx",
     "clean": "rimraf dist",
     "build": "babel src -d dist -x .js,.ts",
     "test": "jest",
@@ -45,9 +45,18 @@
     "prepublish": "npm test && npm run build",
     "postpublish": "git push origin master --follow-tags"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix --ext js,ts,tsx",
+    "*.{js,ts}": [
+      "eslint --fix --ext js,ts",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx,json,md}": [
+      "prettier --write",
       "git add"
     ]
   },
@@ -85,7 +94,9 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-typescript": "^0.12.0",
+    "husky": "^1.1.2",
     "jest": "^23.5.0",
+    "lint-staged": "^7.3.0",
     "prettier": "^1.13.4",
     "regenerator-runtime": "^0.12.1",
     "rimraf": "^2.6.2",

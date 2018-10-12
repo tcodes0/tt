@@ -1,5 +1,5 @@
 import { Action } from "redux-actions";
-import { TOGGLE_TRACKING } from "../actions/tracking/toggle";
+import { TOGGLE_TRACKING } from "./action_toggle";
 
 export type StateType = {
   tracking: boolean;

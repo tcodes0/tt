@@ -1,6 +1,12 @@
 import fs from "fs";
 import { promisify } from "util";
-import fsPromises from "./fsPromises";
+import noop from "./noop";
+
+// silence warning
+const real = process.emitWarning;
+process.emitWarning = noop;
+const fsPromises = fs.promises;
+process.emitWarning = real;
 
 export type FsPromisesLike = typeof fsPromises & {};
 const availableInFs = fsPromises || {};

@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 //@ts-ignore
-import parseArguments from "./parseArguments";
+import parseArguments from "../parseArguments";
 //@ts-ignore
-import bailout from "./utils/bailout";
+import bailout from "../_utils/bailout";
 //@ts-ignore
-import { dispatch, getState } from "./store";
+import { dispatch, getState } from "../_store/store";
 // import toggleTracking from "./actions/tracking/toggle";
-import stateWrite from "./effects/state/write";
+import stateWrite from "../state/action_write";
 
 // const stderr = process.stderr;
 // const stdout = process.stdout;
