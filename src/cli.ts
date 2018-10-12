@@ -60,9 +60,9 @@ export default function cli(argsOrMock: string[] = process.argv) {
       `);
       break;
     case "noArgs":
-      bailout(`
-      Please specify a few args.
-      `);
+      // bailout(`
+      // Please specify a few args.
+      // `);
       break;
     case "new":
       // await performNew(operation.input);
