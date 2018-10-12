@@ -32,9 +32,6 @@ test("operation", () => {
     });
   }
 
-  // arg1 is necessary
-  expect(() => operation()).toThrow();
-
   {
     const result = operation("mode foo", ["input bar"], { extraOpt: "baz" });
     const { extraOpt } = result;
