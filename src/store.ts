@@ -2,7 +2,14 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import rootReducer from "./reducers";
 
-const customLogger = createLogger({ collapsed: true });
+const customLogger = createLogger({
+  collapsed: true,
+  colors: false,
+  titleFormatter: action => {
+    const result = `\n  ${action.type}`
+    return result;
+  }
+});
 
 export type State = { [key: string]: any };
 export const createHydratedStore = (preloadedState: State = {}) =>

@@ -1,13 +1,9 @@
-/* eslint-disable no-process-exit */
-import os from "os";
 import fs from "fs";
 import { promisify } from "util";
-
-export const home = os.homedir();
-export const ttDir = `${os.homedir()}/.tt`;
+import fsPromises from "./fsPromises";
 
 // fs.promises API added on Node v10
-export const fsPromisesProxy = new Proxy(fs.promises || {}, {
+const fsPromisesProxy = new Proxy(fsPromises || {}, {
   get: (FsPromises, prop) => {
     // @ts-ignore
     const fallback = fs[prop];
@@ -23,7 +19,4 @@ export const fsPromisesProxy = new Proxy(fs.promises || {}, {
   }
 });
 
-export const bailout = (message = "Generic error. Sorry :(") => {
-  process.stderr.write(`tt error 💀 \n${message}\n`);
-  process.exit(1);
-};
+export default fsPromisesProxy;

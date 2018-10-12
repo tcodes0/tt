@@ -28,8 +28,8 @@
         "typescript"
       ],
       "rules": {
-        "no-undef": "warn",
-        "no-unused-vars": "warn",
+        "no-undef": "off",
+        "no-unused-vars": "off",
         "no-console": "warn",
         "no-restricted-globals": "warn"
       }

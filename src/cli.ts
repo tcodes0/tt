@@ -2,9 +2,10 @@
 //@ts-ignore
 import parseArguments from "./parseArguments";
 //@ts-ignore
-import { bailout } from "./utils";
+import bailout from "./utils/bailout";
 //@ts-ignore
 import { dispatch, getState } from "./store";
+import toggleTracking from "./actions/tracking/toggle";
 
 // const stderr = process.stderr;
 // const stdout = process.stdout;
@@ -49,7 +50,9 @@ export default function cli(argsOrMock: string[] = process.argv) {
 
   switch (operation.mode) {
     case "dev":
-      console.log("Hi dev\n")
+      // console.log("Hi dev\n")
+      dispatch(toggleTracking());
+      break;
     case "parseErr":
       bailout(`
       ${operation.message}
