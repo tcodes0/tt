@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-import writeState from "../src/_services/fileSystem_writeState";
-import readState from "../src/_services/fileSystem_readState";
-import init from "../src/_services/fileSystem_init";
-import { home, ttDir, fixture_ttDir, stateFile } from "../src/_utils/constants";
-import noop from "../src/_utils/noop";
+import writeState from "./fileSystem_writeState";
+import readState from "./fileSystem_readState";
+import init from "./fileSystem_init";
+import { home, ttDir, fixture_ttDir, stateFile } from "../_utils/constants";
+import noop from "../_utils/noop";
 
 const mock = jest.fn(
   () =>
