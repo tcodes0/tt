@@ -7,6 +7,7 @@ import bailout from "../_utils/bailout";
 import { dispatch, getState } from "../_store/store";
 // import toggleTracking from "./actions/tracking/toggle";
 import stateWrite from "../state/action_write";
+import { fixture_ttDir } from "../_utils/constants";
 
 // const stderr = process.stderr;
 // const stdout = process.stdout;
@@ -53,7 +54,7 @@ export default function cli(argsOrMock: string[] = process.argv) {
     case "dev":
       // console.log("Hi dev\n")
       // dispatch(toggleTracking());
-      dispatch(stateWrite({ data: "foobar", path: "test/fixture_state.json" }));
+      dispatch(stateWrite({ data: "foobar", path: fixture_ttDir }));
       break;
     case "parseErr":
       bailout(`

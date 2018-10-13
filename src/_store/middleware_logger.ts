@@ -4,7 +4,9 @@ const middleware = createLogger({
   collapsed: true,
   colors: false,
   titleFormatter: action => {
-    const result = `\n  ${action.type}`;
+    const result = `\n  ------------------\n  ${
+      action.type
+    }\n  ------------------\n`;
     return result;
   }
 });
