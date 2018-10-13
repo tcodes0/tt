@@ -8,23 +8,18 @@ process.emitWarning = noop;
 const fsPromises = fs.promises;
 process.emitWarning = real;
 
-export type FsPromisesLike = typeof fsPromises & {};
-const availableInNode = fsPromises || {};
-
 // fs.promises API added on Node v10
-const fsPromisesProxy = new Proxy(availableInNode as FsPromisesLike, {
-  get: (FsPromises, prop) => {
-    // @ts-ignore
-    const fallback = fs[prop];
+const fsPromisesProxy = new Proxy(fsPromises || {}, {
+  get: (FsPromises, prop: string) => {
+    const fallback = (fs as any)[prop];
 
-    // @ts-ignore
-    if (/Sync/.test(prop)) return fallback;
-    // @ts-ignore
-    if (FsPromises[prop] === undefined) {
+    if (/Sync/.test(prop)) {
+      return fallback;
+    }
+    if ((FsPromises as any)[prop] === undefined) {
       return fallback instanceof Function ? promisify(fallback) : fallback;
     }
-    // @ts-ignore
-    return FsPromises[prop];
+    return (FsPromises as any)[prop];
   }
 });
 
