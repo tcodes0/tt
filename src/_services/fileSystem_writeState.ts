@@ -6,7 +6,7 @@ export default function writeState(
   path = ttDir,
   writeFile = promises.writeFile
 ) {
-  const state = path + "/" + stateFile;
+  const state = `${path}/${stateFile}`;
   const dataAsString = typeof data === "string" ? data : JSON.stringify(data);
 
   return writeFile(state, dataAsString).catch(err => {

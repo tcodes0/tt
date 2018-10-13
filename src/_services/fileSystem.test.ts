@@ -1,12 +1,13 @@
 /* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
+import fs from "fs";
 import writeState from "./fileSystem_writeState";
 import readState from "./fileSystem_readState";
 import readHistory from "./fileSystem_readHistory";
+import writeHistory from "./fileSystem_writeHistory";
 import init from "./fileSystem_init";
 import noop from "../_utils/noop";
+import promises from "../_utils/fsPromisesProxy";
 import {
-  home,
   ttDir,
   fixture_ttDir,
   stateFile,
@@ -22,25 +23,34 @@ const mock = jest.fn(
     })
 );
 
-const mockFail = jest.fn(
-  () =>
-    new Promise((undefined, reject) => {
-      setTimeout(() => {
-        reject("mockFail data");
-      }, 200);
-    })
-);
+// const mockFail = jest.fn(
+//   () =>
+//     new Promise((undefined, reject) => {
+//       setTimeout(() => {
+//         reject("mockFail data");
+//       }, 200);
+//     })
+// );
 
 describe("init", () => {
   test("calls mkdir if needed", async () => {
-    await init(mock, "/invalid/path", jest.fn(() => Promise.resolve()));
-    expect(mock).toHaveBeenCalledWith("/invalid/path");
+    await init(
+      `${fixture_ttDir}/test`,
+      undefined,
+      undefined,
+      jest.fn(() => Promise.resolve())
+    );
+    const mkdirResult = await promises.stat(`${fixture_ttDir}/test`);
+
+    expect(mkdirResult).toBeInstanceOf(fs.Stats);
+    // cleanup
+    await promises.rmdir(`${fixture_ttDir}/test`);
   });
 
   test("creates files", async () => {
     const mockMkdir = jest.fn();
+    await init(fixture_ttDir, undefined, mockMkdir, mock);
 
-    await init(mockMkdir, fixture_ttDir, mock);
     expect(mockMkdir).not.toHaveBeenCalled();
     expect(mock).toHaveBeenCalledWith(
       `${fixture_ttDir}/state.json`,
@@ -60,18 +70,18 @@ describe("init", () => {
 describe("state write", () => {
   test("default path", async () => {
     await writeState(undefined, undefined, mock);
-    expect(mock).toHaveBeenCalledWith(ttDir + "/" + stateFile, "\n");
+    expect(mock).toHaveBeenCalledWith(`${ttDir}/${stateFile}`, "\n");
   });
 
   test("other path", async () => {
     const otherPath = "foo/bar";
     await writeState(undefined, otherPath, mock);
-    expect(mock).toHaveBeenCalledWith(otherPath + "/" + stateFile, "\n");
+    expect(mock).toHaveBeenCalledWith(`${otherPath}/${stateFile}`, "\n");
   });
 
   test("value", async () => {
     await writeState("foo", undefined, mock);
-    expect(mock).toHaveBeenCalledWith(ttDir + "/" + stateFile, "foo");
+    expect(mock).toHaveBeenCalledWith(`${ttDir}/${stateFile}`, "foo");
   });
 });
 
@@ -104,5 +114,23 @@ describe("history read", () => {
     console.log = noop;
     let result = await readHistory("invalid/path/123", undefined, mock);
     expect(result).toEqual({});
+  });
+});
+
+describe("history write", () => {
+  test("default path", async () => {
+    await writeHistory(undefined, undefined, mock);
+    expect(mock).toHaveBeenCalledWith(`${ttDir}/${historyFile}`, "\n");
+  });
+
+  test("other path", async () => {
+    const otherPath = "foo/bar";
+    await writeHistory(undefined, otherPath, mock);
+    expect(mock).toHaveBeenCalledWith(`${otherPath}/${historyFile}`, "\n");
+  });
+
+  test("value", async () => {
+    await writeHistory("foo", undefined, mock);
+    expect(mock).toHaveBeenCalledWith(`${ttDir}/${historyFile}`, "foo");
   });
 });

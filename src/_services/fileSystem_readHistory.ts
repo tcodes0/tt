@@ -14,7 +14,7 @@ export default async function readState(
     const data = await readFile(history, opts);
     return data;
   } catch (err) {
-    console.log("readState error", err);
+    console.log("readHistory error", err);
     if (err.code === "ENOENT") {
       return {};
     }
