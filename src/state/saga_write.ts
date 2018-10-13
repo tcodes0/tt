@@ -3,7 +3,7 @@ import { Action } from "redux-actions";
 import persistState from "../_services/fileSystem_persistState";
 import STATE_WRITE from "./action_write";
 
-type payload = {
+export type payload = {
   data?: string;
   path?: string;
 };
