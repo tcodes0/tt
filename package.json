@@ -55,7 +55,7 @@
       "eslint --fix --ext js,ts",
       "git add"
     ],
-    "*.{js,jsx,ts,tsx,json,md}": [
+    "*.{js,jsx,ts,tsx,json,md,txt}|*rc|*config": [
       "prettier --write",
       "git add"
     ]
