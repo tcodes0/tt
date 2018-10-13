@@ -2,9 +2,16 @@
 /* eslint-disable no-unused-vars */
 import writeState from "./fileSystem_writeState";
 import readState from "./fileSystem_readState";
+import readHistory from "./fileSystem_readHistory";
 import init from "./fileSystem_init";
-import { home, ttDir, fixture_ttDir, stateFile } from "../_utils/constants";
 import noop from "../_utils/noop";
+import {
+  home,
+  ttDir,
+  fixture_ttDir,
+  stateFile,
+  historyFile
+} from "../_utils/constants";
 
 const mock = jest.fn(
   () =>
@@ -80,6 +87,22 @@ describe("state read", () => {
   test("invalid path", async () => {
     console.log = noop;
     let result = await readState("invalid/path/123", undefined, mock);
+    expect(result).toEqual({});
+  });
+});
+
+describe("history read", () => {
+  test("default", async () => {
+    await readHistory(fixture_ttDir, undefined, mock);
+    expect(mock).toHaveBeenCalledWith(
+      `${fixture_ttDir}/${historyFile}`,
+      expect.any(String)
+    );
+  });
+
+  test("invalid path", async () => {
+    console.log = noop;
+    let result = await readHistory("invalid/path/123", undefined, mock);
     expect(result).toEqual({});
   });
 });
