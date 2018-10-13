@@ -9,10 +9,10 @@ const fsPromises = fs.promises;
 process.emitWarning = real;
 
 export type FsPromisesLike = typeof fsPromises & {};
-const availableInFs = fsPromises || {};
+const availableInNode = fsPromises || {};
 
 // fs.promises API added on Node v10
-const fsPromisesProxy = new Proxy(availableInFs as FsPromisesLike, {
+const fsPromisesProxy = new Proxy(availableInNode as FsPromisesLike, {
   get: (FsPromises, prop) => {
     // @ts-ignore
     const fallback = fs[prop];

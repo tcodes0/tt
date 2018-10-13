@@ -10,11 +10,13 @@ type payload = {
 
 function* stateWriteSaga(action: Action<payload>) {
   const { payload = {} } = action;
+  const { data = "foobar\n", path = "./foo.json" } = payload;
+  const JSONData = JSON.stringify(data);
 
   try {
-    yield call(persistState, undefined, "./foo.json", payload.data);
+    yield call(persistState, undefined, path, JSONData);
   } catch (e) {
-    console.log("saga erro", e);
+    console.log("saga error", e);
     // put(stateWriteError)
   }
 }

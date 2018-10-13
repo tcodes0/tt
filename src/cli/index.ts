@@ -53,7 +53,7 @@ export default function cli(argsOrMock: string[] = process.argv) {
     case "dev":
       // console.log("Hi dev\n")
       // dispatch(toggleTracking());
-      dispatch(stateWrite({ data: "foobar" }));
+      dispatch(stateWrite({ data: "foobar", path: "test/fixture_state.json" }));
       break;
     case "parseErr":
       bailout(`

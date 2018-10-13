@@ -1,7 +1,5 @@
-import fsPromisesProxy from "./utils/fsPromisesProxy";
-import { home, ttDir } from "./utils/constants";
-
-const promises = fsPromisesProxy;
+import promises from "./_utils/fsPromisesProxy";
+import { home, ttDir } from "./_utils/constants";
 
 export const pushHistory = async task => {
   const history = await readHistory();
