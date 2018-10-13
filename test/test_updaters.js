@@ -1,8 +1,13 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import updaters from "../src/updaters";
-import { home, ttDir } from "../src/_utils/constants";
+import writeState from "../src/_services/fileSystem_writeState";
+import readState from "../src/_services/fileSystem_readState";
+import { home, ttDir, fixture_ttDir, stateFile } from "../src/_utils/constants";
+import noop from "../src/_utils/noop";
 
 const mock = jest.fn(
-  async () =>
+  () =>
     new Promise(resolve => {
       setTimeout(() => {
         resolve("mock data");
@@ -10,16 +15,14 @@ const mock = jest.fn(
     })
 );
 
-// eslint-disable-next-line no-unused-vars
-const mockFail = (mockData = "mockFail data") =>
-  jest.fn(
-    async () =>
-      new Promise((undefined, reject) => {
-        setTimeout(() => {
-          reject(mockData);
-        }, 200);
-      })
-  );
+const mockFail = jest.fn(
+  () =>
+    new Promise((undefined, reject) => {
+      setTimeout(() => {
+        reject("mockFail data");
+      }, 200);
+    })
+);
 
 test("initTTFiles", async () => {
   await updaters.initTTFiles(
@@ -50,19 +53,32 @@ test("initTTFiles", async () => {
   );
 });
 
-test("persistState", async () => {
-  const { persistState } = updaters;
-
-  await persistState(mock);
-  expect(mock).toHaveBeenCalledWith(`${ttDir}/state.json`, "\n");
+test("writeState default path", async () => {
+  await writeState(undefined, undefined, mock);
+  expect(mock).toHaveBeenCalledWith(ttDir + "/" + stateFile, "\n");
 });
 
-test("readState", async () => {
-  const { readState } = updaters;
+test("writeState other path", async () => {
+  const otherPath = "foo/bar";
+  await writeState(undefined, otherPath, mock);
+  expect(mock).toHaveBeenCalledWith(otherPath + "/" + stateFile, "\n");
+});
 
-  await readState(mock);
-  expect(mock).toHaveBeenCalledWith(`${ttDir}/state.json`, expect.any(String));
+test("writeState value", async () => {
+  await writeState("foo", undefined, mock);
+  expect(mock).toHaveBeenCalledWith(ttDir + "/" + stateFile, "foo");
+});
 
-  let result = await readState(mock, "invalid path or non existent");
+test("readState default", async () => {
+  await readState(fixture_ttDir, undefined, mock);
+  expect(mock).toHaveBeenCalledWith(
+    fixture_ttDir + "/" + stateFile,
+    expect.any(String)
+  );
+});
+
+test("readState invalid path", async () => {
+  console.log = noop;
+  let result = await readState("invalid/path/123", undefined, mock);
   expect(result).toEqual({});
 });

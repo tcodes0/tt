@@ -1,6 +1,6 @@
 import { takeLatest, call } from "redux-saga/effects";
 import { Action } from "redux-actions";
-import persistState from "../_services/fileSystem_persistState";
+import writeState from "../_services/fileSystem_writeState";
 import STATE_WRITE from "./action_write";
 
 export type payload = {
@@ -11,10 +11,10 @@ export type payload = {
 function* stateWriteSaga(action: Action<payload>) {
   const { payload = {} } = action;
   const { data = "foobar\n", path = "./foo.json" } = payload;
-  const JSONData = JSON.stringify(data);
+  const JSONData = typeof data == "string" ? data : JSON.stringify(data);
 
   try {
-    yield call(persistState, undefined, path, JSONData);
+    yield call(writeState, JSONData, path);
   } catch (e) {
     throw e;
   }
