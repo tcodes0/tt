@@ -16,8 +16,7 @@ function* stateWriteSaga(action: Action<payload>) {
   try {
     yield call(persistState, undefined, path, JSONData);
   } catch (e) {
-    console.log("saga error", e);
-    // put(stateWriteError)
+    throw e;
   }
 }
 
