@@ -16,7 +16,7 @@ operation modes: noArgs, new, rm, log, config, help, parseErr
 
 ## tt
 
-if not tracking, start a new entry with default name
+if not tracking, start a new task with default name
 if tracking,
 if `tt` was called in the last minute
 stop task, print summary
@@ -26,7 +26,7 @@ run tt log
 ## tt "task"
 
 if not tracking, start a new task and assign "task" as the name
-if tracking, assign "task" as the name for task
+if tracking, assign "task" as the name for the tracked task
 
 ## tt new ["task"]
 
@@ -48,10 +48,10 @@ if "task" remove "task" from history.
 time: today | week | month | all | last | last n
 n: number of days
 
-if not tracking, prints today's history info.
-if no "time", print history for "today".
-if "time", print history for "time".
-"last" print history for last task only.
+if not tracking, prints today's info.
+if no "time", print info for "today".
+if "time", print info for "time".
+"last" print info for last task only.
 if tracking shows info on current task
 
 ## tt config
@@ -70,7 +70,7 @@ print CLI help message
 ✔ make state file ~/.tt/state.json
 
 type `tt`
-no entries, so it starts logging an unnamed.
+no tasks, so it starts logging an unnamed.
 type `tt foo`, to set the task to "foo"
 do some work
 type `tt`, to see the running time
@@ -78,7 +78,7 @@ tt prints the task summary, with duration.
 type `tt done` to stop task
 
 type `tt`
-no entries, so it starts logging an unnamed.
+no tasks, so it starts logging an unnamed.
 tt prints text indicating it started a new task.
 type `tt foo`, to set the task to "foo"
 do some work

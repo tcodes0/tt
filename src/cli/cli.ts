@@ -4,7 +4,7 @@ import parseArguments from "../parseArguments/parseArguments";
 //@ts-ignore
 import bailout from "../_utils/bailout";
 //@ts-ignore
-import { dispatch, getState } from "../_store/store";
+import { dispatch, getState, subscribe } from "../_store/store";
 // import toggleTracking from "./actions/tracking/toggle";
 import stateWrite from "../state/action_write";
 import { fixture_ttDir } from "../_utils/constants";
@@ -42,6 +42,30 @@ check if disk state.tracking is true
 //   pushHistory(newTask);
 // };
 
+const doNew = (name = "Personal task") => {
+  dispatch(readState());
+  const { tracking, lastCall } = getState();
+  const timeSince = lastCall - Date.now();
+  if (Number.isNaN(timeSince)) {
+    console.warn("doNew: timeSince is Nan");
+  }
+  const recent = timeSince > -60000; // 1 minute
+
+  if (!tracking) {
+    dispatch(newTask({ name }));
+    return dispatch(shutdown());
+  }
+
+  if (recent) {
+    dispatch(stopTask());
+    dispatch(printSummary());
+  } else {
+    doLog();
+  }
+
+  return dispatch(shutdown());
+};
+
 /**
  * Main tt function. Maps operations to actions.
  * Will read process.argv or use a string[] provided as argument.
@@ -68,7 +92,7 @@ export default function cli(argsOrMock: string[] = process.argv) {
       // `);
       break;
     case "new":
-      // await performNew(operation.input);
+      await doNew(operation.input);
       break;
     // default:
     //   break;

@@ -56,7 +56,7 @@
       "prettier --write",
       "git add"
     ],
-    "*.{jsx,tsx,json,md,txt}|*rc|*config": [
+    "*.{jsx,tsx,json}|*rc|*config": [
       "prettier --write",
       "git add"
     ]
