@@ -1,10 +1,10 @@
 import promises from "../_utils/fsPromisesProxy";
 import { ttDir, stateFile } from "../_utils/constants";
-import { optionsObject } from "../_utils/types";
+import { OptionsT } from "../_utils/types";
 
 export default async function readState(
   path = ttDir,
-  opts: optionsObject | string = "utf-8",
+  opts: OptionsT | string = "utf-8",
   readFile = promises.readFile
 ) {
   const state = `${path}/${stateFile}`;

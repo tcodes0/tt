@@ -5,7 +5,7 @@ import stateWrite from "../state/action_write";
 
 function* shutdownSaga() {
   yield put(setCallTime());
-  yield put(stateWrite());
+  yield put(stateWrite({}));
 }
 
 export default function* watcher() {
