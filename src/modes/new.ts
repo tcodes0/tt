@@ -1,14 +1,11 @@
 import { dispatch, getState } from "../_store";
 import log from "./log";
-import readState from "../state/action_read";
 import shutdown from "../cli/action_shutdown";
 import newTask from "../task/action_new";
 import stopTask from "../task/action_stop";
 import summary from "../task/action_summary";
 
 export default function(name = "Personal task") {
-  dispatch(readState());
-
   const { tracking, callTime } = getState();
   const timeSince = callTime - Date.now();
   const recent = timeSince > -60000; // 1 minute
@@ -29,5 +26,5 @@ export default function(name = "Personal task") {
     log("last");
   }
 
-  return dispatch(shutdown());
+  return;
 }

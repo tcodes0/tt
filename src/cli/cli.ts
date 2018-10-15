@@ -3,7 +3,9 @@ import bailout from "../_utils/bailout";
 import { dispatch } from "../_store";
 import stateWrite from "../state/action_write";
 import { fixture_ttDir } from "../_utils/constants";
+import shutdown from "./action_shutdown";
 import newTask from "../modes/new";
+import readState from "../state/action_read";
 
 /**
  * Main tt function. Maps operations to actions.
@@ -31,9 +33,12 @@ export default function cli(argsOrMock: string[] = process.argv) {
       // `);
       break;
     case "new":
+      dispatch(readState());
       newTask(operation.input);
       break;
     // default:
     //   break;
   }
+
+  dispatch(shutdown());
 }
