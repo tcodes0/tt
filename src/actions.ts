@@ -1,9 +1,7 @@
-export type Extra = { message?: string };
-
 export const operation = (
   mode: string,
   input: any[] | any = [],
-  extra: Extra = {}
+  extra: { message?: string } = {}
 ) => ({
   mode,
   input: Array.isArray(input) ? input : [input],

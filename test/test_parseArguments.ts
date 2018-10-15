@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import parseArguments from "../src/parseArguments";
+import parseArguments from "../src/cli/parseArguments";
 import { operation } from "../src/actions";
 
 // process.argv0 is node, or whatever interpreter is running
 // process.argv[0] is the actual node path on the machine
 // process.argv[1] is the actual program path on the machine
 // process.argv[2] is first arg
-const mockArgv = (...args) => [
+const mockArgv = (...args: string[]) => [
   "/usr/local/Cellar/node/10.10.0/bin/node",
   "/usr/local/bin/tt",
   ...args
@@ -33,9 +33,8 @@ test("operation", () => {
   }
 
   {
-    const result = operation("mode foo", ["input bar"], { extraOpt: "baz" });
-    const { extraOpt } = result;
-    expect(extraOpt).toBe("baz");
+    const result = operation("mode foo", ["input bar"], { message: "baz" });
+    expect(result.message).toBe("baz");
   }
 });
 
