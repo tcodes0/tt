@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import tracking from "../tracking/reducer";
-import hello from "../hello/reducer";
+import tracking from "../task/reducer_tracking";
+import callTime from "../cli/reducer_callTime";
 
 const rootReducer = combineReducers({
   tracking,
-  hello
+  callTime
 });
 
 export default rootReducer;

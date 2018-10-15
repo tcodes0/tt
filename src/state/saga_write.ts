@@ -2,18 +2,18 @@ import { takeLatest, call } from "redux-saga/effects";
 import { Action } from "redux-actions";
 import writeState from "../_services/fileSystem_writeState";
 import STATE_WRITE from "./action_write";
+import { getState } from "../_store";
 
-export type payload = {
-  data?: string;
-  path?: string;
-};
-
-function* stateWriteSaga(action: Action<payload>) {
+function* stateWriteSaga(
+  action: Action<{
+    path?: string;
+  }>
+) {
   const { payload = {} } = action;
-  const { data, path } = payload;
-  const JSONData = typeof data == "string" ? data : JSON.stringify(data);
+  const { path } = payload;
+  const data = JSON.stringify(getState());
 
-  yield call(writeState, JSONData, path);
+  yield call(writeState, data, path);
 }
 
 export default function* watcher() {
