@@ -4,7 +4,7 @@ import setCallTime from "../cli/action_setCallTime";
 import stateWrite from "../state/action_write";
 
 function* shutdownSaga() {
-  yield put(setCallTime());
+  yield put(setCallTime({}));
   yield put(stateWrite({}));
 }
 

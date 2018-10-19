@@ -3,8 +3,10 @@ export type OptionsT = {
   flag: string;
 };
 
-export type TaskT = {
+export type Task = {
   name: string;
   start: number;
   end?: number;
 };
+
+export type EmptyObject = { [key: string]: never };

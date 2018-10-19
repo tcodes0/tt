@@ -1,11 +1,11 @@
 import parseArguments from "./parseArguments";
 import bailout from "../_utils/bailout";
-import { dispatch } from "../_store";
-import stateWrite from "../state/action_write";
-import { fixture_ttDir } from "../_utils/constants";
+import { dispatch, getState } from "../_store";
+// import stateWrite from "../state/action_write";
+// import { fixture_ttDir } from "../_utils/constants";
 import shutdown from "./action_shutdown";
-import newTask from "../modes/new";
-import readState from "../state/action_read";
+import modeNew from "../modes/new";
+import startRead from "../state/action_readStart";
 
 /**
  * Main tt function. Maps operations to actions.
@@ -19,7 +19,9 @@ export default function cli(argsOrMock: string[] = process.argv) {
     case "dev":
       // console.log("Hi dev\n")
       // dispatch(toggleTracking());
-      dispatch(stateWrite({ path: fixture_ttDir }));
+      // dispatch(stateWrite({ path: fixture_ttDir }));
+      dispatch(startRead());
+      modeNew("foo");
       break;
     case "parseErr":
       bailout(`
@@ -33,12 +35,12 @@ export default function cli(argsOrMock: string[] = process.argv) {
       // `);
       break;
     case "new":
-      dispatch(readState());
-      newTask(operation.input);
+      dispatch(startRead());
+      modeNew(operation.input);
       break;
     // default:
     //   break;
   }
 
-  dispatch(shutdown());
+  dispatch(shutdown({}));
 }
