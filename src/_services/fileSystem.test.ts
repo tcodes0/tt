@@ -4,6 +4,7 @@ import writeState from "./fileSystem_writeState";
 import readState from "./fileSystem_readState";
 import readHistory from "./fileSystem_readHistory";
 import writeHistory from "./fileSystem_writeHistory";
+import loadState from "./fileSystem_loadState";
 import init from "./fileSystem_init";
 import noop from "../_utils/noop";
 import promises from "../_utils/fsPromisesProxy";
@@ -22,6 +23,8 @@ const mock = jest.fn(
       }, 200);
     })
 );
+
+const mockReadSync = jest.fn(() => `{ "a": 1 }`);
 
 // const mockFail = jest.fn(
 //   () =>
@@ -132,5 +135,34 @@ describe("history write", () => {
   test("value", async () => {
     await writeHistory("foo", undefined, mock);
     expect(mock).toHaveBeenCalledWith(`${ttDir}/${historyFile}`, "foo");
+  });
+});
+
+describe("state load", () => {
+  console.log = noop;
+  console.error = noop;
+
+  test("returns object", () => {
+    const result = loadState();
+    expect(result).toEqual(expect.any(Object));
+  });
+
+  test("default path", () => {
+    loadState(undefined, undefined, mockReadSync);
+    expect(mockReadSync).toHaveBeenCalledWith(`${ttDir}/${stateFile}`, "utf-8");
+  });
+
+  test("other path", () => {
+    const otherPath = "foo/bar";
+    loadState(otherPath, undefined, mockReadSync);
+    expect(mockReadSync).toHaveBeenCalledWith(
+      `${otherPath}/${stateFile}`,
+      "utf-8"
+    );
+  });
+
+  test("throws on invalid path", () => {
+    const invalidPath = "foo/bar";
+    expect(() => loadState(invalidPath)).toThrow("ENOENT");
   });
 });
