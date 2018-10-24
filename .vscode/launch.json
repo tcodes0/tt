@@ -5,14 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "debug TS",
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/dist/index.js",
-      "args": [
-        "dev",
-        "dev"
-      ]
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "args": ["${workspaceFolder}/src/index.ts", "dev", "dev"],
+      "protocol": "inspector"
     }
   ]
 }
