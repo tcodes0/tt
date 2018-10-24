@@ -1,6 +1,7 @@
-export type OptionsT = {
+export type FsOptions = {
   encoding: string | null;
-  flag: string;
+  flag?: string;
+  sync?: boolean;
 };
 
 export type Task = {

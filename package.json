@@ -35,6 +35,7 @@
     "start": "yarn build >/dev/null && node dist/index.js",
     "lint": "eslint src --ext js,ts,tsx",
     "tscheck": "tsc",
+    "tl": "yarn tscheck && yarn lint",
     "clean": "rimraf dist",
     "build": "babel src --out-dir dist --extensions .js,.ts",
     "test": "jest",
