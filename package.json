@@ -30,45 +30,76 @@
     "tool",
     "cli"
   ],
+  "types": "dist/ts/src",
   "scripts": {
-    "start": "yarn babel-node src/index.js",
-    "lint": "eslint src",
+    "start": "yarn build >/dev/null && node dist/index.js",
+    "lint": "eslint src --ext js,ts,tsx",
+    "tscheck": "tsc",
+    "tl": "yarn tscheck && yarn lint",
     "clean": "rimraf dist",
-    "build": "yarn clean && babel src --out-dir dist",
+    "build": "babel src --out-dir dist --extensions .js,.ts",
     "test": "jest",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
     "prepublishOnly": "npm run lint",
     "prepublish": "npm test && npm run build",
-    "postpublish": "git push origin master --follow-tags"
+    "postpublish": "git push origin master --follow-tags",
+    "precommit": "yarn tscheck && lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn precommit"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix --ext js,ts",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{jsx,tsx,json}|*rc|*config": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
-    "redux": "^4.0.0"
+    "electron-store": "^2.0.0",
+    "redux": "^4.0.0",
+    "redux-actions": "^2.6.1",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.1",
     "@babel/node": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
-    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "@babel/preset-stage-2": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/jest": "^23.3.5",
+    "@types/node": "^10.11.7",
+    "@types/redux-actions": "^2.3.1",
+    "@types/redux-logger": "^3.0.6",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-import-resolver-typescript": "^1.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-typescript": "^0.12.0",
+    "husky": "^1.1.2",
     "jest": "^23.5.0",
+    "lint-staged": "^7.3.0",
     "prettier": "^1.13.4",
     "regenerator-runtime": "^0.12.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "typescript": "^3.1.2",
+    "typescript-eslint-parser": "^20.0.0"
   }
 }

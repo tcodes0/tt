@@ -1,4 +1,4 @@
-import actions from "../actions";
+import actions from "../src/actions";
 
 test("toggle tracking", () => {
   expect(actions.toggleTracking()).toEqual({

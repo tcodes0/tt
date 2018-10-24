@@ -1,25 +1,35 @@
-import { operation } from "./actions";
+import { operation } from "../actions";
+import env from "../_utils/env";
 
 /**
- * Parses argv-like input. Returns an operation object.
- * @param {string[]} argv Node's process.argv
+ * @param argv string[], like Node's process.argv.
+ * @returns An operation object
  */
-export default function parseArguments(argv) {
-  // refac to receive reservedWords as input array
+export default function parseArguments(argv: string[]) {
   const reservedWords = ["new", "rm", "log", "config", "help", "-h", "--help"];
   // argv[0] is node, argv[1] is program path
   const [, , ...userArgs] = argv;
   const [argOne, ...argTwoAndOthers] = userArgs;
   const [argTwo, ...otherArgs] = argTwoAndOthers;
-  const isValidName = word => !reservedWords.includes(word);
+  const isValidName = (word: string) => !reservedWords.includes(word);
 
-  if (!userArgs.length) return operation("noArgs");
-  if (otherArgs.length)
+  //@ts-ignore
+  if (env === "development" && argOne == "dev") {
+    return operation.apply(null, argTwoAndOthers);
+  }
+
+  if (!userArgs.length) {
+    return operation("noArgs");
+  }
+  if (otherArgs.length) {
     return operation("parseErr", userArgs, { message: "Too many arguments" });
+  }
 
   switch (argOne) {
     case "new":
-      if (!argTwo) return operation("new");
+      if (!argTwo) {
+        return operation("new");
+      }
       return isValidName(argTwo)
         ? operation("new", argTwo)
         : operation("parseErr", argTwo, {
@@ -27,7 +37,9 @@ export default function parseArguments(argv) {
           });
 
     case "rm":
-      if (!argTwo) return operation("rm");
+      if (!argTwo) {
+        return operation("rm");
+      }
       return isValidName(argTwo)
         ? operation("rm", argTwo)
         : operation("parseErr", argTwo, {
@@ -35,7 +47,9 @@ export default function parseArguments(argv) {
           });
 
     case "log":
-      if (!argTwo) return operation("log");
+      if (!argTwo) {
+        return operation("log");
+      }
       return isValidName(argTwo)
         ? operation("log", argTwo)
         : operation("parseErr", argTwo, {
@@ -60,13 +74,17 @@ export default function parseArguments(argv) {
 
     default:
       argTwoAndOthers.forEach(arg => {
-        if (!isValidName(arg))
+        if (!isValidName(arg)) {
           return operation("parseErr", arg, {
             message: "Command names cannot be used as arguments"
           });
+        }
+        return;
       });
 
-      if (isValidName(argOne) && !argTwo) return operation("new", argOne);
+      if (isValidName(argOne) && !argTwo) {
+        return operation("new", argOne);
+      }
 
       return operation("parseErr", userArgs, {
         message: "Invalid options 🤔. Try `tt help`"

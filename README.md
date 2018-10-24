@@ -10,55 +10,49 @@
 
 Time Tracking Tool
 
-# Roadmap
-
-- [ ] foo
-- [ ] foo
-- [ ] foo
-- [ ] foo
-
 # API
 
 operation modes: noArgs, new, rm, log, config, help, parseErr
 
 ## tt
 
-if no config files, print help and exit
+if not tracking, start a new task with default name
+if tracking,
+if `tt` was called in the last minute
+stop task, print summary
 else
-  if not tracking, start a new entry
-  if tracking, stop
+run tt log
 
 ## tt "task"
 
-if no config files, create config files with defaults
-if not tracking, start a new entry and assign "task" as the task for entry
-if tracking, assign "task" as the task for entry
+if not tracking, start a new task and assign "task" as the name
+if tracking, assign "task" as the name for the tracked task
 
 ## tt new ["task"]
 
-if not tracking, start a new entry.
-  if "task" assign new task name to "task"
+if not tracking, start a new task.
+if "task" assign new task name to "task"
 if tracking, stop current task, print summary, start new task.
-  if "task" assign new task name to "task"
+if "task" assign new task name to "task"
 
-## tt rm [<what>]
+## tt rm ["task"]
 
-what: task name
+task: task name
 
 if tracking error.
-else remove last entry from state.
-if <what> remove <what> from state.
+if not tracking and no "task", remove last task from history.
+if "task" remove "task" from history.
 
-## tt log [<when>]
+## tt log ["time"]
 
-when: today | week | month | all | last | last n
+time: today | week | month | all | last | last n
 n: number of days
 
-if not tracking, prints today's history info.
-  if no <when> default to "today"
-  if <when>, print <when> time window.
-  "last" shows last task only.
-else shows info on current task
+if not tracking, prints today's info.
+if no "time", print info for "today".
+if "time", print info for "time".
+"last" print info for last task only.
+if tracking shows info on current task
 
 ## tt config
 
@@ -76,19 +70,19 @@ print CLI help message
 ✔ make state file ~/.tt/state.json
 
 type `tt`
-no entries, so it starts logging an unnamed.
+no tasks, so it starts logging an unnamed.
 type `tt foo`, to set the task to "foo"
 do some work
-type `tt`, to stop tracking
+type `tt`, to see the running time
 tt prints the task summary, with duration.
-type `tt log` to see today's entries.
+type `tt done` to stop task
 
 type `tt`
-no entries, so it starts logging an unnamed.
+no tasks, so it starts logging an unnamed.
 tt prints text indicating it started a new task.
 type `tt foo`, to set the task to "foo"
 do some work
-type `tt new bar`, to auto stop "foo" and start a new task "bar"
+type `tt new bar`, to stop "foo" and start a new task "bar"
 tt prints "foo" summary, with duration.
-tt prints text indicating it started a new task.
+tt prints text indicating it started a new task named "bar".
 type `tt` to stop "bar"

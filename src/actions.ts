@@ -1,9 +1,9 @@
 export const operation = (
-  mode = throw "mode cannot be undefined",
-  input = [],
-  extra = {}
+  mode: string,
+  input: any[] | any = [],
+  extra: { message?: string } = {}
 ) => ({
-  mode: mode,
+  mode,
   input: Array.isArray(input) ? input : [input],
   ...extra
 });
@@ -12,7 +12,7 @@ export const operation = (
 export const initState = () => ({
   tracking: false
 });
-
+//@ts-ignore
 export const initTask = (name = "Personal task", inTime, outTime) => ({
   type: "INIT_TASK",
   task: name,
@@ -37,13 +37,14 @@ const stopTracking = (task = "Personal task") => ({
 const noArgsAction = () => ({
   type: "NO_ARGS_ACTION"
 });
-
+// @ts-ignore
 const historyPush = (task, history) => ({
   type: "HISTORY_PUSH",
   task,
   history
 });
 
+// @ts-ignore
 const configSet = (setting, config) => ({
   type: "CONFIG_SET",
   setting,
