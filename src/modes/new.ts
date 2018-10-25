@@ -5,12 +5,14 @@ import stopTask from "../task/action_stop";
 import summary from "../task/action_summary";
 
 export default function(name = "Personal task") {
-  const { tracking, callTime } = getState();
+  const {
+    cli: { tracking, callTime }
+  } = getState();
   const recent = callTime - Date.now() > -60000; // 1 minute
 
   if (!tracking) {
     dispatch(newTask({ name }));
-    return
+    return;
   }
 
   if (recent) {

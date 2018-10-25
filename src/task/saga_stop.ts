@@ -5,14 +5,15 @@ import { getState } from "../_store";
 
 function* stateWriteSaga(action: Action<PayloadT>) {
   const taskName = action.payload && action.payload.taskName;
-  const tasks = getState().tasks
+  const tasks = getState().tasks;
   const index = tasks.findIndex(task => task.name === taskName);
   const stopped = {
     name: tasks[index].name,
     start: tasks[index].start,
     end: Date.now()
   };
-  return "foo"
+  yield "foo";
+  return "foo";
   // yield put(historyPush(stopped))
   // yield put(rmTask(index))
 }

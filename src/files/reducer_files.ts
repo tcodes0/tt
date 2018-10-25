@@ -1,12 +1,12 @@
 import { Action } from "redux-actions";
-import { CLI_SET_CALL_TIME } from "./action_setCallTime";
+import { FILES_INIT } from "./action_init";
 
-const initialState = 0;
+const initialState = {};
 
 export default function reducer(state = initialState, action: Action<null>) {
   switch (action.type) {
-    case CLI_SET_CALL_TIME: {
-      const result = Date.now();
+    case FILES_INIT: {
+      const result = { skipWrite: true };
       return result;
     }
 

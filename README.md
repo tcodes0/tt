@@ -12,7 +12,7 @@ Time Tracking Tool
 
 # API
 
-operation modes: noArgs, new, rm, log, config, help, parseErr
+operation modes: noArgs, new, rm, log, config, help, parseErr, init
 
 ## tt
 
@@ -61,6 +61,13 @@ access configs tru cli
 ## tt -h | --help | help
 
 print CLI help message
+
+## tt init
+
+tt files exist?
+if not init them
+else prints a confirmation to overwrite them.
+if yes, overwrites config files.
 
 ## Misc
 

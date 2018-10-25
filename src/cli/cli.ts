@@ -1,12 +1,10 @@
 import parseArguments from "./parseArguments";
 import bailout from "../_utils/bailout";
 import { dispatch } from "../_store";
-// import stateWrite from "../state/action_write";
-// import { fixture_ttDir } from "../_utils/constants";
 import shutdown from "./action_shutdown";
 import modeNew from "../modes/new";
-import loadState from "../_services/fileSystem_loadState";
-import newTask from "../task/action_new";
+import modeInit from "../modes/init";
+import loadStateSync from "../_services/fileSystem_loadStateSync";
 
 /**
  * Main tt function. Maps operations to actions.
@@ -18,8 +16,7 @@ export default function cli(argsOrMock: string[] = process.argv) {
 
   switch (operation.mode) {
     case "dev":
-      loadState();
-      dispatch(newTask({ name: "foo" }));
+      modeNew("foo");
       break;
     case "parseErr":
       bailout(`
@@ -28,16 +25,19 @@ export default function cli(argsOrMock: string[] = process.argv) {
       `);
       break;
     case "noArgs":
-      // bailout(`
-      // Please specify a few args.
-      // `);
+      bailout(`
+      Please specify a few args.
+      `);
       break;
     case "new":
-      loadState();
+      loadStateSync();
       modeNew(operation.input);
       break;
-    // default:
-    //   break;
+    case "init":
+      modeInit();
+      break;
+    default:
+      break;
   }
 
   dispatch(shutdown({}));

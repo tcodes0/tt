@@ -4,7 +4,7 @@ import writeState from "./fileSystem_writeState";
 import readState from "./fileSystem_readState";
 import readHistory from "./fileSystem_readHistory";
 import writeHistory from "./fileSystem_writeHistory";
-import loadState from "./fileSystem_loadState";
+import loadStateSync from "./fileSystem_loadStateSync";
 import init from "./fileSystem_init";
 import noop from "../_utils/noop";
 import promises from "../_utils/fsPromisesProxy";
@@ -143,18 +143,18 @@ describe("state load", () => {
   console.error = noop;
 
   test("returns object", () => {
-    const result = loadState();
+    const result = loadStateSync();
     expect(result).toEqual(expect.any(Object));
   });
 
   test("default path", () => {
-    loadState(undefined, undefined, mockReadSync);
+    loadStateSync(undefined, undefined, mockReadSync);
     expect(mockReadSync).toHaveBeenCalledWith(`${ttDir}/${stateFile}`, "utf-8");
   });
 
   test("other path", () => {
     const otherPath = "foo/bar";
-    loadState(otherPath, undefined, mockReadSync);
+    loadStateSync(otherPath, undefined, mockReadSync);
     expect(mockReadSync).toHaveBeenCalledWith(
       `${otherPath}/${stateFile}`,
       "utf-8"
@@ -163,6 +163,6 @@ describe("state load", () => {
 
   test("throws on invalid path", () => {
     const invalidPath = "foo/bar";
-    expect(() => loadState(invalidPath)).toThrow("ENOENT");
+    expect(() => loadStateSync(invalidPath)).toThrow("ENOENT");
   });
 });

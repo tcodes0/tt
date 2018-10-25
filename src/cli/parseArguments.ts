@@ -1,4 +1,4 @@
-import { operation } from "../actions";
+import operation from "./operation";
 import env from "../_utils/env";
 
 /**
@@ -13,7 +13,6 @@ export default function parseArguments(argv: string[]) {
   const [argTwo, ...otherArgs] = argTwoAndOthers;
   const isValidName = (word: string) => !reservedWords.includes(word);
 
-  //@ts-ignore
   if (env === "development" && argOne == "dev") {
     return operation.apply(null, argTwoAndOthers);
   }
@@ -60,7 +59,14 @@ export default function parseArguments(argv: string[]) {
       return userArgs.length === 1
         ? operation("config")
         : operation("parseErr", argTwo, {
-            message: "Argument is identical to a command 😕"
+            message: "`tt config` doesn't take arguments. 🤔"
+          });
+
+    case "init":
+      return userArgs.length === 1
+        ? operation("init")
+        : operation("parseErr", argTwo, {
+            message: "`tt init` doesn't take arguments. 🤔"
           });
 
     case "-h":
