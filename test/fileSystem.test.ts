@@ -13,7 +13,7 @@ import {
   fixture_ttDir,
   stateFile,
   historyFile,
-} from "."
+} from "../src/util"
 
 const mock = jest.fn(
   () =>

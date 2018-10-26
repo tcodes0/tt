@@ -1,5 +1,5 @@
-import fs from "fs";
-import promises from "../src/_utils/fsPromisesProxy";
+import fs from "fs"
+import { promises } from "../src/util"
 
 // fs.promises API added on Node v10
 const funcNames = [
@@ -26,28 +26,28 @@ const funcNames = [
   "truncate",
   "unlink",
   "utimes",
-  "writeFile"
-];
+  "writeFile",
+]
 
 test("fs promises proxy returns Functions", () => {
-  funcNames.map(func => {
-    expect(promises[func]).toEqual(expect.any(Function));
-  });
-});
+  funcNames.map((func) => {
+    expect(promises[func]).toEqual(expect.any(Function))
+  })
+})
 
 test("fs promises proxy returns async Functions", () => {
-  funcNames.map(func => {
-    const str = promises[func].toString();
-    expect(str).toMatch(/^async function/);
-    expect(str).not.toMatch(/^function/);
-  });
-});
+  funcNames.map((func) => {
+    const str = promises[func].toString()
+    expect(str).toMatch(/^async function/)
+    expect(str).not.toMatch(/^function/)
+  })
+})
 
 test("fs promises proxy *Sync fn returns from fs", () => {
-  expect(promises["readFileSync"]).toBe(fs["readFileSync"]);
-});
+  expect(promises["readFileSync"]).toBe(fs["readFileSync"])
+})
 
 test("fs promises proxy non Functions return from fs", () => {
-  expect(promises["F_OK"]).toBe(fs["F_OK"]);
-  expect(promises["constants"]).toBe(fs["constants"]);
-});
+  expect(promises["F_OK"]).toBe(fs["F_OK"])
+  expect(promises["constants"]).toBe(fs["constants"])
+})

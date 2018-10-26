@@ -9,7 +9,7 @@ const fsPromises = fs.promises
 process.emitWarning = real
 
 // fs.promises API added on Node v10
-const fsPromisesProxy = new Proxy(fsPromises || {}, {
+const fsPromisesProxy: typeof fsPromises = new Proxy(fsPromises || {}, {
   get: (FsPromises, prop: string) => {
     const fallback = (fs as any)[prop]
 

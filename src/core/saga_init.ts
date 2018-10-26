@@ -1,5 +1,5 @@
 import { takeLatest, call } from "redux-saga/effects"
-import { init } from "../tool"
+import { init } from "../util"
 import { FILES_INIT } from "."
 
 function* filesInitSaga() {

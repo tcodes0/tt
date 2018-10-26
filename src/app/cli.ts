@@ -1,4 +1,4 @@
-import { bailout, loadStateSync } from "../tool"
+import { bailout, loadStateSync } from "../util"
 import { dispatch, action_shutdown } from "../core"
 import { mode_new, mode_init, parseArguments } from "."
 

@@ -2,7 +2,6 @@
  * Functions
  */
 export { default as cli } from "./cli"
-export { default } from "./cli"
 export * from "./cli"
 
 export { default as operation } from "./operation"

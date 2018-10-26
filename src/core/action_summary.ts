@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions"
-import { EmptyObject } from "../tool"
+import { EmptyObject } from "../util"
 
 export const TASK_SUMMARY = "TASK_SUMMARY"
 

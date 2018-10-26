@@ -1,6 +1,6 @@
 import { Action } from "redux-actions"
 import { CLI_SET_CALL_TIME, TASK_TOGGLE_TRACKING, TASK_NEW } from "."
-import { EmptyObject } from "../tool"
+import { EmptyObject } from "../util"
 
 const initialState: { tracking: boolean; callTime: number } = {
   callTime: 0,

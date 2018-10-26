@@ -1,5 +1,5 @@
 import { operation } from "."
-import { env } from "../tool"
+import { env } from "../util"
 
 /**
  * @param argv string[], like Node's process.argv.

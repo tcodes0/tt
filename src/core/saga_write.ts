@@ -1,6 +1,6 @@
 import { takeLatest, call } from "redux-saga/effects"
 import { Action } from "redux-actions"
-import { writeState } from "../tool"
+import { writeState } from "../util"
 import { getState, STATE_WRITE, PayloadActionWrite } from "."
 
 function* stateWriteSaga(action: Action<PayloadActionWrite>) {
