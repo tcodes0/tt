@@ -1,6 +1,6 @@
 import { takeLatest, call } from "redux-saga/effects"
 import { init } from "../tool"
-import { FILES_INIT } from "./action_init"
+import { FILES_INIT } from "."
 
 function* filesInitSaga() {
   yield call(init)

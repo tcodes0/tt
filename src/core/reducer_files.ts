@@ -1,5 +1,5 @@
 import { Action } from "redux-actions"
-import { FILES_INIT } from "./action_init"
+import { FILES_INIT } from "."
 
 const initialState = {}
 

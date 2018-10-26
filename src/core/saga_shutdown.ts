@@ -1,11 +1,9 @@
 import { takeLatest, put } from "redux-saga/effects"
-import { CLI_SHUTDOWN } from "./action_shutdown"
-import setCallTime from "./action_setCallTime"
-import stateWrite from "./action_write"
+import { CLI_SHUTDOWN, action_setCallTime, action_write } from "."
 
 function* shutdownSaga() {
-  yield put(setCallTime({}))
-  yield put(stateWrite({}))
+  yield put(action_setCallTime({}))
+  yield put(action_write({}))
 }
 
 export default function* watcher() {

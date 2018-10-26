@@ -1,4 +1,4 @@
-import log from "./mode_log"
+import { mode_log } from "."
 import {
   dispatch,
   getState,
@@ -22,7 +22,7 @@ export default function(name = "Personal task") {
     dispatch(action_stop({}))
     dispatch(action_summary({}))
   } else {
-    log("last")
+    mode_log("last")
   }
 
   return

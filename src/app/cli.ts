@@ -1,9 +1,6 @@
-import parseArguments from "./parseArguments"
-import { bailout } from "../tool"
+import { bailout, loadStateSync } from "../tool"
 import { dispatch, action_shutdown } from "../core"
-import modeNew from "./mode_new"
-import modeInit from "./mode_init"
-import loadStateSync from "../tool/fileSystem_loadStateSync"
+import { mode_new, mode_init, parseArguments } from "."
 
 /**
  * Main tt function. Maps operations to actions.
@@ -15,7 +12,7 @@ export default function cli(argsOrMock: string[] = process.argv) {
 
   switch (operation.mode) {
     case "dev":
-      modeNew("foo")
+      mode_new("foo")
       break
     case "parseErr":
       bailout(`
@@ -30,10 +27,10 @@ export default function cli(argsOrMock: string[] = process.argv) {
       break
     case "new":
       loadStateSync()
-      modeNew(operation.input)
+      mode_new(operation.input)
       break
     case "init":
-      modeInit()
+      mode_init()
       break
     default:
       break

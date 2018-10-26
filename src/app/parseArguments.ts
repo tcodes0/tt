@@ -1,4 +1,4 @@
-import operation from "./operation"
+import { operation } from "."
 import { env } from "../tool"
 
 /**

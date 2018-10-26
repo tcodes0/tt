@@ -29,6 +29,9 @@ export * from "./fileSystem_init"
 export { default as readHistory } from "./fileSystem_readHistory"
 export * from "./fileSystem_readHistory"
 
+export { default as loadStateSync } from "./fileSystem_loadStateSync"
+export * from "./fileSystem_loadStateSync"
+
 export { default as readState } from "./fileSystem_readState"
 export * from "./fileSystem_readState"
 

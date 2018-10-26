@@ -1,7 +1,6 @@
 import { takeEvery } from "redux-saga/effects"
 import { Action } from "redux-actions"
-import { TASK_STOP, PayloadActionStop } from "./action_stop"
-import { getState } from "./store"
+import { getState, TASK_STOP, PayloadActionStop } from "."
 
 function* stateWriteSaga(action: Action<PayloadActionStop>) {
   const taskName = action.payload && action.payload.taskName

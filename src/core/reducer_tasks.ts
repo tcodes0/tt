@@ -1,6 +1,5 @@
 import { Action } from "redux-actions"
-import { TASK_NEW, PayloadActionNew } from "./action_new"
-import { TASK_STOP, PayloadActionStop } from "./action_stop"
+import { TASK_NEW, PayloadActionNew, TASK_STOP, PayloadActionStop } from "."
 import { Task } from "../tool"
 
 const initialState: Task[] = []

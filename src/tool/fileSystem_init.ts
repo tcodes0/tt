@@ -1,5 +1,4 @@
-import { promises } from "."
-import { ttDir } from "."
+import { promises, ttDir } from "."
 
 let attempts = 0
 
