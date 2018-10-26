@@ -7,29 +7,31 @@ export * from "./store"
 /**
  * Core input
  */
-export { default as action_init } from "./action_init"
-export * from "./action_init"
+export { default as action_filesInit } from "./action_filesInit"
+export * from "./action_filesInit"
 
-export { default as action_new } from "./action_new"
-export * from "./action_new"
+export { default as action_taskNew } from "./action_taskNew"
+export * from "./action_taskNew"
 
-export { default as action_setCallTime } from "./action_setCallTime"
-export * from "./action_setCallTime"
+export { default as action_cliSetCallTime } from "./action_cliSetCallTime"
+export * from "./action_cliSetCallTime"
 
-export { default as action_shutdown } from "./action_shutdown"
-export * from "./action_shutdown"
+export { default as action_cliShutdown } from "./action_cliShutdown"
+export * from "./action_cliShutdown"
 
-export { default as action_stop } from "./action_stop"
-export * from "./action_stop"
+export { default as action_taskStop } from "./action_taskStop"
+export * from "./action_taskStop"
 
-export { default as action_summary } from "./action_summary"
-export * from "./action_summary"
+export { default as action_taskSummary } from "./action_taskSummary"
+export * from "./action_taskSummary"
 
-export { default as action_toggleTracking } from "./action_toggleTracking"
-export * from "./action_toggleTracking"
+export {
+  default as action_taskToggleTracking,
+} from "./action_taskToggleTracking"
+export * from "./action_taskToggleTracking"
 
-export { default as action_write } from "./action_write"
-export * from "./action_write"
+export { default as action_stateWrite } from "./action_stateWrite"
+export * from "./action_stateWrite"
 
 /**
  * Convenience

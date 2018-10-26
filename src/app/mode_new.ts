@@ -2,9 +2,9 @@ import { mode_log } from "."
 import {
   dispatch,
   getState,
-  action_new,
-  action_stop,
-  action_summary,
+  action_taskNew,
+  action_taskStop,
+  action_taskSummary,
 } from "../core"
 
 export default function(name = "Personal task") {
@@ -14,13 +14,13 @@ export default function(name = "Personal task") {
   const recent = callTime - Date.now() > -60000 // 1 minute
 
   if (!tracking) {
-    dispatch(action_new({ name }))
+    dispatch(action_taskNew({ name }))
     return
   }
 
   if (recent) {
-    dispatch(action_stop({}))
-    dispatch(action_summary({}))
+    dispatch(action_taskStop({}))
+    dispatch(action_taskSummary({}))
   } else {
     mode_log("last")
   }

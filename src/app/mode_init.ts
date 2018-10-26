@@ -1,6 +1,6 @@
-import { dispatch, action_init } from "../core"
+import { dispatch, action_filesInit } from "../core"
 
 export default function() {
-  dispatch(action_init({}))
+  dispatch(action_filesInit({}))
   return
 }

@@ -1,5 +1,5 @@
 import { bailout, loadStateSync } from "../util"
-import { dispatch, action_shutdown } from "../core"
+import { dispatch, action_cliShutdown } from "../core"
 import { mode_new, mode_init, parseArguments } from "."
 
 /**
@@ -36,5 +36,5 @@ export default function cli(argsOrMock: string[] = process.argv) {
       break
   }
 
-  dispatch(action_shutdown({}))
+  dispatch(action_cliShutdown({}))
 }
