@@ -23,9 +23,17 @@ export default function loadState(
     replaceReducer(rootReducer)
     return state
   } catch (error) {
-    console.error("error loading state from disk\n", error, "\n")
-    console.log("data\n", data)
-    console.log("state\n", state)
+    console.error(
+      "error loading state from disk\n",
+      "data is ",
+      data,
+      "\n",
+      "state is ",
+      state,
+      "\n",
+      error,
+      "\n",
+    )
     throw error
   }
 }
