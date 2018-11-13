@@ -1,4 +1,5 @@
 import { promises, ttDir, historyFile } from "."
+import { execSync } from "child_process"
 
 export default function writeState(
   data = "\n",
@@ -8,8 +9,10 @@ export default function writeState(
   const history = `${path}/${historyFile}`
   const dataAsString = typeof data === "string" ? data : JSON.stringify(data)
 
-  return writeFile(history, dataAsString).catch((err) => {
-    console.log("writeHistory error", err)
-    throw err
-  })
+  return writeFile(history, dataAsString)
+    .then(() => execSync(`yarn prettier --write ${history}`)) // will likely fail if user uses only npm
+    .catch((err) => {
+      console.log("writeState error", err)
+      throw err
+    })
 }
