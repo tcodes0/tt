@@ -1,6 +1,6 @@
 import fs from "fs"
 import { promisify } from "util"
-import { noop } from "."
+import noop from "./noop"
 
 // silence warning
 const real = process.emitWarning

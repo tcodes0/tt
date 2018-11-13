@@ -1,8 +1,9 @@
 import { takeEvery } from "redux-saga/effects"
 import { Action } from "redux-actions"
-import { getState, TASK_STOP, PayloadActionStop } from "."
+import { TASK_STOP, PayloadActionStop } from "./action_taskStop"
+import { getState } from "./store"
 
-function* stateWriteSaga(action: Action<PayloadActionStop>) {
+function* saga(action: Action<PayloadActionStop>) {
   const taskName = action.payload && action.payload.taskName
   const tasks = getState().tasks
   const index = tasks.findIndex((task) => task.name === taskName)
@@ -17,6 +18,6 @@ function* stateWriteSaga(action: Action<PayloadActionStop>) {
   // yield put(rmTask(index))
 }
 
-export default function* watcher() {
-  yield takeEvery(TASK_STOP, stateWriteSaga)
+export default function* stateWriteSaga() {
+  yield takeEvery(TASK_STOP, saga)
 }
