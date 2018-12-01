@@ -1,6 +1,6 @@
 import { takeLatest, call } from "redux-saga/effects"
 import { Action } from "redux-actions"
-import { writeState } from "../util"
+import { writeTtFile } from "../util"
 import { STATE_WRITE, PayloadActionWrite } from "./action_stateWrite"
 import { getState } from "./store"
 
@@ -9,7 +9,8 @@ function* saga(action: Action<PayloadActionWrite>) {
   const { path } = payload
   const data = JSON.stringify(getState())
 
-  yield call(writeState, data, path)
+  yield call(writeTtFile)
+  // yield call(writeTtFile, data, path)
 }
 
 export default function* stateWriteSaga() {

@@ -1,4 +1,4 @@
-import { promises, ttDir, historyFile, FsOptions, FsArg, stateFile } from "."
+import { ttDir, FsArg, stateFile } from "."
 import { statSync, readFileSync } from "fs"
 
 export default async function readFromTtDir(options: FsArg = {}) {

@@ -10,11 +10,13 @@ export type Task = {
   end?: number
 }
 
+export type Object = { [key: string]: any }
+export type EmptyObject = { [key: string]: never }
+
 export type FsArg = {
   path?: string
   opts?: FsOptions | string
   log?: boolean
   file?: string
+  data?: string | Object
 }
-
-export type EmptyObject = { [key: string]: never }
