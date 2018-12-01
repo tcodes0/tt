@@ -29,6 +29,7 @@
         "no-undef": "off",
         "no-unused-vars": "off",
         "no-console": "off",
+        "arrow-body-style": "off",
         "no-restricted-globals": "warn"
       }
     }
