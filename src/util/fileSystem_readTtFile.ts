@@ -1,7 +1,7 @@
 import { ttDir, FsArg, stateFile } from "."
 import { statSync, readFileSync } from "fs"
 
-export default async function readFromTtDir(options: FsArg = {}) {
+export default function readFromTtDir(options: FsArg = {}) {
   const {
     path = ttDir,
     opts = "utf-8",
@@ -13,7 +13,7 @@ export default async function readFromTtDir(options: FsArg = {}) {
   try {
     const stats = statSync(target)
     const data = readFileSync(target, opts)
-    const parsed = await JSON.parse(data as string)
+    const parsed = JSON.parse(data as string)
     return parsed
   } catch (err) {
     if (log) {
