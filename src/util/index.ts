@@ -23,9 +23,6 @@ export * from "./types"
  * Filesystem
  */
 
-export { default as init } from "./fileSystem_init"
-export * from "./fileSystem_init"
-
 export { default as loadStateSync } from "./fileSystem_loadStateSync"
 export * from "./fileSystem_loadStateSync"
 
