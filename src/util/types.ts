@@ -14,6 +14,7 @@ export type FsArg = {
   path?: string
   opts?: FsOptions | string
   log?: boolean
+  file?: string
 }
 
 export type EmptyObject = { [key: string]: never }

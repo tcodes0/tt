@@ -26,17 +26,14 @@ export * from "./types"
 export { default as init } from "./fileSystem_init"
 export * from "./fileSystem_init"
 
-export { default as readHistory } from "./fileSystem_readHistory"
-export * from "./fileSystem_readHistory"
-
 export { default as loadStateSync } from "./fileSystem_loadStateSync"
 export * from "./fileSystem_loadStateSync"
-
-export { default as readState } from "./fileSystem_readState"
-export * from "./fileSystem_readState"
 
 export { default as writeHistory } from "./fileSystem_writeHistory"
 export * from "./fileSystem_writeHistory"
 
 export { default as writeState } from "./fileSystem_writeState"
 export * from "./fileSystem_writeState"
+
+export { default as readTtFile } from "./fileSystem_readTtFile"
+export * from "./fileSystem_readTtFile"
