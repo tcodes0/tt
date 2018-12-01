@@ -1,6 +1,6 @@
 import { readFileSync } from "fs"
 import { rootReducer, replaceReducer } from "../core"
-import { ttDir, stateFile, FsOptions, FsArg } from "."
+import { ttDir, stateFile, FsOptions } from "."
 
 // @ts-ignore
 const load = (stateFromDisk: any) => (state: any, action: any) => {

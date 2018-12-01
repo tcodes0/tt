@@ -7,6 +7,7 @@ function* saga(action: Action<PayloadActionStop>) {
   const taskName = action.payload && action.payload.taskName
   const tasks = getState().tasks
   const index = tasks.findIndex((task) => task.name === taskName)
+  // @ts-ignore
   const stopped = {
     name: tasks[index].name,
     start: tasks[index].start,

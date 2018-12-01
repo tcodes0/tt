@@ -1,10 +1,18 @@
 import { writeFileSync } from "fs"
-import { ttDir, stateFile, FsArg } from "."
+import { ttDir, stateFile, FsOptions, Object } from "."
 import { execSync } from "child_process"
 
 let retry = true
 
-export default function writeTtFile(options: FsArg = {}): void {
+export default function writeTtFile(
+  options: {
+    path?: string
+    opts?: FsOptions | string
+    log?: boolean
+    file?: string
+    data?: string | Object
+  } = {},
+): void {
   const {
     path = ttDir,
     opts = "utf-8",

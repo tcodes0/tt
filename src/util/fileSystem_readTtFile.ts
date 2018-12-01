@@ -1,7 +1,14 @@
-import { ttDir, FsArg, stateFile } from "."
+import { ttDir, stateFile, FsOptions } from "."
 import { statSync, readFileSync } from "fs"
 
-export default function readFromTtDir(options: FsArg = {}) {
+export default function readFromTtDir(
+  options: {
+    path?: string
+    opts?: FsOptions | string
+    log?: boolean
+    file?: string
+  } = {},
+) {
   const {
     path = ttDir,
     opts = "utf-8",
@@ -11,6 +18,7 @@ export default function readFromTtDir(options: FsArg = {}) {
   const target = `${path}/${file}`
 
   try {
+    // @ts-ignore
     const stats = statSync(target)
     const data = readFileSync(target, opts)
     const parsed = JSON.parse(data as string)

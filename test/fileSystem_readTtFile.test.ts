@@ -2,38 +2,38 @@ import { readTtFile, fixture_ttDir } from "../src/util"
 import { writeFileSync } from "fs"
 
 describe("readTtFile test", () => {
-  test("it works with path and reads history", async () => {
+  test("it works with path and reads history", () => {
     const expected = { history: true }
     writeFileSync(`${fixture_ttDir}/history.json`, JSON.stringify(expected))
-    const result = await readTtFile({
+    const result = readTtFile({
       path: fixture_ttDir,
       file: "history.json",
     })
     expect(result).toEqual(expected)
   })
 
-  test("it works with path and reads state", async () => {
+  test("it works with path and reads state", () => {
     const expected = { state: true }
     writeFileSync(`${fixture_ttDir}/state.json`, JSON.stringify(expected))
-    const result = await readTtFile({
+    const result = readTtFile({
       path: fixture_ttDir,
       file: "state.json",
     })
     expect(result).toEqual(expected)
   })
 
-  test("it works with path and defaults to state", async () => {
+  test("it works with path and defaults to state", () => {
     const expected = { state: true }
     writeFileSync(`${fixture_ttDir}/state.json`, JSON.stringify(expected))
-    const result = await readTtFile({
+    const result = readTtFile({
       path: fixture_ttDir,
     })
     expect(result).toEqual(expected)
   })
 
-  test("it returns {} when can't read", async () => {
+  test("it returns {} when can't read", () => {
     const expected = {}
-    const result = await readTtFile({ path: "nope/nope" })
+    const result = readTtFile({ path: "nope/nope" })
     expect(result).toEqual(expected)
   })
 })

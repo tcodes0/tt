@@ -6,7 +6,9 @@ import { getState } from "./store"
 
 function* saga(action: Action<PayloadActionWrite>) {
   const { payload = {} } = action
+  // @ts-ignore
   const { path } = payload
+  // @ts-ignore
   const data = JSON.stringify(getState())
 
   yield call(writeTtFile)
