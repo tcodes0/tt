@@ -20,3 +20,10 @@ export type FsArg = {
   file?: string
   data?: string | Object
 }
+
+export type Operation = {
+  mode: string
+  input: any[] | any
+  message?: string
+  [key: string]: any
+}

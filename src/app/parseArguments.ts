@@ -1,11 +1,23 @@
-import { operation } from "."
-import { env } from "../util"
+import { env, Operation } from "../util"
+
+export function operation(
+  mode: string,
+  input: any[] | any = [],
+  extra: { message?: string } = {},
+) {
+  const operationObject = {
+    mode,
+    input: Array.isArray(input) ? input : [input],
+    ...extra,
+  }
+  return operationObject
+}
 
 /**
  * @param argv string[], like Node's process.argv.
  * @returns An operation object
  */
-export default function parseArguments(argv: string[]) {
+export default function parseArguments(argv: string[]): Operation {
   const reservedWords = ["new", "rm", "log", "config", "help", "-h", "--help"]
   // argv[0] is node, argv[1] is program path
   const [, , ...userArgs] = argv

@@ -20,7 +20,7 @@ export * from "./types"
  * Filesystem
  */
 
-export { default as loadStateSync } from "./fileSystem_loadState"
+export { default as loadState } from "./fileSystem_loadState"
 export * from "./fileSystem_loadState"
 
 export { default as readTtFile } from "./fileSystem_readTtFile"
