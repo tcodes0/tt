@@ -93,3 +93,7 @@ type `tt new bar`, to stop "foo" and start a new task "bar"
 tt prints "foo" summary, with duration.
 tt prints text indicating it started a new task named "bar".
 type `tt` to stop "bar"
+
+## Doing
+
+wip on cli.test
