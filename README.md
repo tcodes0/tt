@@ -12,7 +12,7 @@ Time Tracking Tool
 
 # API
 
-operation modes: noArgs, new, rm, log, config, help, parseErr
+operation modes: noArgs, new, rm, log, config, help, parseErr, init
 
 ## tt
 
@@ -62,6 +62,13 @@ access configs tru cli
 
 print CLI help message
 
+## tt init
+
+tt files exist?
+if not init them
+else prints a confirmation to overwrite them.
+if yes, overwrites config files.
+
 ## Misc
 
 ✔ make a folder ~/.tt
@@ -86,3 +93,7 @@ type `tt new bar`, to stop "foo" and start a new task "bar"
 tt prints "foo" summary, with duration.
 tt prints text indicating it started a new task named "bar".
 type `tt` to stop "bar"
+
+## Doing
+
+wip on cli.test

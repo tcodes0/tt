@@ -24,13 +24,11 @@
     {
       "files": ["**/*.ts", "**/*.tsx"],
       "parser": "typescript-eslint-parser",
-      "plugins": [
-        "typescript"
-      ],
+      "plugins": ["typescript"],
       "rules": {
         "no-undef": "off",
         "no-unused-vars": "off",
-        "no-console": "warn",
+        "no-console": "off",
         "no-restricted-globals": "warn"
       }
     }
