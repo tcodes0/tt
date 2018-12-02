@@ -1,6 +1,6 @@
 import { bailout, loadState, Object } from "../util"
-import { dispatch, cliShutdown, modeNew } from "../core"
-import { mode_init, parseArguments } from "."
+import { dispatch, cliShutdown, modeNew, setRoot, modeInit } from "../core"
+import { parseArguments } from "."
 
 /**
  * Main tt function. Maps operations to actions.
@@ -11,9 +11,15 @@ export default function cli(
   argsOrMock: string[] = process.argv,
   options: Object = {},
 ) {
+  // console.log("argsOrMock", argsOrMock)
+  // console.log("options", options)
+
   const { mode, input, message } = parseArguments(argsOrMock)
-  //@ts-ignore
-  const { root } = options
+  const { ttRoot } = options
+
+  if (ttRoot) {
+    dispatch(setRoot({ ttRoot }))
+  }
 
   switch (mode) {
     case "dev":
@@ -39,7 +45,7 @@ export default function cli(
       break
 
     case "init":
-      mode_init()
+      dispatch(modeInit({}))
       break
 
     default:

@@ -33,6 +33,7 @@
   "types": "dist/ts/src",
   "scripts": {
     "start": "yarn build >/dev/null && node dist/index.js",
+    "runit": "NODE_ENV=development yarn ts-node run.ts",
     "lint": "eslint src --ext js,ts,tsx",
     "tscheck": "tsc",
     "tl": "yarn tscheck && yarn lint",
@@ -65,6 +66,7 @@
   },
   "dependencies": {
     "electron-store": "^2.0.0",
+    "idx": "^2.5.2",
     "redux": "^4.0.0",
     "redux-actions": "^2.6.1",
     "redux-logger": "^3.0.6",

@@ -6,3 +6,4 @@ build/*
 .DS*
 *.log
 test/fixture*
+test/.tt*

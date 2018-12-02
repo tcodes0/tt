@@ -1,20 +1,13 @@
+import { CLI_WRITE } from "./action_cliWrite"
 import { takeLatest, call } from "redux-saga/effects"
 import { Action } from "redux-actions"
-import { writeTtFile } from "../util"
-import { STATE_WRITE, PayloadActionWrite } from "./action_stateWrite"
-import { getState } from "./store"
+import { writeTtFile, WriteTtFileArgs } from "../util"
 
-function* saga(action: Action<PayloadActionWrite>) {
-  const { payload = {} } = action
-  // @ts-ignore
-  const { path } = payload
-  // @ts-ignore
-  const data = JSON.stringify(getState())
-
-  yield call(writeTtFile)
-  // yield call(writeTtFile, data, path)
+function* saga(action: Action<WriteTtFileArgs>) {
+  const { payload } = action
+  yield call(writeTtFile, payload)
 }
 
-export default function* stateWriteSaga() {
-  yield takeLatest(STATE_WRITE, saga)
+export default function* writeSaga() {
+  yield takeLatest(CLI_WRITE, saga)
 }
