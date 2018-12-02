@@ -1,4 +1,4 @@
-# (WIP) TT
+# TT
 
 <p>
   <a href="https://travis-ci.org/Thomazella/tt"><img src="https://img.shields.io/travis/Thomazella/tt/master.svg?style=flat-square" alt="Build Status" /></a>
