@@ -4,9 +4,6 @@
 export { default as cli } from "./cli"
 export * from "./cli"
 
-export { default as operation } from "./operation"
-export * from "./operation"
-
 export { default as parseArguments } from "./parseArguments"
 export * from "./parseArguments"
 

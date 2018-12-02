@@ -1,4 +1,3 @@
-const envs = ["production", "development"]
-
-export const env = envs[1]
+export const env = "development"
+// export const env = "production"
 export default env

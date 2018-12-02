@@ -3,6 +3,7 @@ import { createLogger } from "redux-logger"
 import createSagaMiddleware from "redux-saga"
 import rootReducer from "./reducer"
 import rootSaga from "./saga"
+import { Object } from "../util"
 
 const sagaMiddleware = createSagaMiddleware()
 const logger = createLogger({
@@ -16,8 +17,7 @@ const logger = createLogger({
   },
 })
 
-export type State = { [key: string]: any }
-export const createHydratedStore = (preloadedState: State = {}) =>
+export const createHydratedStore = (preloadedState: Object = {}) =>
   createStore(
     rootReducer,
     preloadedState,

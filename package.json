@@ -83,6 +83,7 @@
     "@types/node": "^10.11.7",
     "@types/redux-actions": "^2.3.1",
     "@types/redux-logger": "^3.0.6",
+    "@types/rimraf": "^2.0.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
