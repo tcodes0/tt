@@ -2,7 +2,7 @@ import { writeFileSync } from "fs"
 import { ttDir, stateFile, FsOptions, Object } from "."
 import { execSync } from "child_process"
 
-let retry = true
+let attempedPaths: string[] = []
 
 export default function writeTtFile(
   options: {
@@ -32,11 +32,17 @@ export default function writeTtFile(
     if (log) {
       console.log(`writeTtFile error ${err.code}`, err)
     }
-    if (err.code === "ENOENT" && retry) {
-      retry = false
+    if (err.code === "ENOENT" && !attempedPaths.includes(path)) {
+      attempedPaths.push(path)
       execSync(`mkdir -p ${path}`)
       return writeTtFile(options)
     }
     throw err
   }
 }
+
+export type WriteTtFileArgs = typeof writeTtFile extends (
+  options: infer O,
+) => void
+  ? O
+  : never
