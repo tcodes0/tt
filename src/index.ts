@@ -6,5 +6,3 @@ process.on("unhandledRejection", (reason) => {
 })
 
 cli()
-
-export default cli
