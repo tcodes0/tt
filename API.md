@@ -113,6 +113,10 @@ shows info on current task
 
 access configs tru cli
 
+## tt init
+
+write blank files to ttDir
+
 ## tt help
 
 _-h | --help_

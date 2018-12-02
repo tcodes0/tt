@@ -1,24 +1,29 @@
-import { bailout, loadState } from "../util"
-import { dispatch, action_cliShutdown } from "../core"
-import { mode_new, mode_init, parseArguments } from "."
+import { bailout, loadState, Object } from "../util"
+import { dispatch, cliShutdown, modeNew } from "../core"
+import { mode_init, parseArguments } from "."
 
 /**
  * Main tt function. Maps operations to actions.
  * Will read process.argv or use a string[] provided as argument.
  * @param Args or undefined to parse process.argv
  */
-export default function cli(argsOrMock: string[] = process.argv) {
-  const operation = parseArguments(argsOrMock)
+export default function cli(
+  argsOrMock: string[] = process.argv,
+  options: Object = {},
+) {
+  const { mode, input, message } = parseArguments(argsOrMock)
+  //@ts-ignore
+  const { root } = options
 
-  switch (operation.mode) {
+  switch (mode) {
     case "dev":
-      mode_new("foo")
+      // modeNew({ name: "foo" })
       break
 
     case "parseErr":
       bailout(`
-      ${operation.message}
-      Failed with: ${operation.input}
+      ${message}
+      Failed with: ${input}
       `)
       break
 
@@ -30,7 +35,7 @@ export default function cli(argsOrMock: string[] = process.argv) {
 
     case "new":
       loadState()
-      mode_new(operation.input)
+      modeNew(input)
       break
 
     case "init":
@@ -41,5 +46,5 @@ export default function cli(argsOrMock: string[] = process.argv) {
       break
   }
 
-  dispatch(action_cliShutdown({}))
+  dispatch(cliShutdown({}))
 }
