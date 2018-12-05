@@ -12,4 +12,4 @@ Time Tracking Tool
 
 ## Doing
 
-should be refactoring modes to sagas
+working on mode new, testing new action function

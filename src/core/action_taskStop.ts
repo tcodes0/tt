@@ -1,7 +1,7 @@
-import { createAction } from "redux-actions"
+import createAction from "../util/createAction"
 
 export const TASK_STOP = "TASK_STOP"
 
-export type PayloadActionStop = { taskName?: string }
+export type PayloadStop = { taskName?: string }
 
-export default createAction<PayloadActionStop>(TASK_STOP)
+export default createAction<PayloadStop>(TASK_STOP)

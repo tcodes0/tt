@@ -9,7 +9,7 @@ import { parseArguments } from "."
  */
 export default function cli(
   argsOrMock: string[] = process.argv,
-  options: Object = {},
+  options: Object<string> = {},
 ) {
   // console.log("argsOrMock", argsOrMock)
   // console.log("options", options)

@@ -5,7 +5,7 @@ export default function(name = "Personal task") {
   const {
     cli: { tracking, callTime },
   } = getState()
-  const recent = callTime - Date.now() > -60000 // 1 minute
+  const recent = callTime - Date.now() > -10000 // 1 minute
 
   if (!tracking) {
     dispatch(taskNew({ name }))

@@ -31,3 +31,6 @@ export * from "./fileSystem_readTtFile"
 
 export { default as writeTtFile } from "./fileSystem_writeTtFile"
 export * from "./fileSystem_writeTtFile"
+
+export { default as createAction } from "./createAction"
+export * from "./createAction"

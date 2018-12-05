@@ -1,4 +1,4 @@
-import { createAction } from "redux-actions"
+import createAction from "../util/createAction"
 
 export const TASK_TOGGLE_TRACKING = "TASK_TOGGLE_TRACKING"
 

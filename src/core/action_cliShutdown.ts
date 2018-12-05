@@ -1,4 +1,4 @@
-import { createAction } from "redux-actions"
+import createAction from "../util/createAction"
 import { EmptyObject } from "../util"
 
 export const CLI_SHUTDOWN = "CLI_SHUTDOWN"

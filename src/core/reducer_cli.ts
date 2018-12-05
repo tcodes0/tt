@@ -26,7 +26,7 @@ export default function reducer(
     }
 
     case CLI_SET_ROOT_DIR: {
-      if (!idx(action, (_) => _.payload.ttRoot)) {
+      if (!idx(action, _ => _.payload.ttRoot)) {
         return state
       }
       const { ttRoot } = action.payload as CliSetRootType

@@ -4,7 +4,7 @@ import { ttFiles } from "../util"
 import { State, cliWrite } from "."
 
 function* saga() {
-  const { ttRoot } = yield select<State>((state) => state.cli)
+  const { ttRoot } = yield select<State>(state => state.cli)
 
   for (const file of ttFiles) {
     yield put(cliWrite({ file, path: ttRoot }))

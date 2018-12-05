@@ -26,6 +26,7 @@ export default function parseArguments(argv: string[]): Operation {
   const isValidName = (word: string) => !reservedWords.includes(word)
 
   if (env === "development" && argOne == "dev") {
+    // @ts-ignore
     return operation.apply(null, argTwoAndOthers)
   }
 
@@ -91,7 +92,7 @@ export default function parseArguments(argv: string[]): Operation {
           })
 
     default:
-      argTwoAndOthers.forEach((arg) => {
+      argTwoAndOthers.forEach(arg => {
         if (!isValidName(arg)) {
           return operation("parseErr", arg, {
             message: "Command names cannot be used as arguments",

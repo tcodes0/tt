@@ -10,7 +10,7 @@ export type Task = {
   end?: number
 }
 
-export type Object = { [key: string]: any }
+export type Object<T = undefined> = { [key: string]: T }
 export type EmptyObject = { [key: string]: never }
 
 export type FsArg = {

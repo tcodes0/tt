@@ -10,7 +10,7 @@ export default function writeTtFile(
     opts?: FsOptions | string
     log?: boolean
     file?: string
-    data?: string | Object
+    data?: string | Object<any>
   } = {},
 ): void {
   const {

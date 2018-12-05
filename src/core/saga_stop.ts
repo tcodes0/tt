@@ -1,12 +1,12 @@
 import { takeEvery } from "redux-saga/effects"
 import { Action } from "redux-actions"
-import { TASK_STOP, PayloadActionStop } from "./action_taskStop"
+import { TASK_STOP, PayloadStop } from "./action_taskStop"
 import { getState } from "./store"
 
-function* saga(action: Action<PayloadActionStop>) {
+function* saga(action: Action<PayloadStop>) {
   const taskName = action.payload && action.payload.taskName
   const tasks = getState().tasks
-  const index = tasks.findIndex((task) => task.name === taskName)
+  const index = tasks.findIndex(task => task.name === taskName)
   // @ts-ignore
   const stopped = {
     name: tasks[index].name,

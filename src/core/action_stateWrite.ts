@@ -1,7 +1,7 @@
-import { createAction } from "redux-actions"
+import createAction from "../util/createAction"
 
 export const STATE_WRITE = "STATE_WRITE"
 
-export type PayloadActionWrite = { path?: string }
+export type PayloadWrite = { path?: string }
 
-export default createAction<PayloadActionWrite>(STATE_WRITE)
+export default createAction<PayloadWrite>(STATE_WRITE)

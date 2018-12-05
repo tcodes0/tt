@@ -6,7 +6,7 @@ import logs from "./saga_log"
 import init from "./saga_init"
 
 const sagas = [logs, write, shutdown, stopTask, init]
-const spawnedSagas = sagas.map((saga) => spawn(saga))
+const spawnedSagas = sagas.map(saga => spawn(saga))
 
 export default function* rootSaga() {
   yield all(spawnedSagas)

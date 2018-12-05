@@ -1,7 +1,5 @@
-import { createAction } from "redux-actions"
+import createAction from "../util/createAction"
 
 export const TASK_NEW = "TASK_NEW"
 
-export type PayloadActionNew = { name: string }
-
-export default createAction<PayloadActionNew>(TASK_NEW)
+export default createAction<{ name: string }>(TASK_NEW)

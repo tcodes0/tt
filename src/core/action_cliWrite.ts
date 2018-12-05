@@ -1,4 +1,4 @@
-import { createAction } from "redux-actions"
+import createAction from "../util/createAction"
 import { WriteTtFileArgs } from "../util"
 
 export const CLI_WRITE = "CLI_WRITE"

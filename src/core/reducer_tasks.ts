@@ -1,12 +1,12 @@
-import { Action } from "redux-actions"
-import { TASK_NEW, PayloadActionNew, TASK_STOP, PayloadActionStop } from "."
-import { Task } from "../util"
+import { TASK_NEW, TASK_STOP } from "."
+import { Task, Action } from "../util"
 
 const initialState: Task[] = []
 
 export default function reducer(
   state = initialState,
-  action: Action<PayloadActionNew & PayloadActionStop>,
+  // @ts-ignore
+  action: Action,
 ) {
   switch (action.type) {
     case TASK_NEW: {
@@ -17,7 +17,7 @@ export default function reducer(
     }
     case TASK_STOP: {
       const taskName = action.payload && action.payload.taskName
-      const index = state.findIndex((task) => task.name === taskName)
+      const index = state.findIndex(task => task.name === taskName)
       // const stopped = {
       //   name: state[index].name,
       //   start: state[index].start,
