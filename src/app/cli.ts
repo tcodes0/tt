@@ -1,4 +1,4 @@
-import { bailout, loadState, Object } from "../util"
+import { bailout, loadState } from "../util"
 import { dispatch, cliShutdown, modeNew, setRoot, modeInit } from "../core"
 import { parseArguments } from "."
 
@@ -9,13 +9,16 @@ import { parseArguments } from "."
  */
 export default function cli(
   argsOrMock: string[] = process.argv,
-  options: Object<string> = {},
+  options: {
+    ttRoot?: string
+    log?: boolean
+  } = {},
 ) {
   // console.log("argsOrMock", argsOrMock)
   // console.log("options", options)
 
   const { mode, input, message } = parseArguments(argsOrMock)
-  const { ttRoot } = options
+  const { ttRoot, log } = options
 
   if (ttRoot) {
     dispatch(setRoot({ ttRoot }))
@@ -41,7 +44,7 @@ export default function cli(
       break
 
     case "new":
-      loadState()
+      loadState({ path: ttRoot, log })
       modeNew(input)
       break
 

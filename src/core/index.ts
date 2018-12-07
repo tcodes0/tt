@@ -7,8 +7,8 @@ export * from "./store"
 /**
  * Core input
  */
-export { default as taskNew } from "./action_taskNew"
-export * from "./action_taskNew"
+export { default as taskNew } from "./action_taskSet"
+export * from "./action_taskSet"
 
 export { default as cliSetCallTime } from "./action_cliSetCallTime"
 export * from "./action_cliSetCallTime"
@@ -39,6 +39,9 @@ export * from "./action_stateWrite"
 
 export { default as setRoot } from "./action_cliSetRoot"
 export * from "./action_cliSetRoot"
+
+export { default as printLog } from "./action_modeLog"
+export * from "./action_modeLog"
 
 /**
  * Convenience

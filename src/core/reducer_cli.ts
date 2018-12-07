@@ -2,7 +2,7 @@ import { Action } from "redux-actions"
 import {
   CLI_SET_CALL_TIME,
   TASK_TOGGLE_TRACKING,
-  TASK_NEW,
+  TASK_SET,
   CLI_SET_ROOT_DIR,
   CliSetRootType,
 } from "."
@@ -39,7 +39,7 @@ export default function reducer(
       return result
     }
 
-    case TASK_NEW: {
+    case TASK_SET: {
       const result = { ...state, tracking: true }
       return result
     }

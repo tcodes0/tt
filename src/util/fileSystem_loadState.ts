@@ -1,6 +1,7 @@
 import { readFileSync } from "fs"
 import { rootReducer, replaceReducer } from "../core"
 import { ttDir, stateFile, FsOptions } from "."
+import { execSync } from "child_process"
 
 // @ts-ignore
 const load = (stateFromDisk: any) => (state: any, action: any) => {
@@ -37,6 +38,12 @@ export default function loadState(
     replaceReducer(rootReducer)
     return state
   } catch (error) {
+    if (error.code === "ENOENT") {
+      execSync(`mkdir -p ${path}`)
+      execSync(`echo {} > ${statePath}`)
+      return {}
+    }
+
     if (log) {
       console.error(
         "error loading state from disk\n",

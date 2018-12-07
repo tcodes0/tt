@@ -1,19 +1,20 @@
-import { MODE_NEW, PayloadNew } from "./action_modeNew"
 import { takeLatest, select, put } from "redux-saga/effects"
-import { State } from "."
+import { State, taskNew, MODE_NEW, PayloadSet, taskStop, printLog } from "."
 import { Action } from "../util"
-import action_taskNew from "./action_taskNew"
 
-function* saga(action: Action<PayloadNew>) {
+function* saga(action: Action<PayloadSet>) {
   const { name = "Personal Task" } = action.payload
-  const { tracking, callTime } = yield select<State>(state => state.cli)
-  //@ts-ignore
-  const recent = callTime - Date.now() > -10000 // 1 minute
+  const { tracking } = yield select<State>(state => state.cli)
+  // const recent = callTime - Date.now() > -10000 // 1 minute
 
   if (!tracking) {
-    yield put(action_taskNew({ name }))
+    yield put(taskNew({ name }))
     return
   }
+
+  yield put(taskStop())
+  yield put(printLog({ what: "last" }))
+  yield put(taskNew({ name }))
 }
 
 export default function* NewSaga() {

@@ -12,4 +12,4 @@ Time Tracking Tool
 
 ## Doing
 
-working on mode new, testing new action function
+running new has to write state correctly, cli test needs to pass

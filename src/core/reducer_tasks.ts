@@ -1,30 +1,22 @@
-import { TASK_NEW, TASK_STOP } from "."
+import { TASK_SET, TASK_STOP, PayloadSet } from "."
 import { Task, Action } from "../util"
 
-const initialState: Task[] = []
+type Payloads = PayloadSet
+const initialState: Task = { name: "", start: 0 }
 
 export default function reducer(
   state = initialState,
-  // @ts-ignore
-  action: Action,
+  action: Action<Payloads>,
 ) {
   switch (action.type) {
-    case TASK_NEW: {
-      const name = action.payload ? action.payload.name : ""
+    case TASK_SET: {
+      const { name = "" } = action.payload
       const start = Date.now()
       const result = { name, start }
-      return [...state, result]
+      return result
     }
     case TASK_STOP: {
-      const taskName = action.payload && action.payload.taskName
-      const index = state.findIndex(task => task.name === taskName)
-      // const stopped = {
-      //   name: state[index].name,
-      //   start: state[index].start,
-      //   end: Date.now()
-      // };
-      // dispatch(scheduleHistory(stopped))
-      return [...state.slice(0, index), ...state.slice(index + 1)]
+      return initialState
     }
     default:
       return state
