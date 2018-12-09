@@ -1,6 +1,15 @@
-import { bailout, loadState } from "../util"
-import { dispatch, cliShutdown, modeNew, setRoot, modeInit } from "../core"
+import { bailout } from "../util"
+import {
+  dispatch,
+  cliShutdown,
+  modeNew,
+  setRoot,
+  modeInit,
+  loadState,
+} from "../core"
 import { parseArguments } from "."
+
+export type ArgsCli = typeof cli extends (...a: infer A) => any ? A : never
 
 /**
  * Main tt function. Maps operations to actions.
@@ -44,7 +53,7 @@ export default function cli(
       break
 
     case "new":
-      loadState({ path: ttRoot, log })
+      dispatch(loadState({ path: ttRoot, log }))
       modeNew(input)
       break
 

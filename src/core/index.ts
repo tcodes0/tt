@@ -16,6 +16,9 @@ export * from "./action_cliSetCallTime"
 export { default as cliShutdown } from "./action_cliShutdown"
 export * from "./action_cliShutdown"
 
+export { default as loadState } from "./action_cliLoadState"
+export * from "./action_cliLoadState"
+
 export { default as cliWrite } from "./action_cliWrite"
 export * from "./action_cliWrite"
 

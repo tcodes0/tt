@@ -8,6 +8,10 @@ const load = (stateFromDisk: any) => (state: any, action: any) => {
   return stateFromDisk
 }
 
+export type ArgLoadState = typeof loadState extends (a: infer A) => any
+  ? A
+  : never
+
 export default function loadState(
   options: {
     path?: string
