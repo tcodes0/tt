@@ -1,14 +1,17 @@
 import { ttDir, stateFile, FsOptions } from "."
 import { statSync, readFileSync } from "fs"
+import { FunctionType, Object } from "./types"
 
-export default function readFromTtDir(
+export type ReadTtFile = FunctionType<typeof readTtFile>
+
+export default function readTtFile(
   options: {
     path?: string
     opts?: FsOptions | string
     log?: boolean
     file?: string
   } = {},
-) {
+): Object<any> {
   const {
     path = ttDir,
     opts = "utf-8",

@@ -7,7 +7,7 @@ export * from "./store"
 /**
  * Core input
  */
-export { default as taskNew } from "./action_taskSet"
+export { default as taskSet } from "./action_taskSet"
 export * from "./action_taskSet"
 
 export { default as cliSetCallTime } from "./action_cliSetCallTime"
@@ -36,9 +36,6 @@ export * from "./action_modeInit"
 
 export { default as taskToggleTracking } from "./action_taskToggleTracking"
 export * from "./action_taskToggleTracking"
-
-export { default as stateWrite } from "./action_stateWrite"
-export * from "./action_stateWrite"
 
 export { default as setRoot } from "./action_cliSetRoot"
 export * from "./action_cliSetRoot"

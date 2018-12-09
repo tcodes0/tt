@@ -9,7 +9,7 @@ afterAll(() => {
 })
 
 describe("writeTtFile test", () => {
-  test("reads history", () => {
+  test("writes history", () => {
     const expected = { history: true }
     writeTtFile({ path: testDir, file: "history.json", data: expected })
     const result = readFileSync(`${testDir}/history.json`, "utf-8")
@@ -17,7 +17,7 @@ describe("writeTtFile test", () => {
     expect(parsed).toEqual(expected)
   })
 
-  test("reads state", () => {
+  test("writes state", () => {
     const expected = { state: true }
     writeTtFile({ path: testDir, file: "state.json", data: expected })
     const result = readFileSync(`${testDir}/state.json`, "utf-8")

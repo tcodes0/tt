@@ -12,6 +12,3 @@ export * from "./parseArguments"
  */
 export { default as mode_log } from "./mode_log"
 export * from "./mode_log"
-
-export { default as mode_new } from "./mode_new"
-export * from "./mode_new"

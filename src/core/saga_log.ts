@@ -40,9 +40,9 @@ export default function* logActionsSaga() {
     console.log(
       `\n  ------------------\n  ${action.type}\n  ------------------\n`,
     )
-    console.info("dispatching", action, "\n")
+    console.info("dispatching\n", action, "\n")
     const nextState = yield select()
-    printWholeState && console.log("next state", nextState, "\n")
+    printWholeState && console.log("next state\n", nextState, "\n")
     // prettier-ignore
     const {
       cli,
@@ -50,7 +50,7 @@ export default function* logActionsSaga() {
     } = nextState
     printSelectedState &&
       // prettier-ignore
-      console.log("selected state", {
+      console.log("selected state\n", {
         cli,
         tasks
       }, "\n")

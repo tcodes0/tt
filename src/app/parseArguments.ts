@@ -1,8 +1,8 @@
-import { env, Operation } from "../util"
+import { env, FunctionType } from "../util"
 
 export function operation(
   mode: string,
-  input: any[] | any = [],
+  input: string[] | string = [],
   extra: { message?: string } = {},
 ) {
   const operationObject = {
@@ -13,11 +13,14 @@ export function operation(
   return operationObject
 }
 
+export type Operation = FunctionType<typeof operation>
+export type ParseArguments = FunctionType<typeof parseArguments>
+
 /**
  * @param argv string[], like Node's process.argv.
  * @returns An operation object
  */
-export default function parseArguments(argv: string[]): Operation {
+export default function parseArguments(argv: string[]): Operation["return"] {
   const reservedWords = ["new", "rm", "log", "config", "help", "-h", "--help"]
   // argv[0] is node, argv[1] is program path
   const [, , ...userArgs] = argv

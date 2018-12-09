@@ -1,8 +1,11 @@
 import { writeFileSync } from "fs"
 import { ttDir, stateFile, FsOptions, Object } from "."
 import { execSync } from "child_process"
+import { FunctionType } from "./types"
 
 let attempedPaths: string[] = []
+
+export type WriteTtFile = FunctionType<typeof writeTtFile>
 
 export default function writeTtFile(
   options: {
@@ -40,9 +43,3 @@ export default function writeTtFile(
     throw err
   }
 }
-
-export type WriteTtFileArgs = typeof writeTtFile extends (
-  options: infer O,
-) => void
-  ? O
-  : never

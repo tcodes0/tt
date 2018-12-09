@@ -21,9 +21,12 @@ export type FsArg = {
   data?: string | Object
 }
 
-export type Operation = {
-  mode: string
-  input: any[] | any
-  message?: string
-  [key: string]: any
+export type ReturnType<Func> = Func extends (...a: any) => infer R ? R : never
+export type ArgType<Func> = Func extends (...a: infer A) => any ? A : never
+export type FunctionType<Func> = {
+  args: ArgType<Func>
+  return: ReturnType<Func>
 }
+export type PayloadType<Action> = Action extends (payload: infer P) => any
+  ? Exclude<P, undefined>
+  : never

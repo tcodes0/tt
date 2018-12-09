@@ -12,6 +12,7 @@ import {
   historyFile,
 } from "../src/util"
 import rm from "rimraf"
+import { State } from "../src/core"
 
 const testDir = `${dev_ttDir}-cli.test`
 const testState = `${testDir}/${stateFile}`
@@ -39,16 +40,16 @@ describe("tt init", () => {
 })
 
 describe.only("tt new", () => {
-  test("tt new", () => {
+  test("`tt new` starts a task with a default name", () => {
     rm.sync(testDir)
     cli(cliArgs("new"), { ttRoot: testDir })
 
     const result = readFileSync(testState, "utf-8")
-    const parsed = JSON.parse(result)
+    const parsed: State = JSON.parse(result)
     const expected = {
       name: expect.any(String),
       start: expect.any(Number),
     }
-    expect(parsed).toEqual(expected)
+    expect(parsed.tasks).toEqual(expected)
   })
 })

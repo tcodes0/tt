@@ -1,6 +1,7 @@
 import createAction from "../util/createAction"
-import { WriteTtFileArgs } from "../util"
+import { WriteTtFile } from "../util"
 
 export const CLI_WRITE = "CLI_WRITE"
+export type PayloadWrite = WriteTtFile["args"][0]
 
-export default createAction<WriteTtFileArgs>(CLI_WRITE)
+export default createAction<WriteTtFile["args"][0]>(CLI_WRITE)

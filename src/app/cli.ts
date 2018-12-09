@@ -1,4 +1,4 @@
-import { bailout } from "../util"
+import { bailout, FunctionType } from "../util"
 import {
   dispatch,
   cliShutdown,
@@ -9,7 +9,7 @@ import {
 } from "../core"
 import { parseArguments } from "."
 
-export type ArgsCli = typeof cli extends (...a: infer A) => any ? A : never
+export type Cli = FunctionType<typeof cli>
 
 /**
  * Main tt function. Maps operations to actions.
@@ -17,7 +17,7 @@ export type ArgsCli = typeof cli extends (...a: infer A) => any ? A : never
  * @param Args or undefined to parse process.argv
  */
 export default function cli(
-  argsOrMock: string[] = process.argv,
+  argsOrMock = process.argv,
   options: {
     ttRoot?: string
     log?: boolean
@@ -28,6 +28,8 @@ export default function cli(
 
   const { mode, input, message } = parseArguments(argsOrMock)
   const { ttRoot, log } = options
+
+  dispatch(loadState({ path: ttRoot, log }))
 
   if (ttRoot) {
     dispatch(setRoot({ ttRoot }))
@@ -53,17 +55,16 @@ export default function cli(
       break
 
     case "new":
-      dispatch(loadState({ path: ttRoot, log }))
-      modeNew(input)
+      dispatch(modeNew({ name: input[0] }))
       break
 
     case "init":
-      dispatch(modeInit({}))
+      dispatch(modeInit())
       break
 
     default:
       break
   }
 
-  dispatch(cliShutdown({}))
+  dispatch(cliShutdown())
 }

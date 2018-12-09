@@ -1,6 +1,10 @@
 import createAction from "../util/createAction"
-import { EmptyObject } from "../util"
+import { PayloadType } from "../util"
 
 export const CLI_SHUTDOWN = "CLI_SHUTDOWN"
 
-export default createAction<EmptyObject>(CLI_SHUTDOWN)
+const action = createAction(CLI_SHUTDOWN)
+
+export type PayloadShutdown = PayloadType<typeof action>
+
+export default action

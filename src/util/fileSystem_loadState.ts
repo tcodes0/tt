@@ -1,16 +1,15 @@
 import { readFileSync } from "fs"
+import { execSync } from "child_process"
 import { rootReducer, replaceReducer } from "../core"
 import { ttDir, stateFile, FsOptions } from "."
-import { execSync } from "child_process"
+import { FunctionType } from "../util"
 
 // @ts-ignore
 const load = (stateFromDisk: any) => (state: any, action: any) => {
   return stateFromDisk
 }
 
-export type ArgLoadState = typeof loadState extends (a: infer A) => any
-  ? A
-  : never
+export type LoadState = FunctionType<typeof loadState>
 
 export default function loadState(
   options: {
