@@ -25,7 +25,7 @@ afterAll(() => {
   })
 })
 
-describe("tt init", () => {
+describe.skip("tt init", () => {
   test("creates .tt and files with default {} data", () => {
     rm.sync(testDir)
     cli(cliArgs("init"), { ttRoot: testDir })
