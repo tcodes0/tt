@@ -39,7 +39,7 @@ describe("tt init", () => {
   })
 })
 
-describe.only("tt new", () => {
+describe("tt new", () => {
   test("`tt new` starts a task with a default name", () => {
     rm.sync(testDir)
     cli(cliArgs("new"), { ttRoot: testDir })

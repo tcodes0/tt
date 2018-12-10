@@ -10,16 +10,15 @@ const printSelectedState = false
 const groupOption = collapse ? "groupCollapsed" : "group"
 
 export default function* logActionsSaga() {
-  const { env } = process
-  const { NODE_ENV } = env
-  if (!(NODE_ENV && NODE_ENV !== "test" && NODE_ENV !== production)) {
+  const { NODE_ENV } = process.env
+  if (!NODE_ENV || NODE_ENV === "test" || NODE_ENV === production) {
+    return
+  }
+  if (disable) {
     return
   }
 
   while (true) {
-    if (disable) {
-      return
-    }
     const action = yield take((ac: any) => {
       const ignore: string[] = []
       const only: string[] = []

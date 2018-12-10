@@ -32,8 +32,7 @@
   ],
   "types": "dist/ts/src",
   "scripts": {
-    "start": "yarn build >/dev/null && node dist/index.js",
-    "runit": "NODE_ENV=development yarn ts-node run.ts",
+    "start": "NODE_ENV=development yarn ts-node run.ts",
     "lint": "eslint src --ext js,ts,tsx",
     "tscheck": "tsc",
     "tl": "yarn tscheck && yarn lint",

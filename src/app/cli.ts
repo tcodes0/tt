@@ -7,7 +7,7 @@ import {
   modeInit,
   loadState,
 } from "../core"
-import { parseArguments } from "."
+import { parser } from "."
 
 export type Cli = FunctionType<typeof cli>
 
@@ -26,7 +26,7 @@ export default function cli(
   // console.log("argsOrMock", argsOrMock)
   // console.log("options", options)
 
-  const { mode, input, message } = parseArguments(argsOrMock)
+  const { mode, input, message } = parser(argsOrMock)
   const { ttRoot, log } = options
 
   dispatch(loadState({ path: ttRoot, log }))

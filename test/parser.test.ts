@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { parseArguments, operation } from "../src/app"
+import { parser, operation } from "../src/app"
 import { cliArgs } from "../src/util"
 
 test("operation", () => {
@@ -9,7 +9,7 @@ test("operation", () => {
     const { mode, ...nonMode } = result
 
     //@ts-ignore
-    Object.values(nonMode).forEach((value) => {
+    Object.values(nonMode).forEach(value => {
       expect(value).toEqual(expect.any(Array))
     })
   }
@@ -19,7 +19,7 @@ test("operation", () => {
     const { mode, ...nonMode } = result
 
     //@ts-ignore
-    Object.values(nonMode).forEach((value) => {
+    Object.values(nonMode).forEach(value => {
       expect(value).toEqual(expect.any(Array))
     })
   }
@@ -30,53 +30,53 @@ test("operation", () => {
   }
 })
 
-test("parseArguments basic", () => {
+test("parser basic", () => {
   let result
 
-  result = parseArguments(cliArgs())
+  result = parser(cliArgs())
   expect(result).toMatchObject({ mode: "noArgs", input: [] })
 
-  result = parseArguments(cliArgs("github work"))
+  result = parser(cliArgs("github work"))
   expect(result).toMatchObject({ mode: "new", input: ["github work"] })
 
-  result = parseArguments(cliArgs("new", "github work"))
+  result = parser(cliArgs("new", "github work"))
   expect(result).toMatchObject({ mode: "new", input: ["github work"] })
 
-  result = parseArguments(cliArgs("rm"))
+  result = parser(cliArgs("rm"))
   expect(result).toMatchObject({ mode: "rm", input: [] })
 
-  result = parseArguments(cliArgs("log"))
+  result = parser(cliArgs("log"))
   expect(result).toMatchObject({ mode: "log", input: [] })
 
-  result = parseArguments(cliArgs("log", "week"))
+  result = parser(cliArgs("log", "week"))
   expect(result).toMatchObject({ mode: "log", input: ["week"] })
 
-  result = parseArguments(cliArgs("config"))
+  result = parser(cliArgs("config"))
   expect(result).toMatchObject({ mode: "config", input: [] })
 
-  result = parseArguments(cliArgs("-h"))
+  result = parser(cliArgs("-h"))
   expect(result).toMatchObject({ mode: "help", input: [] })
 
-  result = parseArguments(cliArgs("--help"))
+  result = parser(cliArgs("--help"))
   expect(result).toMatchObject({ mode: "help", input: [] })
 
-  result = parseArguments(cliArgs("github", "work"))
+  result = parser(cliArgs("github", "work"))
   expect(result).toMatchObject({ mode: "parseErr", input: expect.any(Array) })
 
-  result = parseArguments(cliArgs("newtask"))
+  result = parser(cliArgs("newtask"))
   expect(result).toMatchObject({ mode: "new", input: ["newtask"] })
 })
 
-test("parseArguments edge cases", () => {
+test("parser edge cases", () => {
   let result
 
-  result = parseArguments(cliArgs("new", "rm"))
+  result = parser(cliArgs("new", "rm"))
   expect(result).toMatchObject({ mode: "parseErr", input: expect.any(Array) })
 
-  result = parseArguments(cliArgs("-h", "foobar"))
+  result = parser(cliArgs("-h", "foobar"))
   expect(result).toMatchObject({ mode: "parseErr", input: expect.any(Array) })
 
   // specify which opts log and other take
-  // result = parseArguments(cliArgs("log", "newaf"));
+  // result = parser(cliArgs("log", "newaf"));
   // expect(result).toMatchObject({ mode: "parseErr", input: ["log", "log"] });
 })
