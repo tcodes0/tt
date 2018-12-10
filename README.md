@@ -12,4 +12,5 @@ Time Tracking Tool
 
 ## Doing
 
-running new has to write state correctly, cli test needs to pass
+refactor payloads to type util
+write and pass test for `tt new foo`

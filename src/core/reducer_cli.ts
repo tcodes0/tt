@@ -1,4 +1,3 @@
-import { Action } from "redux-actions"
 import {
   CLI_SET_CALL_TIME,
   TASK_TOGGLE_TRACKING,
@@ -6,8 +5,7 @@ import {
   CLI_SET_ROOT_DIR,
   CliSetRootType,
 } from "."
-import { ttDir } from "../util"
-import idx from "idx"
+import { ttDir, Action } from "../util"
 
 const initialState: { tracking: boolean; callTime: number; ttRoot: string } = {
   callTime: 0,
@@ -26,10 +24,10 @@ export default function reducer(
     }
 
     case CLI_SET_ROOT_DIR: {
-      if (!idx(action, _ => _.payload.ttRoot)) {
+      const { ttRoot } = action.payload
+      if (!ttRoot) {
         return state
       }
-      const { ttRoot } = action.payload as CliSetRootType
       const result = { ...state, ttRoot }
       return result
     }
