@@ -1,11 +1,12 @@
 import createAction from "../util/createAction"
+import { PayloadType } from "../util"
 
 export const PRINT_LOG = "PRINT_LOG"
 
-export type PayloadLog = {
-  what: "today" | "week" | "month" | "all" | "last"
-}
-
-export default createAction<{
+const action = createAction<{
   what: "today" | "week" | "month" | "all" | "last"
 }>(PRINT_LOG)
+
+export type PayloadLog = PayloadType<typeof action>
+
+export default action

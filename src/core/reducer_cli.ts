@@ -3,7 +3,7 @@ import {
   TASK_TOGGLE_TRACKING,
   TASK_SET,
   CLI_SET_ROOT_DIR,
-  CliSetRootType,
+  PayloadSetRoot,
 } from "."
 import { ttDir, Action } from "../util"
 
@@ -15,7 +15,7 @@ const initialState: { tracking: boolean; callTime: number; ttRoot: string } = {
 
 export default function reducer(
   state = initialState,
-  action: Action<CliSetRootType>,
+  action: Action<PayloadSetRoot>,
 ) {
   switch (action.type) {
     case CLI_SET_CALL_TIME: {
