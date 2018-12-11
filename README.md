@@ -12,5 +12,4 @@ Time Tracking Tool
 
 ## Doing
 
-refactor payloads to type util
 write and pass test for `tt new foo`

@@ -1,10 +1,10 @@
 import { combineReducers } from "redux"
-import tasks from "./reducer_tasks"
+import task from "./reducer_task"
 import cli from "./reducer_cli"
 
 const rootReducer = combineReducers({
   cli,
-  tasks,
+  task,
 })
 
 export default rootReducer
