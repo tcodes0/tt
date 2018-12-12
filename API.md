@@ -115,7 +115,8 @@ access configs tru cli
 
 ## tt init
 
-write blank files to ttDir
+write blank files {} to ttDir.
+tt will write state.json with fresh data when shuting down.
 
 ## tt help
 

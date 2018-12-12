@@ -2,11 +2,8 @@ import { execSync } from "child_process"
 import { cli } from "../src/app"
 import { readFileSync, statSync, writeFileSync } from "fs"
 import {
-  ttDir,
   cliArgs,
   dev_ttDir,
-  noop,
-  production,
   ttFiles,
   stateFile,
   historyFile,
@@ -14,7 +11,7 @@ import {
 import rm from "rimraf"
 import { State } from "../src/core"
 
-const testDir = `${dev_ttDir}-cli.test`
+const testDir = `${dev_ttDir}-mode_new.test`
 const testState = `${testDir}/${stateFile}`
 const testHistory = `${testDir}/${historyFile}`
 
@@ -27,8 +24,8 @@ afterAll(() => {
   })
 })
 
-describe("tt init erases ttFiles (tt may write them before shutdown)", () => {
-  test("makes folder if path doesn't exist", () => {
+describe("tt init", () => {
+  test("makes path if doesn't exist", () => {
     rm.sync(testDir)
     cli(cliArgs("init"), { ttRoot: testDir })
     expect(() => statSync(testDir)).not.toThrow(/ENOENT/)
@@ -48,34 +45,5 @@ describe("tt init erases ttFiles (tt may write them before shutdown)", () => {
       const parsed = JSON.parse(result)
       expect(parsed).not.toEqual(notExpected)
     })
-  })
-})
-
-describe("tt new", () => {
-  test("`tt new` starts a task with a default name", () => {
-    rm.sync(testDir)
-    cli(cliArgs("new"), { ttRoot: testDir })
-
-    const result = readFileSync(testState, "utf-8")
-    const parsed: State = JSON.parse(result)
-    const expected = {
-      name: expect.any(String),
-      start: expect.any(Number),
-    }
-    expect(parsed.task).toEqual(expected)
-  })
-
-  test("`tt new study` starts a task with name study", () => {
-    rm.sync(testDir)
-    const study = "study"
-    cli(cliArgs("new", study), { ttRoot: testDir })
-
-    const result = readFileSync(testState, "utf-8")
-    const parsed: State = JSON.parse(result)
-    const expected = {
-      name: study,
-      start: expect.any(Number),
-    }
-    expect(parsed.task).toEqual(expected)
   })
 })

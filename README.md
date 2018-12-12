@@ -12,4 +12,4 @@ Time Tracking Tool
 
 ## Doing
 
-write and pass test for `tt new foo`
+pass test for new foo new bar. Needs to write to history.

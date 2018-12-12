@@ -1,7 +1,7 @@
 import { readFileSync } from "fs"
 import { execSync } from "child_process"
 import { rootReducer, replaceReducer } from "../core"
-import { ttDir, stateFile, FsOptions } from "."
+import { ttDir, stateFile, ReadFileSyncArg2 } from "."
 import { FunctionType } from "../util"
 
 // @ts-ignore
@@ -14,7 +14,7 @@ export type LoadState = FunctionType<typeof loadState>
 export default function loadState(
   options: {
     path?: string
-    opts?: FsOptions | string
+    opts?: ReadFileSyncArg2 | string
     log?: boolean
     file?: string
   } = {},

@@ -1,4 +1,4 @@
-import { ttDir, stateFile, FsOptions } from "."
+import { ttDir, stateFile, ReadFileSyncArg2 } from "."
 import { statSync, readFileSync } from "fs"
 import { FunctionType, Object } from "./types"
 
@@ -7,7 +7,7 @@ export type ReadTtFile = FunctionType<typeof readTtFile>
 export default function readTtFile(
   options: {
     path?: string
-    opts?: FsOptions | string
+    opts?: ReadFileSyncArg2 | string
     log?: boolean
     file?: string
   } = {},

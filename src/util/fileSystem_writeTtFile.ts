@@ -1,5 +1,5 @@
 import { writeFileSync } from "fs"
-import { ttDir, stateFile, FsOptions, Object } from "."
+import { ttDir, stateFile, ReadFileSyncArg2, Object } from "."
 import { execSync } from "child_process"
 import { FunctionType } from "./types"
 
@@ -10,7 +10,7 @@ export type WriteTtFile = FunctionType<typeof writeTtFile>
 export default function writeTtFile(
   options: {
     path?: string
-    opts?: FsOptions | string
+    opts?: ReadFileSyncArg2 | string
     log?: boolean
     file?: string
     data?: string | Object<any>
