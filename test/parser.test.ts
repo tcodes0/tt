@@ -65,6 +65,12 @@ test("parser basic", () => {
 
   result = parser(cliArgs("newtask"))
   expect(result).toMatchObject({ mode: "new", input: ["newtask"] })
+
+  result = parser(cliArgs("stop"))
+  expect(result).toMatchObject({ mode: "stop", input: [] })
+
+  result = parser(cliArgs("stop", "foo"))
+  expect(result).toMatchObject({ mode: "stop", input: ["foo"] })
 })
 
 test("parser edge cases", () => {

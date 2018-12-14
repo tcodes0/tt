@@ -13,6 +13,5 @@ Time Tracking Tool
 ## Doing
 
 pass test for new foo new bar. Needs to write to history.
--test appendTtFile
 -write test for stop
 -finish implementation of stop

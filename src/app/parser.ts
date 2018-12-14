@@ -8,7 +8,19 @@ export type Parser = FunctionType<typeof parser>
  * @returns An operation object
  */
 export default function parser(argv: string[]): Operation["return"] {
-  const reservedWords = ["new", "rm", "log", "config", "help", "-h", "--help"]
+  const reservedWords = [
+    "new",
+    "rm",
+    "log",
+    "config",
+    "help",
+    "-h",
+    "--help",
+    "stop",
+    "continue",
+    "init",
+    "help",
+  ]
   // argv[0] is node, argv[1] is program path
   const [, , ...userArgs] = argv
   const [argOne, ...argTwoAndOthers] = userArgs
@@ -44,6 +56,16 @@ export default function parser(argv: string[]): Operation["return"] {
       }
       return isValidName(argTwo)
         ? operation("rm", argTwo)
+        : operation("parseErr", argTwo, {
+            message: "Argument is identical to a command 😕",
+          })
+
+    case "stop":
+      if (!argTwo) {
+        return operation("stop")
+      }
+      return isValidName(argTwo)
+        ? operation("stop", argTwo)
         : operation("parseErr", argTwo, {
             message: "Argument is identical to a command 😕",
           })
