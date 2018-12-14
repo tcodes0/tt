@@ -6,6 +6,7 @@ import {
   setRoot,
   modeInit,
   loadState,
+  cliArgs,
 } from "../core"
 import { parser } from "."
 
@@ -26,11 +27,10 @@ export default function cli(
   // console.log("argsOrMock", argsOrMock)
   // console.log("options", options)
 
+  dispatch(cliArgs(argsOrMock))
   const { mode, input, message } = parser(argsOrMock)
   const { ttRoot, log } = options
-
   dispatch(loadState({ path: ttRoot, log }))
-
   if (ttRoot) {
     dispatch(setRoot({ ttRoot }))
   }

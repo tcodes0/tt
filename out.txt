@@ -1,0 +1,474 @@
+[!p[?3;4l[4l>yarn run v1.12.3
+$ NODE_ENV=development yarn ts-node run.ts
+$ /Users/vamac/Code/tt/node_modules/.bin/ts-node run.ts
+  
+    ------------------
+    CLI_ARGS
+    ------------------
+  
+  dispatching
+   { type: 'CLI_ARGS',
+    payload:
+     [ '/usr/local/Cellar/node/10.10.0/bin/node',
+       '/usr/local/bin/tt',
+       'init' ] } 
+  
+  next state
+   { cli: { callTime: 0, tracking: false, ttRoot: '/Users/vamac/.tt' },
+    task: { name: '', sprints: [] } } 
+  
+  
+    ------------------
+    CLI_LOAD_STATE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_LOAD_STATE',
+    payload: { path: '/Users/vamac/Code/tt/test/.tt', log: undefined } } 
+  
+  next state
+   { cli: { callTime: 0, tracking: false, ttRoot: '/Users/vamac/.tt' },
+    task: { name: '', sprints: [] } } 
+  
+  
+    ------------------
+    CLI_SET_ROOT_DIR
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SET_ROOT_DIR',
+    payload: { ttRoot: '/Users/vamac/Code/tt/test/.tt' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611262950,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    MODE_INIT
+    ------------------
+  
+  dispatching
+   { type: 'MODE_INIT', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611262950,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    CLI_WRITE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_WRITE',
+    payload:
+     { file: 'state.json', path: '/Users/vamac/Code/tt/test/.tt' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611262950,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    CLI_WRITE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_WRITE',
+    payload:
+     { file: 'history.json', path: '/Users/vamac/Code/tt/test/.tt' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611262950,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    CLI_WRITE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_WRITE',
+    payload: { file: 'ttrc.json', path: '/Users/vamac/Code/tt/test/.tt' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611262950,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    CLI_SHUTDOWN
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SHUTDOWN', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611262950,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    CLI_SET_CALL_TIME
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SET_CALL_TIME', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    CLI_WRITE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_WRITE',
+    payload:
+     { path: '/Users/vamac/Code/tt/test/.tt',
+       file: 'state.json',
+       data:
+        { cli:
+           { callTime: 1544611403808,
+             tracking: false,
+             ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+          task: { name: '', start: 0 } } } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+----------------------------
+  
+    ------------------
+    CLI_ARGS
+    ------------------
+  
+  dispatching
+   { type: 'CLI_ARGS',
+    payload:
+     [ '/usr/local/Cellar/node/10.10.0/bin/node',
+       '/usr/local/bin/tt',
+       'new',
+       'study' ] } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    CLI_LOAD_STATE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_LOAD_STATE',
+    payload: { path: '/Users/vamac/Code/tt/test/.tt', log: true } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+loading state from /Users/vamac/Code/tt/test/.tt/state.json
+  
+    ------------------
+    CLI_SET_ROOT_DIR
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SET_ROOT_DIR',
+    payload: { ttRoot: '/Users/vamac/Code/tt/test/.tt' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    MODE_NEW
+    ------------------
+  
+  dispatching
+   { type: 'MODE_NEW', payload: { name: 'study' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: false,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', start: 0 } } 
+  
+  
+    ------------------
+    TASK_SET
+    ------------------
+  
+  dispatching
+   { type: 'TASK_SET', payload: { name: 'study' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+  
+    ------------------
+    CLI_SHUTDOWN
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SHUTDOWN', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611403808,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+  
+    ------------------
+    CLI_SET_CALL_TIME
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SET_CALL_TIME', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+  
+    ------------------
+    CLI_WRITE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_WRITE',
+    payload:
+     { path: '/Users/vamac/Code/tt/test/.tt',
+       file: 'state.json',
+       data:
+        { cli:
+           { callTime: 1544611404268,
+             tracking: true,
+             ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+          task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+----------------------------
+  
+    ------------------
+    CLI_ARGS
+    ------------------
+  
+  dispatching
+   { type: 'CLI_ARGS',
+    payload:
+     [ '/usr/local/Cellar/node/10.10.0/bin/node',
+       '/usr/local/bin/tt',
+       'new',
+       'work' ] } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+  
+    ------------------
+    CLI_LOAD_STATE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_LOAD_STATE',
+    payload: { path: '/Users/vamac/Code/tt/test/.tt', log: true } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+loading state from /Users/vamac/Code/tt/test/.tt/state.json
+  
+    ------------------
+    CLI_SET_ROOT_DIR
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SET_ROOT_DIR',
+    payload: { ttRoot: '/Users/vamac/Code/tt/test/.tt' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+  
+    ------------------
+    MODE_NEW
+    ------------------
+  
+  dispatching
+   { type: 'MODE_NEW', payload: { name: 'work' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'study', sprints: [ { start: 1544611404268 } ] } } 
+  
+  
+    ------------------
+    TASK_STOP
+    ------------------
+  
+  dispatching
+   { type: 'TASK_STOP', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', sprints: [] } } 
+  
+  
+    ------------------
+    PRINT_LOG
+    ------------------
+  
+  dispatching
+   { type: 'PRINT_LOG', payload: { what: 'last' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: '', sprints: [] } } 
+  
+  
+    ------------------
+    TASK_SET
+    ------------------
+  
+  dispatching
+   { type: 'TASK_SET', payload: { name: 'work' } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'work', sprints: [ { start: 1544611404728 } ] } } 
+  
+  
+    ------------------
+    CLI_SHUTDOWN
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SHUTDOWN', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404268,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'work', sprints: [ { start: 1544611404728 } ] } } 
+  
+  
+    ------------------
+    CLI_SET_CALL_TIME
+    ------------------
+  
+  dispatching
+   { type: 'CLI_SET_CALL_TIME', payload: {} } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404728,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'work', sprints: [ { start: 1544611404728 } ] } } 
+  
+  
+    ------------------
+    CLI_WRITE
+    ------------------
+  
+  dispatching
+   { type: 'CLI_WRITE',
+    payload:
+     { path: '/Users/vamac/Code/tt/test/.tt',
+       file: 'state.json',
+       data:
+        { cli:
+           { callTime: 1544611404728,
+             tracking: true,
+             ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+          task: { name: 'work', sprints: [ { start: 1544611404728 } ] } } } } 
+  
+  next state
+   { cli:
+     { callTime: 1544611404728,
+       tracking: true,
+       ttRoot: '/Users/vamac/Code/tt/test/.tt' },
+    task: { name: 'work', sprints: [ { start: 1544611404728 } ] } } 
+  
+Done in 4.00s.

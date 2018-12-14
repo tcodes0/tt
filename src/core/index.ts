@@ -43,12 +43,22 @@ export * from "./action_cliSetRoot"
 export { default as printLog } from "./action_modeLog"
 export * from "./action_modeLog"
 
+export { default as cliArgs } from "./action_cliArgs"
+export * from "./action_cliArgs"
+
+export { default as taskUnset } from "./action_taskUnset"
+export * from "./action_taskUnset"
+
+export { default as historyAdd } from "./action_historyAdd"
+export * from "./action_historyAdd"
+
 /**
  * Convenience
  */
 export { default as reducer } from "./reducer"
 export { default as rootReducer } from "./reducer"
 export * from "./reducer"
+export * from "./reducer_task"
 
 export { default as saga } from "./saga"
 export { default as rootSaga } from "./saga"

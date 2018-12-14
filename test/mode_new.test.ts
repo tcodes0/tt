@@ -62,7 +62,7 @@ describe("tt new", () => {
     expect(parsed.task).toEqual(expected)
   })
 
-  test.skip("`tt new study, tt new work`", () => {
+  test.only("`tt new study, tt new work`", () => {
     const study = "study"
     const work = "work"
 
