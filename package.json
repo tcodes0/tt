@@ -32,7 +32,7 @@
   ],
   "types": "dist/ts/src",
   "scripts": {
-    "start": "NODE_ENV=development yarn ts-node run.ts | tee output.txt",
+    "start": "NODE_ENV=development yarn ts-node run.ts 2>&1 | tee output.txt",
     "lint": "eslint src --ext js,ts,tsx",
     "tscheck": "tsc",
     "tl": "yarn tscheck && yarn lint",

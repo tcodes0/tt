@@ -60,16 +60,6 @@ export default function parser(argv: string[]): Operation["return"] {
             message: "Argument is identical to a command 😕",
           })
 
-    case "stop":
-      if (!argTwo) {
-        return operation("stop")
-      }
-      return isValidName(argTwo)
-        ? operation("stop", argTwo)
-        : operation("parseErr", argTwo, {
-            message: "Argument is identical to a command 😕",
-          })
-
     case "log":
       if (!argTwo) {
         return operation("log")
@@ -85,6 +75,13 @@ export default function parser(argv: string[]): Operation["return"] {
         ? operation("config")
         : operation("parseErr", argTwo, {
             message: "`tt config` doesn't take arguments. 🤔",
+          })
+
+    case "stop":
+      return userArgs.length === 1
+        ? operation("stop")
+        : operation("parseErr", argTwo, {
+            message: "`tt stop` doesn't take arguments. 🤔",
           })
 
     case "init":

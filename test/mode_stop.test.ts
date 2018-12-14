@@ -29,7 +29,16 @@ beforeAll(() => {
 })
 
 describe("tt stop", () => {
-  test("`tt new, tt stop`", () => {
+  test("`tt stop (not tracking so exits with 1)`", () => {
+    const mock = jest.fn(() => {})
+    // @ts-ignore
+    process.exit = mock
+    cli(cliArgs("stop"), { ttRoot: testDir })
+
+    expect(mock).toHaveBeenCalledWith(1)
+  })
+
+  test.only("`tt new` `tt stop`", () => {
     cli(cliArgs("new"), { ttRoot: testDir })
     cli(cliArgs("stop"), { ttRoot: testDir })
 

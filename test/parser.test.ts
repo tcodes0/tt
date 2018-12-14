@@ -70,7 +70,7 @@ test("parser basic", () => {
   expect(result).toMatchObject({ mode: "stop", input: [] })
 
   result = parser(cliArgs("stop", "foo"))
-  expect(result).toMatchObject({ mode: "stop", input: ["foo"] })
+  expect(result).toMatchObject({ mode: "parseErr", input: expect.any(Array) })
 })
 
 test("parser edge cases", () => {
