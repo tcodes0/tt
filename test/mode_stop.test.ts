@@ -10,8 +10,8 @@ import {
   ttFiles,
   stateFile,
   historyFile,
+  History,
 } from "../src/util"
-import rm from "rimraf"
 import { State } from "../src/core"
 
 const testDir = `${dev_ttDir}-mode_stop.test`
@@ -38,20 +38,23 @@ describe("tt stop", () => {
     expect(mock).toHaveBeenCalledWith(1)
   })
 
-  test.only("`tt new` `tt stop`", () => {
+  test("`tt new` `tt stop`", () => {
     cli(cliArgs("new"), { ttRoot: testDir })
     cli(cliArgs("stop"), { ttRoot: testDir })
 
-    const result = readFileSync(testState, "utf-8")
-    const parsed: State = JSON.parse(result)
+    const result = readFileSync(testHistory, "utf-8")
+    const parsed: History = JSON.parse(result)
+    const { history } = parsed
+    const [head] = history
     const expected: State["task"] = {
       name: expect.any(String),
       sprints: [
         {
           start: expect.any(Number),
+          end: expect.any(Number),
         },
       ],
     }
-    expect(parsed.task).toEqual(expected)
+    expect(head).toEqual(expected)
   })
 })

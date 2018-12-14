@@ -15,7 +15,7 @@ export type Task = {
 
 export type Sprint = Task["sprints"][0]
 
-const initialState: Task = { name: "", sprints: [] }
+const initialState: Task = { name: "", sprints: [{ start: 0 }] }
 
 export default function reducer(
   state = initialState,

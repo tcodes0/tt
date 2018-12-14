@@ -1,4 +1,9 @@
 import { readFileSync } from "fs"
+import { Task } from "../core"
+
+export type History = {
+  history?: Task[]
+}
 
 export type Object<T = undefined> = { [key: string]: T }
 export type EmptyObject = { [key: string]: never }

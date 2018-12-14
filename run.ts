@@ -14,5 +14,5 @@ ttFiles.forEach(file => {
 // cli(cliArgs("new", "study"), { ttRoot: dev_ttDir, log: true })
 // console.log("----------------------------")
 // cli(cliArgs("new", "work"), { ttRoot: dev_ttDir, log: true })
-cli(cliArgs("new"), { ttRoot: testDir })
-cli(cliArgs("stop"), { ttRoot: testDir })
+cli(cliArgs("new"), { ttRoot: testDir, log: true })
+cli(cliArgs("stop"), { ttRoot: testDir, log: true })

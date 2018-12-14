@@ -13,5 +13,4 @@ Time Tracking Tool
 ## Doing
 
 pass test for new foo new bar. Needs to write to history.
--write test for stop
--finish implementation of stop
+change stop test to be more generic (regex the string from reading file)

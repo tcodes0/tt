@@ -1,8 +1,8 @@
 import { takeEvery, select, put, call } from "redux-saga/effects"
 import { TASK_STOP } from "./action_taskStop"
 import taskUnset from "./action_taskUnset"
-import { State, historyAdd, Task } from "../core"
-import { Action, readTtFile, historyFile, writeTtFile, bailout } from "../util"
+import { State, historyAdd, cliWrite } from "../core"
+import { Action, readTtFile, historyFile, bailout, History } from "../util"
 import { PayloadHistoryAdd, HISTORY_ADD } from "./action_historyAdd"
 
 function* stopTask() {
@@ -13,7 +13,6 @@ function* stopTask() {
   }
 
   const task: State["task"] = yield select<State>(state => state.task)
-  // task.sprints[0].end = Date.now()
 
   yield put(historyAdd({ task }))
   yield put(taskUnset())
@@ -21,9 +20,16 @@ function* stopTask() {
 
 function* historyAddSaga(action: Action<PayloadHistoryAdd>) {
   const { task } = action.payload
-  const history: Task[] = yield call(readTtFile, { file: historyFile })
+  const { ttRoot }: State["cli"] = yield select<State>(state => state.cli)
+  const { history: parsedHist }: History = yield call(readTtFile, {
+    file: historyFile,
+    path: ttRoot,
+  })
+
+  const history = parsedHist || []
   const newHistory = [task, ...history]
-  yield call(writeTtFile, { file: historyFile, data: newHistory })
+  const data = { history: newHistory }
+  yield put(cliWrite({ file: historyFile, data, path: ttRoot }))
 }
 
 export default function* sagaStop() {
