@@ -5,16 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "debug cli",
-      "type": "node",
-      "request": "launch",
-      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
-      "sourceMaps": true,
-      "cwd": "${workspaceRoot}",
-      "args": ["${workspaceFolder}/src/index.ts", "dev", "dev"],
-      "protocol": "inspector"
-    },
-    {
       "name": "debug run",
       "type": "node",
       "request": "launch",

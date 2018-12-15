@@ -7,4 +7,5 @@ export const dev_ttDir = `${devDir}/test/.tt`
 export const stateFile = `state.json`
 export const historyFile = `history.json`
 export const rcFile = `ttrc.json`
+export const defaultTask = `Personal Task`
 export const ttFiles = [stateFile, historyFile, rcFile]

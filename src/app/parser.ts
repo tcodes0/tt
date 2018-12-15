@@ -1,4 +1,4 @@
-import { env, FunctionType } from "../util"
+import { FunctionType } from "../util"
 import operation, { Operation } from "./operation"
 
 export type Parser = FunctionType<typeof parser>
@@ -26,11 +26,6 @@ export default function parser(argv: string[]): Operation["return"] {
   const [argOne, ...argTwoAndOthers] = userArgs
   const [argTwo, ...otherArgs] = argTwoAndOthers
   const isValidName = (word: string) => !reservedWords.includes(word)
-
-  if (env === "development" && argOne == "dev") {
-    // @ts-ignore
-    return operation.apply(null, argTwoAndOthers)
-  }
 
   if (!userArgs.length) {
     return operation("noArgs")

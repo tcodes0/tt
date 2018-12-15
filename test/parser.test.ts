@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { parser, operation } from "../src/app"
 import { cliArgs } from "../src/util"
 
@@ -8,7 +7,6 @@ test("operation", () => {
     expect(result).toMatchObject({ mode: expect.any(String) })
     const { mode, ...nonMode } = result
 
-    //@ts-ignore
     Object.values(nonMode).forEach(value => {
       expect(value).toEqual(expect.any(Array))
     })
@@ -18,7 +16,6 @@ test("operation", () => {
     const result = operation("mode rm task", ["studying", "gaming"])
     const { mode, ...nonMode } = result
 
-    //@ts-ignore
     Object.values(nonMode).forEach(value => {
       expect(value).toEqual(expect.any(Array))
     })

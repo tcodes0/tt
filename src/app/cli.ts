@@ -37,11 +37,6 @@ export default function cli(
   }
 
   switch (mode) {
-    case "dev":
-      console.log("Hi")
-      // modeNew({ name: "foo" })
-      break
-
     case "parseErr":
       bailout(`
       ${message}

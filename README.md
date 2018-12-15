@@ -13,4 +13,4 @@ Time Tracking Tool
 ## Doing
 
 pass test for new foo new bar. Needs to write to history.
-change stop test to be more generic (regex the string from reading file)
+test for new needs genericness

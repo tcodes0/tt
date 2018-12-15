@@ -9,6 +9,9 @@ import { State } from "./store"
 function* loadSaga(action: Action<PayloadLoadState>) {
   const { payload } = action
   yield call(loadState, payload)
+  yield put({
+    type: "CLI_LOAD_STATE_SUCCESS",
+  })
 }
 
 function* shutdownSaga() {

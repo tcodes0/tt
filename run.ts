@@ -3,16 +3,13 @@ import { cliArgs, dev_ttDir, ttFiles } from "./src/util"
 import { writeFileSync } from "fs"
 
 // @ts-ignore
-const testDir = `${dev_ttDir}-mode_stop.test`
+// const testDir = `${dev_ttDir}-mode_stop.test`
+const testDir = `${dev_ttDir}-mode_new.test`
 
 ttFiles.forEach(file => {
   writeFileSync(`${testDir}/${file}`, JSON.stringify({}))
 })
 
-// cli(cliArgs("init"), { ttRoot: dev_ttDir })
-// console.log("----------------------------")
-// cli(cliArgs("new", "study"), { ttRoot: dev_ttDir, log: true })
-// console.log("----------------------------")
-// cli(cliArgs("new", "work"), { ttRoot: dev_ttDir, log: true })
-cli(cliArgs("new"), { ttRoot: testDir, log: true })
-cli(cliArgs("stop"), { ttRoot: testDir, log: true })
+cli(cliArgs("init"), { ttRoot: testDir })
+cli(cliArgs("new", "study"), { ttRoot: testDir, log: true })
+cli(cliArgs("new", "work"), { ttRoot: testDir, log: true })

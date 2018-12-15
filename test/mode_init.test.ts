@@ -1,19 +1,10 @@
 import { execSync } from "child_process"
 import { cli } from "../src/app"
 import { readFileSync, statSync, writeFileSync } from "fs"
-import {
-  cliArgs,
-  dev_ttDir,
-  ttFiles,
-  stateFile,
-  historyFile,
-} from "../src/util"
+import { cliArgs, dev_ttDir, ttFiles } from "../src/util"
 import rm from "rimraf"
-import { State } from "../src/core"
 
-const testDir = `${dev_ttDir}-mode_new.test`
-const testState = `${testDir}/${stateFile}`
-const testHistory = `${testDir}/${historyFile}`
+const testDir = `${dev_ttDir}-mode_init.test`
 
 afterAll(() => {
   execSync(`mkdir -p ${testDir}`)
@@ -32,18 +23,17 @@ describe("tt init", () => {
   })
 
   test("erases files", () => {
-    const notExpected = { nope: 4 }
+    const notExpected = JSON.stringify({ nope: 4 })
 
     ttFiles.forEach(file => {
-      writeFileSync(`${testDir}/${file}`, JSON.stringify(notExpected))
+      writeFileSync(`${testDir}/${file}`, notExpected)
     })
 
     cli(cliArgs("init"), { ttRoot: testDir })
 
     ttFiles.forEach(file => {
       const result = readFileSync(`${testDir}/${file}`, "utf-8")
-      const parsed = JSON.parse(result)
-      expect(parsed).not.toEqual(notExpected)
+      expect(result).not.toMatch(new RegExp(notExpected))
     })
   })
 })
