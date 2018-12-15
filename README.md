@@ -36,5 +36,5 @@ Time Tracking Tool
 
 ## Doing
 
-pass test for new foo new bar. Needs to write to history.
-test for new needs genericness
+implement log and make test pass
+add ttStdout to cli and integrate with cli options
