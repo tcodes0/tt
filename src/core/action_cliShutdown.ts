@@ -1,7 +1,7 @@
-import createAction from "../util/createAction"
-import { PayloadType } from "../util"
+import createAction from '../util/createAction'
+import { PayloadType } from '../util'
 
-export const CLI_SHUTDOWN = "CLI_SHUTDOWN"
+export const CLI_SHUTDOWN = 'CLI_SHUTDOWN'
 
 const action = createAction(CLI_SHUTDOWN)
 

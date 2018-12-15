@@ -1,16 +1,16 @@
-import { takeLatest, put, call, select } from "redux-saga/effects"
-import { CLI_SHUTDOWN } from "./action_cliShutdown"
-import { CLI_LOAD_STATE, PayloadLoadState } from "./action_cliLoadState"
-import setCallTime from "./action_cliSetCallTime"
-import write, { CLI_WRITE, PayloadWrite } from "./action_cliWrite"
-import { loadState, Action, writeTtFile, stateFile } from "../util"
-import { State } from "./store"
+import { takeLatest, put, call, select } from 'redux-saga/effects'
+import { CLI_SHUTDOWN } from './action_cliShutdown'
+import { CLI_LOAD_STATE, PayloadLoadState } from './action_cliLoadState'
+import setCallTime from './action_cliSetCallTime'
+import write, { CLI_WRITE, PayloadWrite } from './action_cliWrite'
+import { loadState, Action, writeTtFile, stateFile } from '../util'
+import { State } from './store'
 
 function* loadSaga(action: Action<PayloadLoadState>) {
   const { payload } = action
   yield call(loadState, payload)
   yield put({
-    type: "CLI_LOAD_STATE_SUCCESS",
+    type: 'CLI_LOAD_STATE_SUCCESS',
   })
 }
 

@@ -1,4 +1,4 @@
-import { Object } from "../util"
+import { Object } from '../util'
 
 export interface Action<Payload> {
   type: string

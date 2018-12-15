@@ -1,7 +1,7 @@
-import createAction from "../util/createAction"
-import { PayloadType } from "../util"
+import createAction from '../util/createAction'
+import { PayloadType } from '../util'
 
-export const MODE_STOP = "MODE_STOP"
+export const MODE_STOP = 'MODE_STOP'
 
 const action = createAction(MODE_STOP)
 

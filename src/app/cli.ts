@@ -1,4 +1,4 @@
-import { bailout, FunctionType } from "../util"
+import { bailout, FunctionType } from '../util'
 import {
   dispatch,
   cliShutdown,
@@ -8,8 +8,8 @@ import {
   loadState,
   cliArgs,
   modeStop,
-} from "../core"
-import { parser } from "."
+} from '../core'
+import { parser } from '.'
 
 export type Cli = FunctionType<typeof cli>
 
@@ -37,28 +37,28 @@ export default function cli(
   }
 
   switch (mode) {
-    case "parseErr":
+    case 'parseErr':
       bailout(`
       ${message}
       Failed with: ${input}
       `)
       break
 
-    case "noArgs":
+    case 'noArgs':
       bailout(`
       Please specify a few args.
       `)
       break
 
-    case "new":
+    case 'new':
       dispatch(modeNew({ name: input[0] }))
       break
 
-    case "init":
+    case 'init':
       dispatch(modeInit())
       break
 
-    case "stop":
+    case 'stop':
       dispatch(modeStop())
       break
 

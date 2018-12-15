@@ -42,6 +42,7 @@
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
+    "formatAll": "yarn prettier src/**/* test/* ./*ts ./*js --write",
     "prepublishOnly": "npm run lint",
     "prepublish": "npm test && npm run build",
     "postpublish": "git push origin master --follow-tags",

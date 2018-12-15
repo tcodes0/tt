@@ -1,7 +1,7 @@
-import createAction from "../util/createAction"
-import { PayloadType } from "../util"
+import createAction from '../util/createAction'
+import { PayloadType } from '../util'
 
-export const CLI_SET_ROOT_DIR = "CLI_SET_ROOT_DIR"
+export const CLI_SET_ROOT_DIR = 'CLI_SET_ROOT_DIR'
 
 const action = createAction<{ ttRoot: string }>(CLI_SET_ROOT_DIR)
 

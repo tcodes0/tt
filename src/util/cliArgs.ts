@@ -4,8 +4,8 @@
 // process.argv[2] is first arg
 export default function cliArgs(...args: string[]) {
   return [
-    "/usr/local/Cellar/node/10.10.0/bin/node",
-    "/usr/local/bin/tt",
+    '/usr/local/Cellar/node/10.10.0/bin/node',
+    '/usr/local/bin/tt',
     ...args,
   ]
 }

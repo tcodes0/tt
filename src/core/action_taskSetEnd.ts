@@ -1,7 +1,7 @@
-import createAction from "../util/createAction"
-import { PayloadType } from "../util"
+import createAction from '../util/createAction'
+import { PayloadType } from '../util'
 
-export const TASK_SET_END = "TASK_SET_END"
+export const TASK_SET_END = 'TASK_SET_END'
 
 const action = createAction(TASK_SET_END)
 

@@ -1,4 +1,4 @@
-import { FunctionType } from "../util"
+import { FunctionType } from '../util'
 
 export type Operation = FunctionType<typeof operation>
 

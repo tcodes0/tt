@@ -4,8 +4,8 @@ import {
   CLI_SET_ROOT_DIR,
   TASK_SET_END,
   PayloadSetRoot,
-} from "."
-import { ttDir, Action } from "../util"
+} from '.'
+import { ttDir, Action } from '../util'
 
 const initialState: { tracking: boolean; callTime: number; ttRoot: string } = {
   callTime: 0,

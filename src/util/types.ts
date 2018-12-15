@@ -1,5 +1,5 @@
-import { readFileSync } from "fs"
-import { Task } from "../core"
+import { readFileSync } from 'fs'
+import { Task } from '../core'
 
 export type History = {
   history?: Task[]
@@ -21,4 +21,4 @@ export type PayloadType<Action> = Action extends (payload: infer P) => any
   ? Exclude<P, undefined>
   : never
 
-export type ReadFileSyncArg2 = FunctionType<typeof readFileSync>["args"][1]
+export type ReadFileSyncArg2 = FunctionType<typeof readFileSync>['args'][1]

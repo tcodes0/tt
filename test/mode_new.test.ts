@@ -1,6 +1,6 @@
-import { execSync } from "child_process"
-import { cli } from "../src/app"
-import { readFileSync, writeFileSync } from "fs"
+import { execSync } from 'child_process'
+import { cli } from '../src/app'
+import { readFileSync, writeFileSync } from 'fs'
 import {
   cliArgs,
   dev_ttDir,
@@ -8,7 +8,7 @@ import {
   stateFile,
   historyFile,
   defaultTask,
-} from "../src/util"
+} from '../src/util'
 
 const testDir = `${dev_ttDir}-mode_new.test`
 const testState = `${testDir}/${stateFile}`
@@ -23,26 +23,26 @@ beforeAll(() => {
   })
 })
 
-describe("tt new", () => {
-  test("`tt new`", () => {
+describe('tt new', () => {
+  test('`tt new`', () => {
     let result: string
 
-    cli(cliArgs("new"), { ttRoot: testDir })
+    cli(cliArgs('new'), { ttRoot: testDir })
 
-    result = readFileSync(testState, "utf-8")
+    result = readFileSync(testState, 'utf-8')
     expect(result).toMatch(new RegExp(defaultTask))
     expect(result).toMatch(/"start": \d+/)
     expect(result).toMatch(/sprints/)
     expect(result).not.toMatch(/"end": \d+/)
   })
 
-  test("`tt new study`", () => {
+  test('`tt new study`', () => {
     let result: string
-    const study = "study"
+    const study = 'study'
 
-    cli(cliArgs("new", "study"), { ttRoot: testDir })
+    cli(cliArgs('new', 'study'), { ttRoot: testDir })
 
-    result = readFileSync(testState, "utf-8")
+    result = readFileSync(testState, 'utf-8')
     expect(result).toMatch(/study/)
     expect(result).toMatch(/"tracking": true/)
     expect(result).toMatch(/"start": \d+/)
@@ -50,13 +50,13 @@ describe("tt new", () => {
     expect(result).not.toMatch(/"end": \d+/)
   })
 
-  test("`tt new study, tt new work`", () => {
+  test('`tt new study, tt new work`', () => {
     let result: string
 
-    cli(cliArgs("new", "study"), { ttRoot: testDir })
-    cli(cliArgs("new", "work"), { ttRoot: testDir })
+    cli(cliArgs('new', 'study'), { ttRoot: testDir })
+    cli(cliArgs('new', 'work'), { ttRoot: testDir })
 
-    result = readFileSync(testHistory, "utf-8")
+    result = readFileSync(testHistory, 'utf-8')
     expect(result).toMatch(/study/)
     expect(result).toMatch(/sprints/)
     expect(result).toMatch(/"start": \d+/)

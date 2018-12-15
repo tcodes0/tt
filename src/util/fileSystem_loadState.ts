@@ -1,8 +1,8 @@
-import { readFileSync } from "fs"
-import { execSync } from "child_process"
-import { rootReducer, replaceReducer } from "../core"
-import { ttDir, stateFile, ReadFileSyncArg2 } from "."
-import { FunctionType } from "../util"
+import { readFileSync } from 'fs'
+import { execSync } from 'child_process'
+import { rootReducer, replaceReducer } from '../core'
+import { ttDir, stateFile, ReadFileSyncArg2 } from '.'
+import { FunctionType } from '../util'
 
 // @ts-ignore
 const load = (stateFromDisk: any) => (state: any, action: any) => {
@@ -21,7 +21,7 @@ export default function loadState(
 ) {
   const {
     path = ttDir,
-    opts = "utf-8",
+    opts = 'utf-8',
     log = false,
     file = stateFile,
   } = options
@@ -41,7 +41,7 @@ export default function loadState(
     replaceReducer(rootReducer)
     return state
   } catch (error) {
-    if (error.code === "ENOENT") {
+    if (error.code === 'ENOENT') {
       execSync(`mkdir -p ${path}`)
       execSync(`echo {} > ${statePath}`)
       return {}
@@ -49,15 +49,15 @@ export default function loadState(
 
     if (log) {
       console.error(
-        "error loading state from disk\n",
-        "data is ",
+        'error loading state from disk\n',
+        'data is ',
         data,
-        "\n",
-        "state is ",
+        '\n',
+        'state is ',
         state,
-        "\n",
+        '\n',
         error,
-        "\n",
+        '\n',
       )
     }
 

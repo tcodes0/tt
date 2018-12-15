@@ -1,6 +1,6 @@
-import { execSync } from "child_process"
-import { cli } from "../src/app"
-import { readFileSync, writeFileSync } from "fs"
+import { execSync } from 'child_process'
+import { cli } from '../src/app'
+import { readFileSync, writeFileSync } from 'fs'
 import {
   cliArgs,
   dev_ttDir,
@@ -8,7 +8,7 @@ import {
   stateFile,
   historyFile,
   defaultTask,
-} from "../src/util"
+} from '../src/util'
 
 const testDir = `${dev_ttDir}-mode_stop.test`
 const testState = `${testDir}/${stateFile}`
@@ -23,22 +23,22 @@ beforeAll(() => {
   })
 })
 
-describe("tt stop", () => {
-  test("`tt stop (not tracking so exits with 1)`", () => {
+describe('tt stop', () => {
+  test('`tt stop (not tracking so exits with 1)`', () => {
     const mock = jest.fn(() => {})
     // @ts-ignore
     process.exit = mock
-    cli(cliArgs("stop"), { ttRoot: testDir })
+    cli(cliArgs('stop'), { ttRoot: testDir })
 
     expect(mock).toHaveBeenCalledWith(1)
   })
 
-  test("`tt new` `tt stop`", () => {
-    cli(cliArgs("new"), { ttRoot: testDir })
-    cli(cliArgs("stop"), { ttRoot: testDir })
+  test('`tt new` `tt stop`', () => {
+    cli(cliArgs('new'), { ttRoot: testDir })
+    cli(cliArgs('stop'), { ttRoot: testDir })
 
     let result: string
-    result = readFileSync(testHistory, "utf-8")
+    result = readFileSync(testHistory, 'utf-8')
     expect(result).toMatch(/name/)
     expect(result).toMatch(new RegExp(defaultTask))
     expect(result).toMatch(/start/)
@@ -55,7 +55,7 @@ describe("tt stop", () => {
       ]
     }
      */
-    result = readFileSync(testState, "utf-8")
+    result = readFileSync(testState, 'utf-8')
     expect(result).toMatch(/"tracking": false/)
   })
 })

@@ -1,7 +1,7 @@
-import { takeLatest, select, put } from "redux-saga/effects"
-import { MODE_NEW } from "./action_modeNew"
-import { State, taskSetStart, PayloadNew, printLog, modeNew, modeStop } from "."
-import { Action, defaultTask } from "../util"
+import { takeLatest, select, put } from 'redux-saga/effects'
+import { MODE_NEW } from './action_modeNew'
+import { State, taskSetStart, PayloadNew, printLog, modeNew, modeStop } from '.'
+import { Action, defaultTask } from '../util'
 
 function* handleNew(action: Action<PayloadNew>) {
   const { name = defaultTask } = action.payload
@@ -13,7 +13,7 @@ function* handleNew(action: Action<PayloadNew>) {
   }
 
   yield put(modeStop())
-  yield put(printLog({ what: "last" }))
+  yield put(printLog({ what: 'last' }))
   yield put(modeNew({ name }))
 }
 
