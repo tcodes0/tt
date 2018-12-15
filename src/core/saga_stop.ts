@@ -1,24 +1,38 @@
-import { takeEvery } from "redux-saga/effects"
-import { Action } from "redux-actions"
-import { TASK_STOP, PayloadActionStop } from "./action_taskStop"
-import { getState } from "./store"
+import { takeEvery, select, put, call } from 'redux-saga/effects'
+import taskUnset from './action_taskUnset'
+import { State, historyAdd, cliWrite, taskSetEnd } from '../core'
+import { Action, readTtFile, historyFile, bailout, History } from '../util'
+import { PayloadHistoryAdd, HISTORY_ADD } from './action_historyAdd'
+import { MODE_STOP } from './action_modeStop'
 
-function* saga(action: Action<PayloadActionStop>) {
-  const taskName = action.payload && action.payload.taskName
-  const tasks = getState().tasks
-  const index = tasks.findIndex((task) => task.name === taskName)
-  // @ts-ignore
-  const stopped = {
-    name: tasks[index].name,
-    start: tasks[index].start,
-    end: Date.now(),
+function* handleStop() {
+  const { tracking }: State['cli'] = yield select<State>(state => state.cli)
+  if (!tracking) {
+    yield call(bailout, 'No task to stop 🤔')
+    return
   }
-  yield "foo"
-  return "foo"
-  // yield put(historyPush(stopped))
-  // yield put(rmTask(index))
+
+  yield put(taskSetEnd())
+  const task: State['task'] = yield select<State>(state => state.task)
+  yield put(historyAdd({ task }))
+  yield put(taskUnset())
 }
 
-export default function* stateWriteSaga() {
-  yield takeEvery(TASK_STOP, saga)
+function* handleHistoryAdd(action: Action<PayloadHistoryAdd>) {
+  const { task } = action.payload
+  const { ttRoot }: State['cli'] = yield select<State>(state => state.cli)
+  const { history: parsedHist }: History = yield call(readTtFile, {
+    file: historyFile,
+    path: ttRoot,
+  })
+
+  const history = parsedHist || []
+  const newHistory = [task, ...history]
+  const data = { history: newHistory }
+  yield put(cliWrite({ file: historyFile, data, path: ttRoot }))
+}
+
+export default function* sagaStop() {
+  yield takeEvery(MODE_STOP, handleStop)
+  yield takeEvery(HISTORY_ADD, handleHistoryAdd)
 }

@@ -1,6 +1,17 @@
-import { bailout, loadState, Object } from "../util"
-import { dispatch, cliShutdown, modeNew, setRoot, modeInit } from "../core"
-import { parseArguments } from "."
+import { bailout, FunctionType } from '../util'
+import {
+  dispatch,
+  cliShutdown,
+  modeNew,
+  setRoot,
+  modeInit,
+  loadState,
+  cliArgs,
+  modeStop,
+} from '../core'
+import { parser } from '.'
+
+export type Cli = FunctionType<typeof cli>
 
 /**
  * Main tt function. Maps operations to actions.
@@ -8,50 +19,52 @@ import { parseArguments } from "."
  * @param Args or undefined to parse process.argv
  */
 export default function cli(
-  argsOrMock: string[] = process.argv,
-  options: Object = {},
+  argsOrMock = process.argv,
+  options: {
+    ttRoot?: string
+    log?: boolean
+  } = {},
 ) {
   // console.log("argsOrMock", argsOrMock)
   // console.log("options", options)
 
-  const { mode, input, message } = parseArguments(argsOrMock)
-  const { ttRoot } = options
-
+  dispatch(cliArgs(argsOrMock))
+  const { mode, input, message } = parser(argsOrMock)
+  const { ttRoot, log } = options
+  dispatch(loadState({ path: ttRoot, log }))
   if (ttRoot) {
     dispatch(setRoot({ ttRoot }))
   }
 
   switch (mode) {
-    case "dev":
-      console.log("Hi")
-      // modeNew({ name: "foo" })
-      break
-
-    case "parseErr":
+    case 'parseErr':
       bailout(`
       ${message}
       Failed with: ${input}
       `)
       break
 
-    case "noArgs":
+    case 'noArgs':
       bailout(`
       Please specify a few args.
       `)
       break
 
-    case "new":
-      loadState()
-      modeNew(input)
+    case 'new':
+      dispatch(modeNew({ name: input[0] }))
       break
 
-    case "init":
-      dispatch(modeInit({}))
+    case 'init':
+      dispatch(modeInit())
+      break
+
+    case 'stop':
+      dispatch(modeStop())
       break
 
     default:
       break
   }
 
-  dispatch(cliShutdown({}))
+  dispatch(cliShutdown())
 }

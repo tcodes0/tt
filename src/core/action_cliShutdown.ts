@@ -1,6 +1,10 @@
-import { createAction } from "redux-actions"
-import { EmptyObject } from "../util"
+import createAction from '../util/createAction'
+import { PayloadType } from '../util'
 
-export const CLI_SHUTDOWN = "CLI_SHUTDOWN"
+export const CLI_SHUTDOWN = 'CLI_SHUTDOWN'
 
-export default createAction<EmptyObject>(CLI_SHUTDOWN)
+const action = createAction(CLI_SHUTDOWN)
+
+export type PayloadShutdown = PayloadType<typeof action>
+
+export default action

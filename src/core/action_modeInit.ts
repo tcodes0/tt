@@ -1,7 +1,5 @@
-import { EmptyObject } from "./../util/types"
-import { createAction } from "redux-actions"
+import createAction from '../util/createAction'
 
-export const MODE_INIT = "MODE_INIT"
-export type InitType = EmptyObject
+export const MODE_INIT = 'MODE_INIT'
 
-export default createAction<EmptyObject>(MODE_INIT)
+export default createAction(MODE_INIT)

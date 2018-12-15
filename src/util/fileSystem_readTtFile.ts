@@ -1,17 +1,20 @@
-import { ttDir, stateFile, FsOptions } from "."
-import { statSync, readFileSync } from "fs"
+import { ttDir, stateFile, ReadFileSyncArg2 } from '.'
+import { statSync, readFileSync } from 'fs'
+import { FunctionType, Object } from './types'
 
-export default function readFromTtDir(
+export type ReadTtFile = FunctionType<typeof readTtFile>
+
+export default function readTtFile(
   options: {
     path?: string
-    opts?: FsOptions | string
+    opts?: ReadFileSyncArg2 | string
     log?: boolean
     file?: string
   } = {},
-) {
+): Object<any> {
   const {
     path = ttDir,
-    opts = "utf-8",
+    opts = 'utf-8',
     log = false,
     file = stateFile,
   } = options
@@ -27,7 +30,7 @@ export default function readFromTtDir(
     if (log) {
       console.log(`readTtFile error ${err.code}`, err)
     }
-    if (err.code === "ENOENT") {
+    if (err.code === 'ENOENT') {
       return {}
     }
     throw err

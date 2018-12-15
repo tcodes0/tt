@@ -7,3 +7,4 @@ build/*
 *.log
 test/fixture*
 test/.tt*
+output.txt

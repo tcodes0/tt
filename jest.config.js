@@ -24,7 +24,7 @@ module.exports = {
   // collectCoverageFrom: null,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -63,13 +63,13 @@ module.exports = {
   // ],
 
   // An array of file extensions your modules use
-  moduleFileExtensions: ["js", "ts"],
+  moduleFileExtensions: ['js', 'ts'],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   // moduleNameMapper: {},
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  modulePathIgnorePatterns: ["/node_modules/", "/dist/"],
+  modulePathIgnorePatterns: ['/node_modules/', '/dist/'],
 
   // Activates notifications for test results
   // notify: false,
@@ -102,7 +102,7 @@ module.exports = {
   // rootDir: null,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: ["test", "src"],
+  roots: ['test', 'src'],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -117,7 +117,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: 'node',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -126,7 +126,7 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ["**/test_*.(j|t)s", "**/*.test.(j|t)s"],
+  testMatch: ['**/test_*.(j|t)s', '**/*.test.(j|t)s'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -150,7 +150,7 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "\\.(j|t)sx?$": "babel-jest",
+    '\\.(j|t)sx?$': 'babel-jest',
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

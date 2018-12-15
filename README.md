@@ -36,4 +36,5 @@ Time Tracking Tool
 
 ## Doing
 
-should be refactoring modes to sagas
+pass test for new foo new bar. Needs to write to history.
+test for new needs genericness
