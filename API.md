@@ -185,3 +185,8 @@ tt stops work, prints nothing, continues tracking browsing.
 `stop` means `push to history`
 
 `ttrc` could offer option to wrap `tt continue` to the last day or not
+
+# Backlog
+
+implement undo history
+implement bash completion
