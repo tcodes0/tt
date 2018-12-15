@@ -8,3 +8,4 @@ build/*
 test/fixture*
 test/.tt*
 output.txt
+ttOutput.txt

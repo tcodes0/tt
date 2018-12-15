@@ -34,3 +34,6 @@ export * from './fileSystem_writeTtFile'
 
 export { default as createAction } from './createAction'
 export * from './createAction'
+
+export { default as ttStdout } from './process_stdout'
+export * from './process_stdout'
