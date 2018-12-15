@@ -4,7 +4,7 @@ import { PayloadType } from '../util'
 export const PRINT_LOG = 'PRINT_LOG'
 
 const action = createAction<{
-  what: 'today' | 'week' | 'month' | 'all' | 'last'
+  time: 'today' | 'week' | 'month' | 'all' | 'last'
 }>(PRINT_LOG)
 
 export type PayloadLog = PayloadType<typeof action>

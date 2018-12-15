@@ -13,7 +13,7 @@ function* handleNew(action: Action<PayloadNew>) {
   }
 
   yield put(modeStop())
-  yield put(printLog({ what: 'last' }))
+  yield put(printLog({ time: 'last' }))
   yield put(modeNew({ name }))
 }
 

@@ -25,9 +25,6 @@ export * from './action_cliWrite'
 export { default as taskSetEnd } from './action_taskSetEnd'
 export * from './action_taskSetEnd'
 
-export { default as taskSummary } from './action_taskSummary'
-export * from './action_taskSummary'
-
 export { default as modeNew } from './action_modeNew'
 export * from './action_modeNew'
 
