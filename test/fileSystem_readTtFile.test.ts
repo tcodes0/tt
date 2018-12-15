@@ -1,11 +1,10 @@
 import { readTtFile, dev_ttDir } from '../src/util'
-import { writeFileSync } from 'fs'
-import { execSync } from 'child_process'
+import { writeFileSync, mkdirSync } from 'fs'
 
 const testDir = `${dev_ttDir}-readTtFile.test`
 
 beforeAll(() => {
-  execSync(`mkdir -p ${testDir}`)
+  mkdirSync(testDir, { recursive: true })
 })
 
 describe('readTtFile test', () => {

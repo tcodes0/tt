@@ -1,5 +1,4 @@
-import { readFileSync } from 'fs'
-import { execSync } from 'child_process'
+import { readFileSync, mkdirSync, appendFileSync } from 'fs'
 import { rootReducer, replaceReducer } from '../core'
 import { ttDir, stateFile, ReadFileSyncArg2 } from '.'
 import { FunctionType } from '../util'
@@ -42,8 +41,8 @@ export default function loadState(
     return state
   } catch (error) {
     if (error.code === 'ENOENT') {
-      execSync(`mkdir -p ${path}`)
-      execSync(`echo {} > ${statePath}`)
+      mkdirSync(path, { recursive: true })
+      appendFileSync(statePath, '{}')
       return {}
     }
 

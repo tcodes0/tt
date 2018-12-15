@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs'
+import { writeFileSync, mkdirSync } from 'fs'
 import { ttDir, stateFile, ReadFileSyncArg2, Object } from '.'
 import { execSync } from 'child_process'
 import { FunctionType } from './types'
@@ -37,7 +37,7 @@ export default function writeTtFile(
     }
     if (err.code === 'ENOENT' && !attempedPaths.includes(path)) {
       attempedPaths.push(path)
-      execSync(`mkdir -p ${path}`)
+      mkdirSync(path, { recursive: true })
       return writeTtFile(options)
     }
     throw err
