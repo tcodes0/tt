@@ -1,7 +1,5 @@
-import { TASK_SET, PayloadSet } from "."
+import { TASK_SET_START, PayloadSet, HISTORY_ADD, TASK_SET_END } from "."
 import { Action } from "../util"
-import { TASK_UNSET } from "./action_taskUnset"
-import { TASK_STOP } from "./action_taskStop"
 
 type Payloads = PayloadSet
 
@@ -22,20 +20,20 @@ export default function reducer(
   action: Action<Payloads>,
 ) {
   switch (action.type) {
-    case TASK_SET: {
+    case TASK_SET_START: {
       const { name = "" } = action.payload
       const start = Date.now()
       const result: Task = { name, sprints: [{ start }] }
       return result
     }
-    case TASK_STOP: {
+    case TASK_SET_END: {
       const { sprints } = state
       const [head, ...others] = sprints
       head.end = Date.now()
       const result: Task = { ...state, sprints: [head, ...others] }
       return result
     }
-    case TASK_UNSET: {
+    case HISTORY_ADD: {
       return initialState
     }
     default:

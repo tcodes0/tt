@@ -7,7 +7,7 @@ import {
   modeInit,
   loadState,
   cliArgs,
-  taskStop,
+  modeStop,
 } from "../core"
 import { parser } from "."
 
@@ -64,7 +64,7 @@ export default function cli(
       break
 
     case "stop":
-      dispatch(taskStop())
+      dispatch(modeStop())
       break
 
     default:

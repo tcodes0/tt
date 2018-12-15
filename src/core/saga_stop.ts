@@ -1,24 +1,24 @@
 import { takeEvery, select, put, call } from "redux-saga/effects"
-import { TASK_STOP } from "./action_taskStop"
 import taskUnset from "./action_taskUnset"
-import { State, historyAdd, cliWrite } from "../core"
+import { State, historyAdd, cliWrite, taskSetEnd } from "../core"
 import { Action, readTtFile, historyFile, bailout, History } from "../util"
 import { PayloadHistoryAdd, HISTORY_ADD } from "./action_historyAdd"
+import { MODE_STOP } from "./action_modeStop"
 
-function* stopTask() {
+function* handleStop() {
   const { tracking }: State["cli"] = yield select<State>(state => state.cli)
   if (!tracking) {
     yield call(bailout, "No task to stop 🤔")
     return
   }
 
+  yield put(taskSetEnd())
   const task: State["task"] = yield select<State>(state => state.task)
-
   yield put(historyAdd({ task }))
   yield put(taskUnset())
 }
 
-function* historyAddSaga(action: Action<PayloadHistoryAdd>) {
+function* handleHistoryAdd(action: Action<PayloadHistoryAdd>) {
   const { task } = action.payload
   const { ttRoot }: State["cli"] = yield select<State>(state => state.cli)
   const { history: parsedHist }: History = yield call(readTtFile, {
@@ -33,6 +33,6 @@ function* historyAddSaga(action: Action<PayloadHistoryAdd>) {
 }
 
 export default function* sagaStop() {
-  yield takeEvery(TASK_STOP, stopTask)
-  yield takeEvery(HISTORY_ADD, historyAddSaga)
+  yield takeEvery(MODE_STOP, handleStop)
+  yield takeEvery(HISTORY_ADD, handleHistoryAdd)
 }

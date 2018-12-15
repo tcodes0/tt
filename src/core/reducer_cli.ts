@@ -1,8 +1,8 @@
 import {
   CLI_SET_CALL_TIME,
-  TASK_TOGGLE_TRACKING,
-  TASK_SET,
+  TASK_SET_START,
   CLI_SET_ROOT_DIR,
+  TASK_SET_END,
   PayloadSetRoot,
 } from "."
 import { ttDir, Action } from "../util"
@@ -32,13 +32,13 @@ export default function reducer(
       return result
     }
 
-    case TASK_TOGGLE_TRACKING: {
-      const result = { ...state, tracking: !state.tracking }
+    case TASK_SET_START: {
+      const result = { ...state, tracking: true }
       return result
     }
 
-    case TASK_SET: {
-      const result = { ...state, tracking: true }
+    case TASK_SET_END: {
+      const result = { ...state, tracking: false }
       return result
     }
 

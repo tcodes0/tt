@@ -42,19 +42,25 @@ describe("tt stop", () => {
     cli(cliArgs("new"), { ttRoot: testDir })
     cli(cliArgs("stop"), { ttRoot: testDir })
 
-    const result = readFileSync(testHistory, "utf-8")
-    const parsed: History = JSON.parse(result)
-    const { history } = parsed
-    const [head] = history
-    const expected: State["task"] = {
-      name: expect.any(String),
-      sprints: [
+    let result: string
+    result = readFileSync(testHistory, "utf-8")
+    expect(result).toMatch(/name/)
+    expect(result).toMatch(/Personal Task/)
+    expect(result).toMatch(/start/)
+    expect(result).toMatch(/end/)
+    expect(result).toMatch(/sprints/)
+    expect(result).toMatch(/history/)
+    /**
+     *       "{
+      \"history\": [
         {
-          start: expect.any(Number),
-          end: expect.any(Number),
-        },
-      ],
+          \"name\": \"Personal Task\",
+          \"sprints\": [{ \"start\": 1544872208339, \"end\": 1544872208803 }]
+        }
+      ]
     }
-    expect(head).toEqual(expected)
+     */
+    result = readFileSync(testState, "utf-8")
+    expect(result).toMatch(/"tracking": false/)
   })
 })

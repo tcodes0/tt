@@ -1,6 +1,6 @@
 import { takeLatest, select, put } from "redux-saga/effects"
 import { MODE_NEW } from "./action_modeNew"
-import { State, taskSet, PayloadNew, taskStop, printLog } from "."
+import { State, taskSetStart, PayloadNew, taskSetEnd, printLog } from "."
 import { Action } from "../util"
 
 function* saga(action: Action<PayloadNew>) {
@@ -9,13 +9,13 @@ function* saga(action: Action<PayloadNew>) {
   // const recent = callTime - Date.now() > -10000 // 1 minute
 
   if (!tracking) {
-    yield put(taskSet({ name }))
+    yield put(taskSetStart({ name }))
     return
   }
 
-  yield put(taskStop())
+  yield put(taskSetEnd())
   yield put(printLog({ what: "last" }))
-  yield put(taskSet({ name }))
+  yield put(taskSetStart({ name }))
 }
 
 export default function* NewSaga() {
