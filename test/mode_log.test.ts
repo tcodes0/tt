@@ -23,12 +23,22 @@ beforeAll(() => {
 })
 
 describe('tt log', () => {
-  test('`tt log last`', () => {
-    const mock = jest.fn()
-    const expected = 'foo'
+  test('tt log last, with history', () => {
+    const mock = jest.fn((data, resolve) => {
+      setTimeout(() => {
+        data + 1
+        resolve()
+      }, 500)
+    })
+    const expected = expect.any(String)
     process.stdout.write = mock
+
+    cli(cliArgs('new', 'study'), { ttRoot: testDir })
+    cli(cliArgs('stop'), { ttRoot: testDir })
     cli(cliArgs('log', 'last'), { ttRoot: testDir })
 
-    expect(mock).toHaveBeenCalledWith(expected)
+    setTimeout(() => {
+      expect(mock).toHaveBeenCalledWith(expected)
+    }, 1000)
   })
 })

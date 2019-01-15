@@ -18,21 +18,6 @@ function* handleStop() {
   yield put(taskUnset())
 }
 
-function* handleHistoryAdd(action: Action<PayloadHistoryAdd>) {
-  const { task } = action.payload
-  const { ttRoot }: State['cli'] = yield select<State>(state => state.cli)
-  const { history: parsedHist }: History = yield call(readTtFile, {
-    file: historyFile,
-    path: ttRoot,
-  })
-
-  const history = parsedHist || []
-  const newHistory = [task, ...history]
-  const data = { history: newHistory }
-  yield put(cliWrite({ file: historyFile, data, path: ttRoot }))
-}
-
 export default function* sagaStop() {
   yield takeEvery(MODE_STOP, handleStop)
-  yield takeEvery(HISTORY_ADD, handleHistoryAdd)
 }

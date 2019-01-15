@@ -34,7 +34,7 @@ export * from './action_modeInit'
 export { default as setRoot } from './action_cliSetRoot'
 export * from './action_cliSetRoot'
 
-export { default as printLog } from './action_modeLog'
+export { default as modeLog } from './action_modeLog'
 export * from './action_modeLog'
 
 export { default as cliArgs } from './action_cliArgs'

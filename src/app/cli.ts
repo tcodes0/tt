@@ -8,6 +8,7 @@ import {
   loadState,
   cliArgs,
   modeStop,
+  modeLog,
 } from '../core'
 import { parser } from '.'
 
@@ -52,6 +53,10 @@ export default function cli(
 
     case 'new':
       dispatch(modeNew({ name: input[0] }))
+      break
+
+    case 'log':
+      dispatch(modeLog({ time: input[0] }))
       break
 
     case 'init':
