@@ -2,8 +2,6 @@ import { createWriteStream, WriteStream } from 'fs'
 import { defaultLogFile } from './constants'
 import { resolve } from 'path'
 
-let ttStream: WriteStream
-
 /**
  * @param data data to write to stdout + \n
  */
@@ -30,21 +28,19 @@ export function ttStdout(data: string | number, path?: string | null) {
   if (path === undefined) {
     return stdoutPromise
   }
-
-  if (!ttStream) {
-    const stream =
-      path === null
-        ? createWriteStream(defaultLogFile)
-        : createWriteStream(resolve(path))
-    ttStream = stream
-  }
+  const ttStream =
+    path === null
+      ? createWriteStream(defaultLogFile)
+      : createWriteStream(resolve(path))
 
   const logFilePromise = new Promise<void>((resolve, reject) => {
+    ttStream.on('error', e => {
+      reject(e)
+    })
     ttStream.write(stringData, e => {
-      if (e) {
-        reject(e)
+      if (!e) {
+        resolve()
       }
-      resolve()
     })
   })
 
