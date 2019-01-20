@@ -36,7 +36,6 @@ Time Tracking Tool
 
 ## Doing
 
-implement log and make test pass some async shit going on, it's implemented. Check if the ttStdout is awaited correclty, look at it's test.
 add ttStdout to cli and integrate with cli options
 refac Object type to JsObject
 make some saga selectors to help with typings selects

@@ -12,5 +12,5 @@ ttFiles.forEach(file => {
 
 cli(cliArgs('new', 'study'), { ttRoot: testDir })
 cli(cliArgs('stop'), { ttRoot: testDir })
-console.log('------------------------\n\n\n\n\n')
+console.log('here lol\n\n\n\n\n')
 cli(cliArgs('log', 'last'), { ttRoot: testDir })

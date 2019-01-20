@@ -8,13 +8,13 @@ import { resolve } from 'path'
 export function ttStdout(data: string | number): Promise<void>
 /**
  * @param data Data to write to stdout + \n
- * @param path Path to log file to append data to. Null defaults to ./ttOutput.txt. Relative to $PWD.
+ * @param logFile logFile to log file to append data to. Null defaults to ./ttOutput.txt. Relative to $PWD.
  */
 export function ttStdout(
   data: string | number,
-  path: string | null,
+  logFile?: string | null,
 ): Promise<void>
-export function ttStdout(data: string | number, path?: string | null) {
+export function ttStdout(data: string | number, logFile?: string | null) {
   const stringData = `${String(data)}\n`
   const stdoutPromise = new Promise<void>((resolve, reject) => {
     process.stdout.write(stringData, (e: Error) => {
@@ -25,13 +25,13 @@ export function ttStdout(data: string | number, path?: string | null) {
     })
   })
 
-  if (path === undefined) {
+  if (logFile === undefined) {
     return stdoutPromise
   }
   const ttStream =
-    path === null
+    logFile === null
       ? createWriteStream(defaultLogFile)
-      : createWriteStream(resolve(path))
+      : createWriteStream(resolve(logFile))
 
   const logFilePromise = new Promise<void>((resolve, reject) => {
     ttStream.on('error', e => {

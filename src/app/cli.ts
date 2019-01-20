@@ -24,6 +24,7 @@ export default function cli(
   options: {
     ttRoot?: string
     log?: boolean
+    logFile?: string | null
   } = {},
 ) {
   // console.log("argsOrMock", argsOrMock)
@@ -31,7 +32,7 @@ export default function cli(
 
   dispatch(cliArgs(argsOrMock))
   const { mode, input, message } = parser(argsOrMock)
-  const { ttRoot, log } = options
+  const { ttRoot, log, logFile } = options
   dispatch(loadState({ path: ttRoot, log }))
   if (ttRoot) {
     dispatch(setRoot({ ttRoot }))
@@ -56,7 +57,7 @@ export default function cli(
       break
 
     case 'log':
-      dispatch(modeLog({ time: input[0] }))
+      dispatch(modeLog({ time: input[0], logFile }))
       break
 
     case 'init':

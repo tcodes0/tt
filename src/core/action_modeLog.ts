@@ -3,7 +3,7 @@ import { PayloadType } from '../util'
 
 export const MODE_LOG = 'MODE_LOG'
 
-const action = createAction<{ time: string }>(MODE_LOG)
+const action = createAction<{ time: string; logFile?: string | null }>(MODE_LOG)
 
 export type PayloadLog = PayloadType<typeof action>
 

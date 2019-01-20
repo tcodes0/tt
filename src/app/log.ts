@@ -8,17 +8,26 @@ const fmtMs = (time: number) => {
 }
 const indent = '  '
 
-export default async function log(task: Task) {
+export default async function log(
+  task: Task,
+  options: {
+    logFile?: string | null
+  },
+) {
   const { name, sprints } = task
+  const { logFile } = options
 
   if (!sprints[0].end) {
     const seconds = Date.now() - sprints[0].start
 
-    return ttStdout(`
+    return ttStdout(
+      `
     ${name}
     ${indent}is tracking.
     ${indent}Duration so far: ${fmtMs(seconds)}
-    `)
+    `,
+      logFile,
+    )
   }
 
   let message = `
@@ -34,7 +43,10 @@ export default async function log(task: Task) {
     message += `${indent}${i}: ${fmtMs(duration)}
     `
   }
-  return ttStdout(`${message}
+  return ttStdout(
+    `${message}
   ${indent}total: ${fmtMs(total)}
-  `)
+  `,
+    logFile,
+  )
 }
