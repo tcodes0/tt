@@ -1,24 +1,8 @@
-import { readFileSync } from 'fs'
-import { Task } from '../core'
-
-export type History = {
-  history?: Task[]
+export type JSObject<ValueType = any> = { [key: string]: ValueType }
+export type SprintJson = { sprints: Array<Sprint> }
+export type Sprint = {
+  name: string
+  start: number
+  end: number
+  description: string
 }
-
-export type Object<T = undefined> = { [key: string]: T }
-export type EmptyObject = { [key: string]: never }
-export type ReturnType<Func> = Func extends (...a: any) => infer Return
-  ? Return
-  : never
-export type ArgType<Func> = Func extends (...a: infer Args) => any
-  ? Args
-  : never
-export type FunctionType<Func> = {
-  args: ArgType<Func>
-  return: ReturnType<Func>
-}
-export type PayloadType<Action> = Action extends (payload: infer P) => any
-  ? Exclude<P, undefined>
-  : never
-
-export type ReadFileSyncArg2 = FunctionType<typeof readFileSync>['args'][1]

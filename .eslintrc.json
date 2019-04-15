@@ -35,6 +35,7 @@
     }
   ],
   "rules": {
-    "node/no-unsupported-features": "off"
+    "node/no-unsupported-features": "off",
+    "no-empty": "off"
   }
 }

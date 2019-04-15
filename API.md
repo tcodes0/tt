@@ -113,7 +113,7 @@ shows info on current task
 
 access configs tru cli
 
-## tt init
+## tt reader
 
 write blank files {} to ttDir.
 tt will write state.json with fresh data when shuting down.
@@ -146,13 +146,13 @@ type `tt` again to stop task
 
 ## multiple tasks, stop task with tt new
 
->type `tt`
+> type `tt`
 
->no tasks, so it starts tracking "personal task".
+> no tasks, so it starts tracking "personal task".
 
->type `tt browsing`, to set the task to "browsing"
+> type `tt browsing`, to set the task to "browsing"
 
->do some work on browsing
+> do some work on browsing
 
 type `tt new work`, to stop "browsing" and start a new task "work"
 

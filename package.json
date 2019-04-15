@@ -37,12 +37,13 @@
     "tscheck": "tsc",
     "tl": "yarn tscheck && yarn lint",
     "clean": "rimraf dist",
-    "build": "babel src --out-dir dist --extensions .js,.ts",
+    "build": "babel src --out-dir dist --extensions .js,.ts && scripts/addShebang.sh && chmod u+x ./dist/index.js",
     "test": "jest",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
     "formatAll": "yarn prettier src/**/* test/* ./*ts ./*js --write",
+    "doInstall": "yarn build && unlink ~/bin/tt && ln -si `pwd`/dist/index.js $HOME/bin/tt",
     "prepublishOnly": "npm run lint",
     "prepublish": "npm test && npm run build",
     "postpublish": "git push origin master --follow-tags",
@@ -65,6 +66,7 @@
     ]
   },
   "dependencies": {
+    "moment": "^2.24.0",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.2"
   },
