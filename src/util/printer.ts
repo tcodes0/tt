@@ -32,5 +32,5 @@ export default function printer(sprints?: Array<Sprint> | null) {
     .reverse()
     .map(stringBuilder)
     .join('\n')
-  process.stdout.write(result)
+  return process.stdout.write(result)
 }
